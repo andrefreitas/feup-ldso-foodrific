@@ -4,7 +4,7 @@ class MainPage(webapp2.RequestHandler):
 
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Foodrific - Soon!')
+        self.response.write('Foodrific - Soon available!')
 
 
 application = webapp2.WSGIApplication([
