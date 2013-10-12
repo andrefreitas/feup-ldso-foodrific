@@ -21,9 +21,13 @@ def getPhotoByUser(id_user):
 	# TODO
 
 def searchUserByName(name):
+	user = User.query(User.name = name)
+	return user.fetch()
 	#TODO
 
 def searchUserByEmail(email):
+	user = User.query(User.name = name)
+	return user.fetch()
 	#TODO
 
 # ----------------- POST -----------------
