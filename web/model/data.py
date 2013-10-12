@@ -8,12 +8,11 @@ def addUser(name, email, password, gender, birthday):
 	user.put()
 
 def isUser(email):
-	user_query = ndb.GqlQuery("SELECT email FROM User " + " WHERE email = :1", email)
-	users = user_query.get()
-	if (users.empty()):
-		return False
-	else:
+	user = User.query(User.email = email).get()
+	if (user is not None):
 		return True
+	else:
+		return False
 
 def addPhotoToUser(id_user, photo):
 	# TODO
@@ -28,6 +27,7 @@ def searchUserByEmail(email):
 	#TODO
 
 # ----------------- POST -----------------
+
 def addPost(user, title, photo, rating):
 	post = Post(user=user, title=title, photo=photo, rating=rating)
 	post.put()
