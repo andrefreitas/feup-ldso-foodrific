@@ -2,6 +2,7 @@ from user import User
 from post import Post
 from yummy import Yummy
 from google.appengine.ext import db
+import base64
 
 # ----------------- USER -----------------
 def addUser(name, email, password, gender, birthday):
@@ -60,9 +61,11 @@ def getPostYummys(post):
 	#TODO
 
 # ----------------- ADDITIONAL FUNCTIONS -----------------
-# Get crypt algorithm to use
+# Needing salt element
 def encrypt(text):
-	return text
+	encoded_string = base64.b64encode(text)
+	return encoded_string
 
 def decrypt(text):
-	return text
+	decoded_string = base64.b64decode(text)
+	return decoded_string
