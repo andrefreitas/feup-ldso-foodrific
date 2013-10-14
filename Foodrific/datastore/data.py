@@ -50,8 +50,10 @@ def addPost(user, title, photo, rating):
 	post = Post(user=user, title=title, photo=photo, rating=rating)
 	post.put()
 
-def getPostsByUser(id_user):
-	return
+def getPostsByUser(user_id):
+	user = User.get_by_id(user_id)
+	post_query = db.GqlQuery('SELECT * FROM Post WHERE user = :1', user)
+	return post_query.fetch(1000)
 	#TODO
 
 # ----------------- YUMMY -----------------
