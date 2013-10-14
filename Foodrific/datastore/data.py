@@ -23,10 +23,8 @@ def addPhotoToUser(user_id, photo):
 	user.photo = photo
 	user.put()
 	return True
-	# TODO
 
 def getPhotoByUser(user_id):
-	# MUST BE TESTED
 	user = searchUserByID(user_id)
 	if (user != None):
 		return user.photo
