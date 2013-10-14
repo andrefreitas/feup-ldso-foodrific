@@ -13,7 +13,6 @@ def addUser(name, email, password, gender, birthday):
 def isUser(email):
 	user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
 	user = user_query.get()
-	#print user.key().id()
 	if (user is not None):
 		return True
 	else:
@@ -28,16 +27,19 @@ def getPhotoByUser(id_user):
 	user = User.get_by_id(id_user)
 	return user.photo
 
+def searchUserByKey(user_key):
+	user = db.get(user_key)
+	return user
+
 def searchUserByName(name):
 	# TO IMPROVE QUERY
-	# FETCH MUST BE TESTED
 	user_query = db.GqlQuery("SELECT * FROM User WHERE name = :1", name) 
-	return user_query.fetch()
+	return user_query.fetch(1000)
 
 def searchUserByEmail(email):
-	# FETCH MUST BE TESTED
+	# TO IMPROVE QUERY
 	user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
-	return user_query.fetch()
+	return user_query.fetch(1000)
 	
 # ----------------- POST -----------------
 
