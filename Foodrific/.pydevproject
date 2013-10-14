@@ -10,5 +10,6 @@
 <path>C:\Program Files (x86)\Google\google_appengine\lib\django-1.5</path>
 <path>C:\Program Files (x86)\Google\google_appengine\lib\webob-1.2.3</path>
 <path>C:\Program Files (x86)\Google\google_appengine\lib\yaml\lib</path>
+<path>C:\Program Files (x86)\Google\google_appengine\lib\webapp2-2.5.2</path>
 </pydev_pathproperty>
 </pydev_project>

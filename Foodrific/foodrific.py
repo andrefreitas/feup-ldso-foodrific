@@ -1,4 +1,4 @@
-from webapp2 import webapp2
+import webapp2
 
 class MainPage(webapp2.RequestHandler):
 
