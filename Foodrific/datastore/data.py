@@ -18,17 +18,22 @@ def isUser(email):
 	else:
 		return False
 
-def addPhotoToUser(id_user, photo):
-	return
+def addPhotoToUser(user_id, photo):
+	user = searchUserByID(user_id)
+	user.photo = photo
+	user.put()
+	return True
 	# TODO
 
-def getPhotoByUser(id_user):
+def getPhotoByUser(user_id):
 	# MUST BE TESTED
-	user = User.get_by_id(id_user)
-	return user.photo
+	user = searchUserByID(user_id)
+	if (user != None):
+		return user.photo
+	else: return False
 
-def searchUserByKey(user_key):
-	user = db.get(user_key)
+def searchUserByID(user_id):
+	user = User.get_by_id(user_id)
 	return user
 
 def searchUserByName(name):

@@ -9,7 +9,6 @@ class MainPage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/plain'
         self.response.write('Foodrific - Soon available!\n')
 
-         
 
 
 application = webapp2.WSGIApplication([
