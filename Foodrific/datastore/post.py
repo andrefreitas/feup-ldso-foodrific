@@ -15,9 +15,16 @@ class Post(db.Model):
 def addPost(user, title, photo, rating):
 	post = Post(user=user, title=title, photo=photo, rating=rating)
 	post.put()
+	return True
 
 def getPostsByUser(user_id):
 	user = User.get_by_id(user_id)
 	post_query = db.GqlQuery('SELECT * FROM Post WHERE user = :1', user)
 	return post_query.fetch(1000)
 	#TODO
+	
+def deletePost(post_id):
+	post_to_delete = Post.get_by_id(post_id)
+	db.delete(post_to_delete)
+	return True
+	

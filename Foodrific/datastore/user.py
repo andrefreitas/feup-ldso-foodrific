@@ -10,19 +10,41 @@ class User(db.Model):
     gender = db.StringProperty(indexed=False, required=True, choices=set(["m", "f"]))
     photo = db.BlobProperty()
 
+
 # ----------------- FUNCTIONS USER -----------------
 def addUser(name, email, password, gender, birthday):
     encrypted_pw = encrypt(password)
     user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
     user.put()
-
-def isUser(email):
+    return True
+    
+def editUser(name, email, password, gender, birthday):
+    encrypted_pw = encrypt(password)
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        user_verify.name = name
+        user_verify.email = email
+        user_verify.password = encrypted_pw
+        user_verify.gender = gender
+        user_verify.birthday = birthday
+        db.put(user_verify)
+        return True
+    else:
+        return False
+
+def isUser(email, password):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1 AND password = :2", email, encrypt(password))
     user = user_query.get()
     if (user is not None):
         return True
     else:
         return False
+    
+def deleteUser(user_id):
+    user_delete = User.get_by_id(user_id)
+    db.delete(user_delete)
+    return True
 
 def addPhotoToUser(user_id, photo):
     user = searchUserByID(user_id)
@@ -30,11 +52,18 @@ def addPhotoToUser(user_id, photo):
     user.put()
     return True
 
+def editPhotoUser(user_id, photo):
+    user = searchUserByID(user_id)
+    user.photo = photo
+    db.put(user)
+    return True
+
 def getPhotoByUser(user_id):
     user = searchUserByID(user_id)
     if (user != None):
         return user.photo
-    else: return False
+    else: 
+        return False
 
 def searchUserByID(user_id):
     user = User.get_by_id(user_id)
