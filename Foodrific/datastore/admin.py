@@ -15,10 +15,18 @@ def addAdmin(name, email, password):
     admin.put()
     return True
 
-def isAdmin(email, password):
+def loginAdmin(email, password):
     admin_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1 AND password = :2", email, encrypt(password))
     admin = admin_query.get()
     if (admin is not None):
+        return True
+    else:
+        return False
+    
+def isAdmin(email):
+    user_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1", email)
+    user = user_query.get()
+    if (user is not None):
         return True
     else:
         return False

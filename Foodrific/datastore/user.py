@@ -33,8 +33,16 @@ def editUser(name, email, password, gender, birthday):
     else:
         return False
 
-def isUser(email, password):
+def loginUser(email, password):
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1 AND password = :2", email, encrypt(password))
+    user = user_query.get()
+    if (user is not None):
+        return True
+    else:
+        return False
+    
+def isUser(email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
     user = user_query.get()
     if (user is not None):
         return True
