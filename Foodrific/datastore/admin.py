@@ -13,13 +13,13 @@ def addAdmin(name, email, password):
     encrypted_pw = encrypt(password)
     admin = Admin(name=name, email=email, password=encrypted_pw)
     admin.put()
-    return True
+    return admin.key().id()
 
 def loginAdmin(email, password):
     admin_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1 AND password = :2", email, encrypt(password))
     admin = admin_query.get()
     if (admin is not None):
-        return True
+        return admin.key().id()
     else:
         return False
     
