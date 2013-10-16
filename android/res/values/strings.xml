@@ -3,6 +3,7 @@
 
     <string name="app_name">Foodrific</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="UsernameHint">Username</string>
+    <string name="PasswordHint">Password</string>
 
 </resources>
