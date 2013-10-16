@@ -16,7 +16,7 @@ def addUser(name, email, password, gender, birthday):
     encrypted_pw = encrypt(password)
     user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
     user.put()
-    return True
+    return user.key().id()
     
 def editUser(name, email, password, gender, birthday):
     encrypted_pw = encrypt(password)
@@ -33,8 +33,16 @@ def editUser(name, email, password, gender, birthday):
     else:
         return False
 
-def isUser(email, password):
+def loginUser(email, password):
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1 AND password = :2", email, encrypt(password))
+    user = user_query.get()
+    if (user is not None):
+        return user.key().id()
+    else:
+        return False
+    
+def isUser(email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
     user = user_query.get()
     if (user is not None):
         return True
