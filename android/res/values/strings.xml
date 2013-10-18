@@ -5,9 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="UsernameHint">Email</string>
     <string name="PasswordHint">Password</string>
-  	<string name="LoginButton">Entrar</string>
-  	<string name="RegisterButton">Registar</string>
-  	<string name="LogoImageDesc">Foodrific logo</string>
-  	
-  	<string name="LoginWithGoogle">Login with Google</string>
+    <string name="LoginButton">Entrar</string>
+    <string name="RegisterButton">Registar</string>
+    <string name="LogoImageDesc">Foodrific logo</string>
+    <string name="LoginWithGoogle">Entar com Google</string>
+    <string name="title_activity_feed">O meu Feed</string>
+    <string name="hello_world">ola mundo!</string>
+
 </resources>
