@@ -7,12 +7,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".LoginActivity" >
+    tools:context=".LoginActivity" 
+    android:background="@drawable/login_background"
+    >
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        style="@style/LogoStyle"
+        android:src="@drawable/logo_white"
+        android:layout_marginBottom="70dp"
+        android:contentDescription="@string/LogoImageDesc" />
 
     <EditText
         android:id="@+id/UsernameEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EditTextStyle"
         android:ems="10"
         android:hint="@string/UsernameHint"
         android:inputType="textEmailAddress" >
@@ -22,29 +30,22 @@
     <EditText
         android:id="@+id/PasswordEditText"
         android:hint="@string/PasswordHint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/EditTextStyle"
         android:ems="10"       
         android:inputType="textPassword" />
 
     <Button
+        android:layout_marginTop="35dp"
         android:id="@+id/LoginButton"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/LoginButtons"
         android:text="@string/LoginButton"
-        android:onClick="login" />
+        android:background="#d93600"
+        android:onClick="login"
+        />
     
     <Button
         android:id="@+id/RegisterButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/RegisterButton" />
-
-    <Button
-        android:id="@+id/LgWGoogleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/LoginWithGoogle" />
-    
+        style="@style/LoginButtons"
+        android:background="#4078d5"
+        android:text="@string/RegisterButton" />    
 </LinearLayout>
