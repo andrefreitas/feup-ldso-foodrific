@@ -1,6 +1,5 @@
 from google.appengine.ext import db
 from user import User
-from follow import Follow
 
 # ----------------- CLASS POST -----------------
 class Post(db.Model):

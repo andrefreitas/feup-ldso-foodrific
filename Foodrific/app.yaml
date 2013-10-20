@@ -6,8 +6,12 @@ threadsafe: true
 
 handlers:
 - url: /.*
-  script: foodrific.application
+  script: home.application
+
   
 libraries:
 - name: webapp2
+  version: latest
+
+- name: jinja2
   version: latest
