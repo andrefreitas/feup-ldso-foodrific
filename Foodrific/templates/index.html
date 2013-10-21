@@ -5,14 +5,45 @@
 	</head>
 	<body>
 		<h1> Bem-vindo! </h1>
-		<form action="/sign?email={{email}}&password={{password}}" method="post">
-			<div> 
-				<label> E-mail </label>
+		<form action="/sign" method="post">
+			<div id="login"> 
+				E-mail
 				<input type="text" name="email">
+				Palavra-passe
+				<input type="password" name="password">
 				<br/>
-				<label> Palavra-passe </label>
-				<input type="text" name="password"> <br/>
 				<input type="submit" value="entrar">
+			</div>
+		</form>
+		<form>
+			<div id="register">
+				Nome 
+				<input type="text" name="name">
+				<br/>
+				E-mail
+				<input type="email" name="email">
+				<br/>
+				Palavra-passe 
+				<input type="password" name="password">
+				<br/>
+				<input type="radio" name="gender" value="male">Male
+				<input type="radio" name="gender" value="female">Female
+				<br/>
+				 <select name="day">
+				 	{% for day in range(1, total_day) %}
+						<option value="{{ day }}">{{ day }}</option>
+					{% endfor %}
+				</select>
+				<select name="month">
+					{% for month in range(1, total_month) %}
+						<option value="{{ month }}">{{ month }}</option>
+					{% endfor %}
+				</select>
+				<select name="year">
+					{% for year in range(1900, total_year) %}
+						<option value="{{ year }}">{{ year }}</option>
+					{% endfor %}
+				</select>
 			</div>
 		</form>
 	</body>

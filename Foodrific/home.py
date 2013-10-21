@@ -1,31 +1,35 @@
 import webapp2
-import datetime
 import jinja2
 import os
-import urllib
-import google.appengine.api.users
-from datastore import user
-from datastore import post
+import foodrific.sign
+import datetime
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-DEFAULT_EMAIL = 'email'
-DEFAULT_PW = 'password'
+class InitialPage(webapp2.RequestHandler):
 
-class MainPage2(webapp2.RequestHandler):
-
-    def post(self):
-        email = self.request.post('email', DEFAULT_EMAIL)
-        password = self.request.post('password', DEFAULT_PW)
+    def get(self):
+        
+        # Obter data para usar para a data de nascimento
+        now = datetime.datetime.now()
+        total_day = 32
+        total_month = 13
+        total_year = now.year + 1
+        
+        template_values = {
+                           'total_day': total_day,
+                           'total_month': total_month,
+                           'total_year': total_year,}
         
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        self.response.write(template.render())
+        self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage2),
+    ('/', InitialPage),
+    ('/sign', foodrific.sign.LoginPage)
 ], debug=True)
 
 
