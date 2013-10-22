@@ -5,14 +5,17 @@ api_version: 1
 threadsafe: true
 
 handlers:
-- url: /.*
-  script: app.application
-
 - url: /css
   static_dir: css
 
 - url: /js
   static_dir: js
+
+- url: /images
+  static_dir: images
+
+- url: /.*
+  script: app.application
 
 - url: /test/
   static_dir: test
