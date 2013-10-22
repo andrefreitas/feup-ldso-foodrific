@@ -1,8 +1,9 @@
 import webapp2
 import jinja2
 import os
-import foodrific.sign
 import datetime
+from foodrific import register
+from foodrific import sign
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -29,7 +30,8 @@ class InitialPage(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', InitialPage),
-    ('/sign', foodrific.sign.LoginPage)
+    ('/sign', sign.LoginPage),
+    ('/register', register.RegisterPage)
 ], debug=True)
 
 
