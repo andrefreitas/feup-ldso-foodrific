@@ -1,16 +1,17 @@
 import unittest
 from gaetestbed import DataStoreTestCase
 from datastore.user import User
+from datetime import date
 
 class TestUser(DataStoreTestCase, unittest.TestCase):
     def test_datastore_gets_hit(self):
         self.assertEqual(User.all().count(), 0)
-        u = User(birthday="20-02-1994")
-        u.name = "Carlos"
-        u.email = "carlos@gmail.com"
-        u.password ="Hdjdejdh3h"
-
-        u.gender = "m"
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
         u.put()
         self.assertEqual(User.all().count(), 1)
 
