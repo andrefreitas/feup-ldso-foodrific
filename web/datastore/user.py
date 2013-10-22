@@ -18,13 +18,13 @@ def addUser(name, email, password, gender, birthday):
     user.put()
     return user.key().id()
     
-def editUser(name, email, password, gender, birthday):
+def editUser(name, old_email, new_email,  password, gender, birthday):
     encrypted_pw = encrypt(password)
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", old_email)
     user_verify = user_query.get()
     if (user_verify is not None):
         user_verify.name = name
-        user_verify.email = email
+        user_verify.email = new_email
         user_verify.password = encrypted_pw
         user_verify.gender = gender
         user_verify.birthday = birthday
@@ -46,7 +46,7 @@ def isUser(email):
     user = user_query.get()
     if (user is not None):
         return True
-    else:
+    else: 
         return False
     
 def deleteUser(user_id):
@@ -78,14 +78,14 @@ def searchUserByID(user_id):
     return user
 
 def searchUserByName(name):
-    # TO IMPROVE QUERY
-    user_query = db.GqlQuery("SELECT * FROM User WHERE name = :1", name) 
+    # TO IMPROVE QUERY !!!
+    user_query = db.GqlQuery("SELECT * FROM User WHERE name >= :1 AND name < :2", name, name + "\uFFFD")
+    
     return user_query.fetch(1000)
 
 def searchUserByEmail(email):
-    # TO IMPROVE QUERY
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
-    return user_query.fetch(1000)
+    return user_query.get()
 
 # ----------------- ADDITIONAL FUNCTIONS -----------------
 # Needing salt element
