@@ -1,0 +1,1 @@
+nosetests --with-gae --gae-lib-root="C:\Program Files (x86)\Google\google_appengine"
