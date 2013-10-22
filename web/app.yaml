@@ -7,6 +7,9 @@ threadsafe: true
 handlers:
 - url: /.*
   script: home.application
+  
+- url: /test/
+  static_dir: test
 
 libraries:
 - name: webapp2
@@ -14,3 +17,4 @@ libraries:
 
 - name: jinja2
   version: latest
+  
