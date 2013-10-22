@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="ISO-8859-1"/>
 		<title> Foodrific! We work for Food! </title>
 	</head>
 	<body>
@@ -8,42 +9,46 @@
 		<form action="/sign" method="post">
 			<div id="login"> 
 				E-mail
-				<input type="text" name="email">
+				<input type="email" name="email" required="required"/>
 				Palavra-passe
-				<input type="password" name="password">
+				<input type="password" name="password" required="required"/>
 				<br/>
-				<input type="submit" value="entrar">
+				<input type="submit" value="entrar"/>
 			</div>
 		</form>
-		<form>
+		<form action="/register" method="post">
 			<div id="register">
 				Nome 
-				<input type="text" name="name">
+				<input type="text" name="name" required="required"/>
 				<br/>
 				E-mail
-				<input type="email" name="email">
+				<input type="email" name="email" required="required"/>
 				<br/>
 				Palavra-passe 
-				<input type="password" name="password">
+				<input type="password" name="password" required="required"/>
 				<br/>
-				<input type="radio" name="gender" value="male">Male
-				<input type="radio" name="gender" value="female">Female
+				<input type="radio" name="gender" value="male"/>Male
+				<input type="radio" name="gender" value="female"/>Female
 				<br/>
-				 <select name="day">
+				<select name="day" required="required">
+				 	<option value=no> Dia </option>
 				 	{% for day in range(1, total_day) %}
 						<option value="{{ day }}">{{ day }}</option>
 					{% endfor %}
 				</select>
-				<select name="month">
+				<select name="month" required="required">
+					<option value=no> Mes </option>
 					{% for month in range(1, total_month) %}
 						<option value="{{ month }}">{{ month }}</option>
 					{% endfor %}
 				</select>
-				<select name="year">
+				<select name="year" required="required">
+					<option value=no> Ano </option>
 					{% for year in range(1900, total_year) %}
 						<option value="{{ year }}">{{ year }}</option>
 					{% endfor %}
 				</select>
+				<input type="submit" value="entrar">
 			</div>
 		</form>
 	</body>
