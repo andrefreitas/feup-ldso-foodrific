@@ -6,8 +6,14 @@ threadsafe: true
 
 handlers:
 - url: /.*
-  script: home.application
-  
+  script: app.application
+
+- url: /css
+  static_dir: css
+
+- url: /js
+  static_dir: js
+
 - url: /test/
   static_dir: test
 

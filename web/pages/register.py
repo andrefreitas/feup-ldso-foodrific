@@ -2,7 +2,7 @@ import webapp2
 import cgi
 import datetime
 
-class RegisterPage(webapp2.RequestHandler):
+class Register(webapp2.RequestHandler):
     
     def post(self):
         # Obter dados do formulario

@@ -1,7 +1,7 @@
 import webapp2
 import cgi
 
-class LoginPage(webapp2.RequestHandler):
+class Login(webapp2.RequestHandler):
     
     def post(self):
         email = cgi.escape(self.request.get('email'))
