@@ -27,9 +27,46 @@ class TestUser(DataStoreTestCase, unittest.TestCase):
         addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
         self.assertNotEqual(loginUser("susana@gmail.com", "iauhd83ISH"), False)
         
-    def test_datastore_search_user_name(self):
+    def test_datastore_is_user(self):
         addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        self.assertTrue(isUser("susana@gmail.com"))
+        
+    def test_datastore_search_user_email(self):
+        addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        user = searchUserByEmail("susana@gmail.com")
+        self.assertTrue(user.email=="susana@gmail.com")
+        
+    """def test_datastore_search_user_name(self):
+        addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        addUser("Silva Susana", "susanasilva@gmail.com", "iauhd83ISHasdas", "f", date(1987, 7, 22))
+        users = searchUserByName("Susana")
+        self.assertEqual(User.all().count(), 2)
+        self.assertEqual(len(users), 2)
+        for user in users:
+            self.assertEqual(user.name, "Susana")"""
+        
+    def test_datastore_edit_user(self):
+        addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        editUser("SusanaG", "susana@gmail.com", "susanag@gmail.com", "123456", "f", date(1980, 3, 20))
+        user = searchUserByEmail("susanag@gmail.com")
+        self.assertEqual(user.name, "SusanaG")
+        self.assertEqual(user.email, "susanag@gmail.com")
+        self.assertEqual(user.password, encrypt("123456"))
+        self.assertEqual(user.gender, "f")
+        self.assertEqual(user.birthday, date(1980, 3, 20))
+        
+    def test_datastore_search_user_id(self):
+        addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        user = searchUserByEmail("susana@gmail.com")
+        user2 = searchUserByID(user.key().id()) 
+        self.assertEqual(user.name, user2.name)
+        self.assertEqual(user.email, user2.email)
+        self.assertEqual(user.password, user2.password)
+        self.assertEqual(user.gender, user2.gender)
+        self.assertEqual(user.birthday, user2.birthday)
+        
+       
         
         
-    
+
         
