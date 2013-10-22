@@ -13,7 +13,7 @@ class TestUser(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        self.assertEqual(User.all().count(), 1)
+        self.assertEqual(User.all().count(), 0)
 
     def test_datastore_still_empty(self):
         self.assertEqual(User.all().count(), 0)
