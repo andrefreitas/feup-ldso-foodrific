@@ -1,4 +1,4 @@
-body {
+body{
 	background-color: #97c024;
 }
 
@@ -57,7 +57,8 @@ body {
 }
 
 #android .container {
-	padding: 20px 0 0 0 ;
+	padding: 20px 0 0 0;
+	width: 400px;
 
 }
 
@@ -69,9 +70,6 @@ body {
 	padding-left: 20px;
 }
 
-#android .container{
-	width: 400px;
-}
 #android img{
 	float: left;
 }
@@ -81,11 +79,19 @@ body {
     	font-size: 50px;
     }
 
-   
+	#android .info {
+    	font-size: 30px;
+    	padding-left: 15px;
+    }
+
+    #android .container {
+    	text-align: center;
+    	width: 320px;
+    } 
 }
 
 @media screen and (max-width: 400px){
-   #banner h1 {
+    #banner h1 {
     	font-size: 40px;
     	margin-bottom: 30px;
     }
@@ -97,7 +103,5 @@ body {
     	margin-bottom: 20px;
     }
 
-    #android .info {
-    	font-size: 30px;
-    }
+
 }
