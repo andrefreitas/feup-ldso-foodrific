@@ -22,6 +22,10 @@ class TestUser(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(User.all().count(), 0)
         addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
         self.assertEqual(User.all().count(), 1)
+        result = addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        self.assertFalse(result)
+        result = addUser("Susana", "susanaasda@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        self.assertNotEqual(result, False)
         
     def test_datastore_login(self):
         self.assertEqual(User.all().count(), 0)
