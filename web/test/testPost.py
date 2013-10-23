@@ -20,3 +20,15 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         p = Post(user=u, title="First Post", photo="photo_tester")
         p.put()
         self.assertEqual(Post.all().count(), 1)
+        
+    def test_datastore_addPost(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)

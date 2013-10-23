@@ -7,13 +7,15 @@ class Post(db.Model):
 	title = db.StringProperty(required=True)
 	photo = db.BlobProperty(required=True)
 	rating = db.RatingProperty()
+	receipt = db.TextProperty()
+	ingredients = db.ListProperty(str)
 	original_date = db.DateProperty(auto_now_add=True)
 	last_update_date = db.DateProperty(auto_now=True)
 
 
 # ----------------- FUNCTIONS POST -----------------
-def addPost(user, title, photo, rating):
-	post = Post(user=user, title=title, photo=photo, rating=rating)
+def addPost(user, title, photo):
+	post = Post(user=user, title=title, photo=photo)
 	post.put()
 	return post.key().id()
 
