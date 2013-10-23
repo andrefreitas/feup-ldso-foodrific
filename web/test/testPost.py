@@ -16,7 +16,6 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  )
         u.put()
         self.assertEqual(User.all().count(), 1)
-        #db_user = searchUserByEmail("carlos@gmail.com")
         p = Post(user=u, title="First Post", photo="photo_tester")
         p.put()
         self.assertEqual(Post.all().count(), 1)

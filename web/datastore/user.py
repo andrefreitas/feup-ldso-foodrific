@@ -13,10 +13,13 @@ class User(db.Model):
 
 # ----------------- FUNCTIONS USER -----------------
 def addUser(name, email, password, gender, birthday):
-    encrypted_pw = encrypt(password)
-    user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
-    user.put()
-    return user.key().id()
+    if (searchUserByEmail(email) == None):
+        encrypted_pw = encrypt(password)
+        user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
+        user.put()
+        return user.key().id()
+    else:
+        return False
     
 def editUser(name, old_email, new_email,  password, gender, birthday):
     encrypted_pw = encrypt(password)
