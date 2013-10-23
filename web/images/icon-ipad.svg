@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="72"
+   height="72"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="icon-ipad.svg"
+   inkscape:export-filename="/home/andre/git/ldsot3g1/web/images/icon-ipad.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="-58.336431"
+     inkscape:cy="30.795222"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-980.36218)">
+    <rect
+       style="fill:#ffdfbf;fill-opacity:1"
+       id="rect8997"
+       width="74.246208"
+       height="75.00383"
+       x="-0.50507367"
+       y="979.12616" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 31.890815,995.9004 c -6.113037,0.1332 -12.323985,1.0363 -16.930499,5.3032 -3.736695,3.2663 -3.035509,8.5873 -3.062136,13.0251 16.766299,-0.018 33.559226,-0.027 50.325523,0 -0.07988,-4.2603 0.692311,-9.2928 -2.662727,-12.6035 -5.591721,-5.6715 -14.210078,-5.8668 -21.656837,-5.6804 -1.954884,-0.029 -3.975644,-0.089 -6.013324,-0.044 z m -1.353552,2.6184 c 0.718936,0.5148 2.130181,1.5621 2.840242,2.0858 -1.162724,0.5768 -2.418644,1.9126 -3.705628,0.7766 0.213018,-0.7101 0.652368,-2.1524 0.865386,-2.8624 z m 12.803276,0.067 c 0.381657,0.8255 1.136096,2.4674 1.508878,3.2839 -1.446748,-0.1331 -2.840241,-0.5014 -4.127225,-1.176 l 2.618347,-2.1079 z m -16.708608,6.213 c 0.02663,1.0739 0.04881,2.1435 0.06657,3.2174 -0.896451,-0.5059 -3.319532,-0.01 -2.840241,-1.5976 -0.221894,-1.4912 1.886098,-1.1051 2.773673,-1.6198 z m 22.7885,0.044 c 0.381657,0.5147 1.14941,1.5488 1.531067,2.0636 -1.171599,0.3817 -2.325448,0.75 -3.505923,1.1317 0,-0.8965 -0.0089,-1.7797 0,-2.685 0.497043,-0.1242 1.486689,-0.386 1.974856,-0.5103 z m -12.226352,0.089 c 1.444408,-0.02 1.974855,2.2477 0.421598,2.8845 -1.659766,1.1362 -3.102076,-2.6405 -1.08728,-2.7292 0.240755,-0.1077 0.459338,-0.1526 0.665682,-0.1553 z"
+       id="path3043"
+       style="fill:#e79d48;fill-opacity:1" />
+    <path
+       style="fill:#b25900"
+       inkscape:connector-curvature="0"
+       d="m 9.13782,1018.4448 c 0.754439,-1.4644 2.369826,-2.0592 3.949711,-1.8993 16.242629,0.036 32.494136,-0.044 48.745642,0.036 1.890534,-0.1598 3.230774,1.5621 3.772197,3.1864 -0.559175,1.1805 -1.464499,2.1213 -2.298824,3.1065 -17.502985,-0.1153 -35.005973,-0.098 -52.50896,0 -0.896451,-1.287 -3.1508933,-2.7781 -1.659766,-4.4291 z"
+       id="path3083" />
+    <path
+       style="fill:#e79d48"
+       inkscape:connector-curvature="0"
+       d="m 11.756168,1025.1727 c 16.872808,-0.01 33.736742,-0.01 50.60955,0 -0.230773,2.6538 -0.01777,5.8314 -2.343199,7.6687 -1.588761,1.6153 -3.905333,1.8461 -6.044389,1.784 -11.591735,-0.071 -23.192346,-0.017 -34.784081,-0.017 -2.254441,0.1509 -4.500006,-0.8077 -5.884625,-2.5917 -1.597635,-1.8994 -1.278107,-4.5444 -1.553256,-6.8432 z"
+       id="path3085" />
+  </g>
+</svg>
