@@ -53,6 +53,45 @@
 }
 
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 900px){
+    .container {
+    	width: 100%;
+    }
+
+    #banner .food, #banner .info{
+    	clear: right;
+    	margin: 0 auto;
+    	float: none;
+    	padding: 0;
+    }
+
+    #banner .container{
+    	text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 900px){
+
+ 	#banner .info{
+    	width: auto;
+    	padding: 0 20px 0 20px;
+    }
+
+    #banner img{
+    	width: 300px;
+    }
+
+    #banner h1{
+    	font-size: 40px;
+    }
+
+    #banner button{
+    	width: 90%;
+    }
+
+    #register {
+    	margin-bottom: 20px;
+    }
 
 }
