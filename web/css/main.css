@@ -22,6 +22,18 @@ h1 {
 	font-size: 58px;
 }
 
+input, select {
+	-webkit-appearance: none;
+	background: #FFF;
+	border-radius: 0;
+	width: 300px;
+	color: #b3612f;
+	border: solid 1px #fedab5;
+	padding: 10px;
+	font-size: 24px;
+	margin-top: 10px;
+}
+
 input[type="submit"].orange, 
 button.orange{
 	background-color: #d93600;

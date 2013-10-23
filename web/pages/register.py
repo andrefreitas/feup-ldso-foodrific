@@ -1,26 +1,20 @@
 import webapp2
 import cgi
-import datetime
+from datetime import date
+from datastore import *
+
 
 class Register(webapp2.RequestHandler):
     
     def post(self):
-        # Obter dados do formulario
+        # Fields
         name = cgi.escape(self.request.get('name'))
         email = cgi.escape(self.request.get('email'))
-        password = cgi.escape(self.request.get('password'))
+        birthday = cgi.escape(self.request.get('birthday'))
         gender = cgi.escape(self.request.get('gender'))
-        day_birthday = cgi.escape(self.request.get('day'))
-        month_birthday = cgi.escape(self.request.get('month'))
-        year_birthday = cgi.escape(self.request.get('year'))
-        
-        # Construir uma data valida para ser inserida na base de dados
-        birthday_date = datetime.date(int(year_birthday), int(month_birthday), int(day_birthday))
-        
-        self.response.write(name);
-        self.response.write(email);
-        self.response.write(password);
-        self.response.write(gender);
-        self.response.write(birthday_date);
-        
-        
+        password = cgi.escape(self.request.get('password'))
+        birthDay = int(birthday.split("/")[0])
+        birthMonth = int(birthday.split("/")[1])
+        birthYear = int(birthday.split("/")[2])
+        birthTime = date(birthYear, birthMonth, birthDay)
+        addUser(name, email, password, gender, birthTime)

@@ -31,11 +31,17 @@
     <div id="registerForm">
       <div class="container">
         <h1>Novo Registo</h1>
-        <form>
+        <form action="register" method="post">
           <input type="text" name="name" placeholder="nome"/> <br/>
           <input type="email" name="email" placeholder="email"/> <br/>
-          <input type="password" name="password1" placeholder="senha"> <br/>
-          <input type="password" name="password2" placeholder="confirmar senha"> <br/>
+          <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)"> <br/>
+          <select name="gender">
+            <option selected="selected">escolher gênero</option>
+            <option value="m">homem</option>
+            <option value="f">mulher</option>
+          </select> <br />
+          <input type="password" name="password" placeholder="senha"> <br/>
+          <input type="password" name="passwordConfirm" placeholder="confirmar senha"> <br/>
           <input type="submit" value="Registar" class="blue"/>
         </form>
       </div>

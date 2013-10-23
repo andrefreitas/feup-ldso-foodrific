@@ -41,25 +41,6 @@
 	cursor: pointer;
 }
 
-button.orange{
-	background-color: #d93600;
-	color: #FFF;
-	border: solid 1px #a22c03;
-}
-
-button.orange:hover{
-	background-color: #e7501b;
-}
-
-button.blue{
-	background-color: #4078d5;
-	color: #FFF;
-	border: solid 1px #17448f;
-}
-
-button.blue:hover{
-	background-color: #508aea;
-}
 
 #registerForm{
 	padding-top: 20px;
@@ -67,13 +48,12 @@ button.blue:hover{
 	display: none;
 }
 
-form input{
-	width: 300px;
-	color: #b3612f;
-	border: solid 1px #fedab5;
-	padding: 10px;
-	font-size: 24px;
-	margin-top: 10px;
+#registerForm select{
+	width: 320px;
+}
+
+#registerForm input[type="submit"]{
+	width: 320px;
 }
 
 
