@@ -1,0 +1,85 @@
+body {
+	background-color: #97c024;
+}
+
+#header{
+	height: 60px;
+	width: 100%;
+	background-color: #b05b27;
+	text-align: center;
+	padding: 10px 0 0 0;
+	border-bottom: solid 8px #d98451;
+}
+
+#banner{
+	height: 400px;
+	width: 100%;
+	background: url('../images/food-background.jpg');
+	background-repeat: no-repeat;
+	background-position: 20 -30px;
+}
+
+#banner .container{
+	text-align: center;
+	padding-top:60px;
+}
+
+#banner h1{
+	color: #FFF;
+	font-size: 60px;
+	text-shadow: 1px 1px #111111;
+
+}
+#banner button{
+	margin-top: 50px;
+	font-size: 30px;
+	padding: 10px 40px 10px 40px;
+	border-radius: 0;
+}
+
+#login{
+	background-color: #d93600;
+	color: #FFF;
+	border: solid 1px #a22c03;
+}
+
+#register{
+	background-color: #4078d5;
+	color: #FFF;
+	border: solid 1px #17448f;
+}
+
+#android {
+	border-top: solid 8px #6e9110;
+	height: 150px;
+	width: 100%;
+	color: #FFF;
+}
+
+#android .container {
+	padding: 20px 0 0 0 ;
+
+}
+
+#android .info{
+	float: left;
+	font-size: 40px;
+	font-weight: bold;
+	padding-top: 30px;
+	padding-left: 20px;
+}
+
+#android .container{
+	width: 400px;
+}
+#android img{
+	float: left;
+}
+
+@media screen and (max-width: 500px){
+    #banner h1 {
+    	font-size: 50px;
+    }
+
+   
+}
