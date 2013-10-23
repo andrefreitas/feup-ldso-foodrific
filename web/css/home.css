@@ -38,18 +38,42 @@
 	font-size: 30px;
 	padding: 10px 40px 10px 40px;
 	border-radius: 0;
+	cursor: pointer;
 }
 
-#login{
+button.orange{
 	background-color: #d93600;
 	color: #FFF;
 	border: solid 1px #a22c03;
 }
 
-#register{
+button.orange:hover{
+	background-color: #e7501b;
+}
+
+button.blue{
 	background-color: #4078d5;
 	color: #FFF;
 	border: solid 1px #17448f;
+}
+
+button.blue:hover{
+	background-color: #508aea;
+}
+
+#registerForm{
+	padding-top: 20px;
+	text-align: center;
+	display: none;
+}
+
+form input{
+	width: 300px;
+	color: #b3612f;
+	border: solid 1px #fedab5;
+	padding: 10px;
+	font-size: 24px;
+	margin-top: 10px;
 }
 
 

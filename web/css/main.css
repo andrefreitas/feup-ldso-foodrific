@@ -17,16 +17,31 @@ body{
 
 }
 
-@media screen and (max-width: 900px){
-    .container {
-    	width: 100%;
-    }
+h1 {
+	color: #4c3a30;
+	font-size: 58px;
+}
 
-    #banner{
-    	font-size: 20px;
-    }
+input[type="submit"].orange, 
+button.orange{
+	background-color: #d93600;
+	color: #FFF;
+	border: solid 1px #a22c03;
+}
 
-    #banner h1{
-		font-size: 50px;
-    }
+input[type="submit"].orange:hover,
+button.orange:hover{
+	background-color: #e7501b;
+}
+
+input[type="submit"].blue,
+button.blue{
+	background-color: #4078d5;
+	color: #FFF;
+	border: solid 1px #17448f;
+}
+
+input[type="submit"].blue:hover,
+button.blue:hover{
+	background-color: #508aea;
 }
