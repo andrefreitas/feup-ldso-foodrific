@@ -2,6 +2,7 @@ import webapp2
 import os
 import datetime
 from pages import *
+import api
 
 config = {}
 config['webapp2_extras.sessions'] = {
@@ -14,7 +15,8 @@ application = webapp2.WSGIApplication([
     ('/register', Register),
     ('/logout', Logout),
     ('/session', Session),
-    ('/feed', Feed)
+    ('/feed', Feed),
+    ('/api/login',api.Login)
 ], debug=True, config=config)
 
 
