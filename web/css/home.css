@@ -43,9 +43,13 @@
 
 
 #registerForm{
-	padding-top: 20px;
+	padding-top: 15px;
 	text-align: center;
 	display: none;
+}
+
+#registerForm h1{
+	margin-bottom: 5px;
 }
 
 #registerForm select{
@@ -56,6 +60,12 @@
 	width: 320px;
 }
 
+#registerForm .alert{
+	width: 320px;
+	margin: 0 auto;
+	text-align: left;
+	
+}
 
 @media screen and (max-width: 900px){
     .container {

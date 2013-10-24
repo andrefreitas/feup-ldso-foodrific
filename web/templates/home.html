@@ -7,13 +7,14 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/home.css">
     <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="js/scripts.js"></script>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
   <body>
     <div id="header">
-      <img src="images/logo-white.svg" height="50px" />
+      <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
     </div>
     <div id="banner">
       <div class="container">
@@ -31,16 +32,23 @@
     <div id="registerForm">
       <div class="container">
         <h1>Novo Registo</h1>
-        <form action="register" method="post">
+
+        <form action="register" method="post" onsubmit="return validateRegisterForm()">
+          <div id="nameAlert" class="alert"></div>
           <input type="text" name="name" placeholder="nome"/> <br/>
+          <div id="emailAlert" class="alert"></div>
           <input type="email" name="email" placeholder="email"/> <br/>
+          <div id="birthdayAlert" class="alert"></div>
           <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)"> <br/>
+          <div id="genderAlert" class="alert"></div>
           <select name="gender">
-            <option selected="selected">escolher gênero</option>
+            <option selected="selected">escolher género</option>
             <option value="m">homem</option>
             <option value="f">mulher</option>
           </select> <br />
+          <div id="passwordAlert" class="alert"></div>
           <input type="password" name="password" placeholder="senha"> <br/>
+          <div id="passwordConfirmAlert" class="alert"></div>
           <input type="password" name="passwordConfirm" placeholder="confirmar senha"> <br/>
           <input type="submit" value="Registar" class="blue"/>
         </form>
