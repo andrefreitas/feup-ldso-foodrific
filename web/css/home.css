@@ -110,3 +110,20 @@
     }
 
 }
+
+
+@media screen and (max-width: 340px){
+	#registerForm input,
+	#registerForm select,
+	#registerForm input[type="submit"], 
+    #loginForm input[type="submit"],
+    #loginForm input,
+    #loginForm select {
+		width: 80%;
+	}
+
+	.container{
+
+	}
+
+}
