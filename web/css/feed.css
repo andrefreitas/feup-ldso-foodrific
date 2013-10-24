@@ -13,7 +13,6 @@ body {
 	border: 0;
 	width: 100%;
 	cursor: pointer;
-
 }
 
 .container{
@@ -38,21 +37,22 @@ body {
 #newPost input{
 	width: 90%;
 	margin: 0 auto;
+	border: solid 1px #efc296;
+	margin-bottom: 20px;
 }
 
 #newPost .photo{
-	border: solid 1px #fedab5;
+	border: solid 1px #efc296;
 	width: 95%;
 	margin: 0 auto;
-	margin-top: 20px;
 	background: #FFF;
 	margin-bottom: 20px;
 }
 
 #newPost .photo img{
 	width: 70%;
+	cursor: pointer;
 }
-
 
 @media screen and (max-width: 500px){
     .container {
