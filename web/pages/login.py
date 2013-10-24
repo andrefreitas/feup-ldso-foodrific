@@ -1,11 +1,12 @@
 import webapp2
 import cgi
 
-class Login(webapp2.RequestHandler):
-    
+from base_handler import *
+
+class Login(BaseHandler):
+
     def post(self):
-        email = cgi.escape(self.request.get('email'))
-        password = cgi.escape(self.request.get('password'))
-        
-        self.response.write(email)
-        self.response.write(password)
+    	email = self.request.post("email")
+    	password = self.request.post("password")
+    	self.response.write("email " + email)
+    	self.response.write("password " + password)

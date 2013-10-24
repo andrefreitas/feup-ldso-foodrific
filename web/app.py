@@ -3,11 +3,16 @@ import os
 import datetime
 from pages import *
 
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': 'j4KLrj43',
+}
+
 application = webapp2.WSGIApplication([
     ('/', Home),
     ('/login', Login),
     ('/register', Register)
-], debug=True)
+], debug=True, config=config)
 
 
 
