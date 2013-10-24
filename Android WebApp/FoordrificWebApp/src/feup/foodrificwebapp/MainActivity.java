@@ -1,5 +1,6 @@
-package feup.foordrificwebapp;
+package feup.foodrificwebapp;
 
+import feup.foodrificwebapp.R;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;

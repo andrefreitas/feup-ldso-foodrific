@@ -1,5 +1,5 @@
 /** Automatically generated file. DO NOT MODIFY */
-package feup.foordrificwebapp;
+package feup.foodrificwebapp;
 
 public final class BuildConfig {
     public final static boolean DEBUG = true;
