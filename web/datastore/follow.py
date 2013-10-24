@@ -3,13 +3,13 @@ from user import User
 
 # ----------------- CLASS FOLLOW -----------------
 class Follow(db.Model):
-    user_follower = db.ReferenceProperty(User)
-    user_following = db.ReferenceProperty(User)
+    user_follower = db.ReferenceProperty(User, collection_name="follower_set")
+    user_following = db.ReferenceProperty(User, collection_name="following_set")
     
     
 # ----------------- FUNCTIONS FOLLOW -----------------
 def addUserToFollow(user_id_follower, user_id_following):
-    follow = Follow(User.get_by_id(user_id_follower), User.get_by_id(user_id_following))
+    follow = Follow(user_follower = User.get_by_id(user_id_follower), user_following = User.get_by_id(user_id_following))
     follow.put()
     return True
 
