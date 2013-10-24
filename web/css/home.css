@@ -1,12 +1,3 @@
-#header{
-	height: 60px;
-	width: 100%;
-	background-color: #b05b27;
-	text-align: center;
-	padding: 10px 0 0 0;
-	border-bottom: solid 8px #d98451;
-}
-
 #banner{
 	overflow: auto;
 	width: 100%;
@@ -42,7 +33,8 @@
 }
 
 
-#registerForm{
+#registerForm,
+#loginForm {
 	padding-top: 15px;
 	text-align: center;
 	display: none;
@@ -56,7 +48,8 @@
 	width: 320px;
 }
 
-#registerForm input[type="submit"]{
+#registerForm input[type="submit"], 
+#loginForm input[type="submit"]{
 	width: 320px;
 }
 

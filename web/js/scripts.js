@@ -2,6 +2,10 @@ $(document).ready(function(){
 	$('#register').click(function(){
 		registerClick();
 	});
+
+	$('#login').click(function(){
+		loginClick();
+	});
 })
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -87,4 +91,13 @@ function genderIsValid(gender){
 /** Validate Passwords **/
 function passwordsAreValid(password, passwordConfirm){
 	return password.length >= PASSWORDS_MINIMUM_LENGTH && password == passwordConfirm;
+}
+
+/** Login Click **/
+
+function loginClick(){
+	$("#banner").fadeOut(400, function(){
+		$("#banner").remove();
+		$('#loginForm').css("display", "block");
+	});	
 }
