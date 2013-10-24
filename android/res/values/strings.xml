@@ -11,5 +11,6 @@
     <string name="LoginWithGoogle">Entar com Google</string>
     <string name="title_activity_feed">O meu Feed</string>
     <string name="hello_world">ola mundo!</string>
+    <string name="title_activity_web_view">Web</string>
 
 </resources>

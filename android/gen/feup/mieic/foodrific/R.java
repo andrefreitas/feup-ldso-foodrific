@@ -26,17 +26,17 @@ public final class R {
         public static final int logo_white=0x7f020002;
     }
     public static final class id {
-        public static final int LoginButton=0x7f080004;
-        public static final int PasswordEditText=0x7f080003;
-        public static final int RegisterButton=0x7f080005;
-        public static final int UsernameEditText=0x7f080002;
+        public static final int LoginButton=0x7f080003;
+        public static final int PasswordEditText=0x7f080002;
+        public static final int RegisterButton=0x7f080004;
+        public static final int UsernameEditText=0x7f080001;
         public static final int action_settings=0x7f080006;
-        public static final int logoImageView=0x7f080001;
-        public static final int textView1=0x7f080000;
+        public static final int logoImageView=0x7f080000;
+        public static final int webView=0x7f080005;
     }
     public static final class layout {
-        public static final int activity_feed=0x7f030000;
-        public static final int activity_login=0x7f030001;
+        public static final int activity_login=0x7f030000;
+        public static final int activity_web_view=0x7f030001;
     }
     public static final class menu {
         public static final int feed=0x7f070000;
@@ -53,6 +53,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050009;
         public static final int title_activity_feed=0x7f050008;
+        public static final int title_activity_web_view=0x7f05000a;
     }
     public static final class style {
         /** 
