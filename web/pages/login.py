@@ -9,6 +9,7 @@ class Login(BaseHandler):
     	email = self.request.get("email")
     	password = self.request.get("password")
     	self.login(email, password)
+    	return self.redirect('/feed')
 
     def post(self):
     	email = self.request.get("email")
