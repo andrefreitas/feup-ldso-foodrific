@@ -1,10 +1,11 @@
 import webapp2
 import cgi
 from datetime import date
+from base_handler import *
 from datastore import *
 
 
-class Register(webapp2.RequestHandler):
+class Register(BaseHandler):
     
     def post(self):
         # Fields
@@ -18,3 +19,6 @@ class Register(webapp2.RequestHandler):
         birthYear = int(birthday.split("/")[2])
         birthTime = date(birthYear, birthMonth, birthDay)
         addUser(name, email, password, gender, birthTime)
+        self.response.write("email: " + email)
+        self.response.write("password: " + password)
+        self.login(email, password)

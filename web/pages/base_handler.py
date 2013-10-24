@@ -1,5 +1,6 @@
 import webapp2
 from webapp2_extras import sessions
+from datastore import *
 
 class BaseHandler(webapp2.RequestHandler):
     def dispatch(self):
@@ -20,3 +21,9 @@ class BaseHandler(webapp2.RequestHandler):
 
     def isLoggedIn(self):
         return "user" in self.session
+
+    def login(self, email, password):
+        if(loginUser(email, password)):
+            self.session["user"] = email
+            return True
+        return False

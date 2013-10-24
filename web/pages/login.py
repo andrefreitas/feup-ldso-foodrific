@@ -1,12 +1,11 @@
 import webapp2
 import cgi
-
 from base_handler import *
+from datastore import *
 
 class Login(BaseHandler):
 
-    def post(self):
-    	email = self.request.post("email")
-    	password = self.request.post("password")
-    	self.response.write("email " + email)
-    	self.response.write("password " + password)
+    def get(self):
+    	email = self.request.get("email")
+    	password = self.request.get("password")
+    	self.login(email, password)
