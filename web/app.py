@@ -13,7 +13,8 @@ application = webapp2.WSGIApplication([
     ('/login', Login),
     ('/register', Register),
     ('/logout', Logout),
-    ('/session', Session)
+    ('/session', Session),
+    ('/feed', Feed)
 ], debug=True, config=config)
 
 
