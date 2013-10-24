@@ -53,7 +53,8 @@
 	width: 320px;
 }
 
-#registerForm .alert{
+#registerForm .alert,
+#loginForm .alert{
 	width: 320px;
 	margin: 0 auto;
 	text-align: left;

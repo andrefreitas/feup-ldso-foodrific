@@ -58,8 +58,10 @@
     <div id="loginForm">
       <div class="container">
         <h1>Entrar</h1>
-        <form action="login" method="post">
+        <form action="login" method="post" onsubmit="return validateLoginForm()">
+          <div id="emailLoginAlert" class="alert"></div>
           <input type="text" name="email" placeholder="escreve o teu email.."/><br/>
+          <div id="passwordLoginAlert" class="alert"></div>
           <input type="password" name="password" placeholder="escreve a tua password"/><br/>
           <input type="submit" value="Entrar" class="orange"/>
         </form>

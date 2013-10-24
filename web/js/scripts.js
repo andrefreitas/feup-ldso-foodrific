@@ -100,4 +100,39 @@ function loginClick(){
 		$("#banner").remove();
 		$('#loginForm').css("display", "block");
 	});	
+
+}
+
+function validateLoginForm(){
+	var fields = $('#loginForm form').serializeArray();
+	var email = fields[0]["value"],
+		password = fields[1]["value"];
+
+	$(".alert").html("");	
+
+	if(!emailIsValid(email)){
+		if(email.length ==0)
+			$("#emailLoginAlert").html("Escreva o email!").effect("shake");
+		else
+			$("#emailLoginAlert").html("Email inválido!").effect("shake");
+		return false;
+	}
+
+	if(password.length == 0){
+		$("#passwordLoginAlert").html("Escreva a password!").effect("shake");
+	}
+	if(loginIsValid(email, password))
+		return true;
+	$("#emailLoginAlert").html("Login errado!").effect("shake");
+	return false;
+}
+
+function loginIsValid(email, password){
+	 $.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/login",{
+            email: email,
+            password: password
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
 }
