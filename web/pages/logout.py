@@ -8,3 +8,4 @@ class Logout(BaseHandler):
     def get(self):
     	if "user" in self.session:
     		del self.session["user"]
+    		return self.redirect('/')
