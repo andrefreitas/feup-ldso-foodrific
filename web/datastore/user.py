@@ -44,6 +44,10 @@ def loginUser(email, password):
     else:
         return False
     
+def getUserID(email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    return user_query.get().key().id()
+    
 def isUser(email):
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
     user = user_query.get()

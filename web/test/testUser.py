@@ -33,6 +33,14 @@ class TestUser(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(User.all().count(), 1)
         self.assertNotEqual(loginUser("susana@gmail.com", "iauhd83ISH"), False)
         
+    def test_get_user_id(self):
+        self.assertEqual(User.all().count(), 0)
+        addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
+        self.assertEqual(User.all().count(), 1)
+        user_id = getUserID("susana@gmail.com")
+        user = searchUserByID(user_id)
+        self.assertEqual(user.email, "susana@gmail.com")
+        
     def test_datastore_is_user(self):
         self.assertEqual(User.all().count(), 0)
         addUser("Susana", "susana@gmail.com", "iauhd83ISH", "f", date(1985, 5, 22))
