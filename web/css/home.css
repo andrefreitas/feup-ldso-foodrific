@@ -1,9 +1,17 @@
+.container {
+	width: 900px;
+	margin: 0 auto;
+	overflow: auto;
+
+}
+
 #banner{
 	overflow: auto;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-position: 20 -30px;
 	font-size: 30px;
+	margin-bottom: 20px;
 }
 
 #banner h1{
@@ -101,5 +109,22 @@
     #register {
     	margin-bottom: 20px;
     }
+
+}
+
+
+@media screen and (max-width: 340px){
+	#registerForm input,
+	#registerForm select,
+	#registerForm input[type="submit"], 
+    #loginForm input[type="submit"],
+    #loginForm input,
+    #loginForm select {
+		width: 80%;
+	}
+
+	.container{
+
+	}
 
 }

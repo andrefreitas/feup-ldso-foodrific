@@ -6,6 +6,10 @@ $(document).ready(function(){
 	$('#login').click(function(){
 		loginClick();
 	});
+
+	$('#addPost').click(function(){
+		addPostClick();
+	});
 })
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -135,4 +139,8 @@ function loginIsValid(email, password){
      });
     $.ajaxSetup( { "async": true } );
     return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
+}
+
+function addPostClick(){
+	$("#newPost").fadeIn();
 }
