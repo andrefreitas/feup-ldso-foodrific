@@ -23,7 +23,7 @@ class BaseHandler(webapp2.RequestHandler):
         return "user" in self.session
 
     def login(self, email, password):
-        if(loginUser(email, password)):
+        if(loginUser(email, password) != False):
             self.session["user"] = email
             return True
         return False

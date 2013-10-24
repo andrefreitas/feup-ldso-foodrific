@@ -19,6 +19,6 @@ class Register(BaseHandler):
         birthYear = int(birthday.split("/")[2])
         birthTime = date(birthYear, birthMonth, birthDay)
         addUser(name, email, password, gender, birthTime)
-        self.response.write("email: " + email)
-        self.response.write("password: " + password)
-        self.login(email, password)
+        self.session["user"] = email
+        
+        

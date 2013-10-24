@@ -7,6 +7,6 @@ class Session(BaseHandler):
 
     def get(self):
     	if(self.isLoggedIn()):
-    		self.response.write("ligado")
+    		self.response.write(self.session.get("user"))
     	else:
     		self.response.write("off")

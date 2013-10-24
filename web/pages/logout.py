@@ -6,4 +6,5 @@ from datastore import *
 class Logout(BaseHandler):
 
     def get(self):
-    	del self.session["user"]
+    	if "user" in self.session:
+    		del self.session["user"]
