@@ -1,5 +1,6 @@
 from google.appengine.ext import db
-from user import User
+from user import *
+from datastore.user import getUserID
 
 # ----------------- CLASS POST -----------------
 class Post(db.Model):
@@ -24,11 +25,16 @@ def getPostsByUser(user_id):
 	post_query = db.GqlQuery('SELECT * FROM Post WHERE user = :1', user)
 	return post_query.fetch(1000)
 	
-def getPostsByUserFollwing(user_id):
-	user = User.get_by_id(user_id)
+def getPostsByUserFollowing(user_follower_id):
+	user = User.get_by_id(user_follower_id)
 	user_following_query = db.GqlQuery("SELECT user_following FROM Follow WHERE user_follower = :1", user)
-	user_following_posts = db.GqlQuery("SELECT * FROM Post WHERE user IN :1", user_following_query.fetch(1000))
-	return user_following_posts
+	follow_list = user_following_query.fetch(1000)
+	posts_list = []
+	for follow in follow_list:
+		u = searchUserByEmail(follow.user_following.email)
+		user_following_posts = db.GqlQuery("SELECT * FROM Post WHERE user = :1", u)
+		posts_list.extend(user_following_posts.fetch(1000))
+	return posts_list
 	
 def deletePost(post_id):
 	post_to_delete = Post.get_by_id(post_id)
