@@ -4,4 +4,6 @@ from pages import BaseHandler
 class PostImage(BaseHandler):
 
 	def get(self):
-		self.response.write("lol")
+		post = getPostByID(int(self.request.get("id")))
+		self.response.headers['Content-Type'] = 'image/png'
+		self.response.out.write(post.photo)
