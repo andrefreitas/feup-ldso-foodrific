@@ -17,8 +17,6 @@ application = webapp2.WSGIApplication([
     ('/session', Session),
     ('/feed', Feed),
     ('/api/login', api.Login),
-    ('/api/newpost', api.NewPost)
+    ('/api/newpost', api.NewPost),
+    ('/api/postimage', api.PostImage)
 ], debug=True, config=config)
-
-
-
