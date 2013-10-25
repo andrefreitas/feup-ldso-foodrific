@@ -28,6 +28,15 @@ def addIngredients(post_id, ingredients):
 		return True
 	else:
 		return False
+	
+def addReceipt(post_id, receipt):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.receipt = receipt
+		post.put()
+		return True
+	else:
+		return False
 
 	
 def addRating(post_id, rating):
@@ -39,6 +48,13 @@ def addRating(post_id, rating):
 	else:
 		return False
 	
+def getPosts():
+	post_query = db.GqlQuery('SELECT * FROM Post')
+	return post_query.fetch(1000)
+
+def getPostByID(post_id):
+	post = Post.get_by_id(post_id)
+	return post
 
 def getPostsByUser(user_id):
 	user = User.get_by_id(user_id)
