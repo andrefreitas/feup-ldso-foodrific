@@ -10,8 +10,8 @@ class Post(db.Model):
 	rating = db.RatingProperty()
 	receipt = db.TextProperty()
 	ingredients = db.ListProperty(str)
-	original_date = db.DateProperty(auto_now_add=True)
-	last_update_date = db.DateProperty(auto_now=True)
+	original_date = db.DateTimeProperty(auto_now_add=True)
+	last_update_date = db.DateTimeProperty(auto_now=True)
 
 
 # ----------------- FUNCTIONS POST -----------------
