@@ -18,13 +18,11 @@ def doYummy(user_id, post_id):
 def undoYummy(user_id, post_id):
 	user_delete_yummy = User.get_by_id(user_id)
 	post_delete_yummy = Post.get_by_id(post_id)
-	yummy_delete = db.GqlQuery("SELECT * Yummy WHERE user = :1 AND post = :2", user_delete_yummy, post_delete_yummy)
+	yummy_delete = db.GqlQuery("SELECT * FROM Yummy WHERE user = :1 AND post = :2", user_delete_yummy, post_delete_yummy)
 	db.delete(yummy_delete.get())
 	return True
-	#TODO
 
 def getPostYummys(post_id):
 	post_yummy = Post.get_by_id(post_id)
-	all_yummy = db.GqlQuery("SELECT * Yummy WHERE post = :1", post_yummy)
+	all_yummy = db.GqlQuery("SELECT * FROM Yummy WHERE post = :1", post_yummy)
 	return all_yummy.fetch(1000)
-	#TODO
