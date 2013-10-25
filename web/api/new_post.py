@@ -1,13 +1,16 @@
 import webapp2
 from datastore import *
-import json
+from google.appengine.ext import db
+from pages import BaseHandler
 
-class NewPost(webapp2.RequestHandler):
+class NewPost(BaseHandler):
 
 	def post(self):
 		title = self.request.get("title")
-		photo = self.request.get("photo")
-		ingredients = self.request.get("ingredients")
-
-
-
+		photo = db.Blob(self.request.get("photo"))
+		ingredients = self.request.get("ingredients").split(",")
+		email = self.session.get("user")
+		user = searchUserByEmail(email)
+		postId = addPost(user, title, photo)
+		addIngredients(postId, ingredients)
+		return self.redirect('/')

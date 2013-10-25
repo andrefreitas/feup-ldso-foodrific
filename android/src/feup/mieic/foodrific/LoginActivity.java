@@ -1,8 +1,11 @@
 package feup.mieic.foodrific;
 
+import feup.mieic.foodrific.db.DatabaseOpenHelper;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -30,23 +33,35 @@ public class LoginActivity extends Activity {
 	
 	public void login(View view){
 		
-		EditText usernameEditText = (EditText) findViewById(R.id.UsernameEditText);
+		EditText userEmailEditText = (EditText) findViewById(R.id.UsernameEditText);
 		EditText passwordEditText = (EditText) findViewById(R.id.PasswordEditText);
 		
-		String username = usernameEditText.getText().toString();
+		String userEmail = userEmailEditText.getText().toString();
 		String password = passwordEditText.getText().toString();	
 		
-		if(!validateUsername(username)){
+		if(!validateUsername(userEmail)){
 			Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_LONG).show();
 			
 		}else if(password.isEmpty()){
 			Toast.makeText(getApplicationContext(), "Empty Password", Toast.LENGTH_LONG).show();			
 		}
 		else{
-			//TODO validar login com servidor
 			
-			//se login valido entao:
-			callFeedIntent(username, password);
+			SQLiteDatabase db = new DatabaseOpenHelper(this).getReadableDatabase();
+			Cursor c = db.rawQuery("SELECT username,password FROM userlogin WHERE userlogin.username="+userEmail+" AND userlogin.password="+password, null); //TODO DANGER OF SQL INJECTION!!
+			int colIndex = c.getColumnIndexOrThrow("username");
+			String dbUsername = c.getString(colIndex);
+			colIndex = c.getColumnIndexOrThrow("password");
+			String dbPassword = c.getString(colIndex);
+			
+			if(!dbUsername.isEmpty()){
+				callFeedIntent(userEmail, password);
+			}
+			else{
+				
+			}
+			
+			
 		}
 	}
 
@@ -57,9 +72,18 @@ public class LoginActivity extends Activity {
 			return android.util.Patterns.EMAIL_ADDRESS.matcher(username).matches();
 		}
 	}
+	
+	/*TODO VALIDATE PASSWORD
+	private boolean validatePassword(String password) {
+		if(password == null){
+			return false;
+		} else {
+			return android.util.Patterns..matcher(password).matches();
+		}
+	}*/
 
 	private void callFeedIntent(String username, String password) {
-		Intent feedIntent = new Intent(this, FeedActivity.class);
+		Intent feedIntent = new Intent(this, WebViewActivity.class);
 		
 		feedIntent.putExtra(EXTRA_USERNAME, username);
 		feedIntent.putExtra(EXTRA_PASSWORD, password);
