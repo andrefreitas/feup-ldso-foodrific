@@ -16,10 +16,14 @@ def addComment(user_id, post_id, content):
 	post_comment = Post.get_by_id(post_id)
 	comment = Comment(user = user_comment, post = post_comment, content = content)
 	comment.put()
-	return True
+	return comment.key().id()
 
 def deleteComment(comment_id):
 	comment_to_delete = Comment.get_by_id(comment_id)
 	db.delete(comment_to_delete)
 	return True
-	
+
+def getCommentsForPost(post_id):
+	post_comment = Post.get_by_id(post_id)
+	comment_query = db.GqlQuery("SELECT * FROM Comment WHERE post = :1", post_comment)
+	return comment_query.fetch(1000)
