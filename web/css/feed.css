@@ -13,7 +13,6 @@ body {
 	border: 0;
 	width: 100%;
 	cursor: pointer;
-
 }
 
 .container{
@@ -38,21 +37,74 @@ body {
 #newPost input{
 	width: 90%;
 	margin: 0 auto;
+	border: solid 1px #efc296;
+	margin-bottom: 20px;
 }
 
 #newPost .photo{
-	border: solid 1px #fedab5;
+	border: solid 1px #efc296;
 	width: 95%;
 	margin: 0 auto;
-	margin-top: 20px;
 	background: #FFF;
 	margin-bottom: 20px;
 }
 
 #newPost .photo img{
 	width: 70%;
+	cursor: pointer;
 }
 
+#posts {
+	margin-bottom: 20px;
+}
+
+.post {
+	margin-top: 20px;
+	padding: 20px;
+	overflow: auto;
+}
+
+.post .head{
+	padding: 0 0 10px 0;
+	border-bottom: dashed 1px #efc296;
+	margin-bottom: 20px;
+}
+
+.post .ingredients .ingredient {
+	background: #ffdfbf;
+	width: 100px;
+	padding: 5px;
+	color: #d98451;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.post .content img{
+	float: left;
+	width: 320px;
+}
+
+.post .content .ingredients{
+	margin: 0 0 0 20px;
+	float: left;
+}
+
+
+.post .title{
+	color: #d98451;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+
+}
+
+.post .author{
+	color: #999999;
+	font-size: 15px;
+
+}
 
 @media screen and (max-width: 500px){
     .container {
@@ -66,6 +118,36 @@ body {
 
 	#newPost img{
 		width: 92%;
+	}
+
+	.post img{
+		max-width:100%; 
+		max-height:100%;
+		clear: right;
+		float: none;
+	}
+
+	.post .content .ingredients{
+		margin: 0 0 0 0;
+		padding-top: 10px;
+		float: none;
+		overflow: auto;
+		clear: left;
+	}
+
+	.post .content .ingredients .ingredient{
+		float: left;
+		margin-right: 10px;
+		margin-top: 5px;
+	}
+
+}
+
+@media screen and (max-width: 350px){
+
+
+  .post .content .ingredients .ingredient{
+		width: 90%; 
 	}
 
 }

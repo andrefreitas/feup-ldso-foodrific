@@ -10,6 +10,10 @@ $(document).ready(function(){
 	$('#addPost').click(function(){
 		addPostClick();
 	});
+
+	$('#publishPost').click(function(){
+		publishPostClick();
+	});
 })
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -143,4 +147,16 @@ function loginIsValid(email, password){
 
 function addPostClick(){
 	$("#newPost").fadeIn();
+}
+
+function validatePublishPost(){
+	var fields = $('#newPost form').serializeArray();
+	var title = fields[0]["value"];
+
+	$(".alert").html("");	
+	if(title.length < 1){
+		$("#titleAlert").html("Escreva um título!").effect("shake");
+		return false;
+	}
+	return true;
 }

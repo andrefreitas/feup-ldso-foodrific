@@ -98,7 +98,92 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(Post.all().count(), 3)
         posts = getPostsByUserFollowing(user_id1)
         self.assertEqual(len(posts), 3)
+    
+    def test_datastore_addIngredients(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        post_id = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        if (addIngredients(post_id, ['cebola', 'batata'])):
+            self.assertEqual(Post.get_by_id(post_id).ingredients, ['cebola', 'batata'] )
+            
+    def test_datastore_addRating(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        post_id = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        if (addRating(post_id, 5)):
+            self.assertEqual(Post.get_by_id(post_id).rating, 5 )
         
+        
+        
+    def test_datastore_addReceipt(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        post_id = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        if (addReceipt(post_id, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas.")):
+            self.assertEqual(Post.get_by_id(post_id).receipt, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas." )
+            
+    def test_datastore_get_posts(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        u2 = User(birthday = date(1987, 5, 22),
+                 name = "Susana",
+                 email = "susana@gmail.com",
+                 password = "Hdjdea3d5h",
+                 gender = "f"
+                 )
+        u2.put()
+        addPost(u, "My food is awesome", "photo_tester")
+        addPost(u, "My food is very awesome", "photo_tester")
+        addPost(u, "Batatas fritas com arroz", "photo_tester")
+        addPost(u, "Peito de peru grelhado com arroz de tomate", "photo_tester")
+        addPost(u, "Salada russa", "photo_tester")
+        addPost(u2, "Feijoada alentejana", "photo_tester")
+        addPost(u2, "Ervilha com carne de vaca e arroz branco", "photo_tester")
+        self.assertEqual(Post.all().count(), 7)
+        posts = getPosts()
+        self.assertEqual(len(posts), 7)
+        
+    def test_datastore_get_post_id(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        post_id = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        post = getPostByID(post_id)
+        self.assertEqual(post.title, "My food is awesome")
+        self.assertEqual(post.photo, "photo_tester")
         
         
         

@@ -10,8 +10,8 @@ class Post(db.Model):
 	rating = db.RatingProperty()
 	receipt = db.TextProperty()
 	ingredients = db.ListProperty(str)
-	original_date = db.DateProperty(auto_now_add=True)
-	last_update_date = db.DateProperty(auto_now=True)
+	original_date = db.DateTimeProperty(auto_now_add=True)
+	last_update_date = db.DateTimeProperty(auto_now=True)
 
 
 # ----------------- FUNCTIONS POST -----------------
@@ -19,6 +19,42 @@ def addPost(user, title, photo):
 	post = Post(user=user, title=title, photo=photo)
 	post.put()
 	return post.key().id()
+
+def addIngredients(post_id, ingredients):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.ingredients.extend(ingredients)
+		post.put()
+		return True
+	else:
+		return False
+	
+def addReceipt(post_id, receipt):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.receipt = receipt
+		post.put()
+		return True
+	else:
+		return False
+
+	
+def addRating(post_id, rating):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.rating = rating
+		post.put()
+		return True
+	else:
+		return False
+	
+def getPosts():
+	post_query = db.GqlQuery('SELECT * FROM Post')
+	return post_query.fetch(1000)
+
+def getPostByID(post_id):
+	post = Post.get_by_id(post_id)
+	return post
 
 def getPostsByUser(user_id):
 	user = User.get_by_id(user_id)
@@ -40,4 +76,6 @@ def deletePost(post_id):
 	post_to_delete = Post.get_by_id(post_id)
 	db.delete(post_to_delete)
 	return True
+
+
 	

@@ -20,5 +20,5 @@ class Register(BaseHandler):
         birthTime = date(birthYear, birthMonth, birthDay)
         addUser(name, email, password, gender, birthTime)
         self.session["user"] = email
-        
+        return self.redirect('/feed')
         
