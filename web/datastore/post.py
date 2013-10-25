@@ -20,6 +20,26 @@ def addPost(user, title, photo):
 	post.put()
 	return post.key().id()
 
+def addIngredients(post_id, ingredients):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.ingredients.extend(ingredients)
+		post.put()
+		return True
+	else:
+		return False
+
+	
+def addRating(post_id, rating):
+	post = Post.get_by_id(post_id)
+	if (post != None):
+		post.rating = rating
+		post.put()
+		return True
+	else:
+		return False
+	
+
 def getPostsByUser(user_id):
 	user = User.get_by_id(user_id)
 	post_query = db.GqlQuery('SELECT * FROM Post WHERE user = :1', user)
@@ -40,4 +60,6 @@ def deletePost(post_id):
 	post_to_delete = Post.get_by_id(post_id)
 	db.delete(post_to_delete)
 	return True
+
+
 	

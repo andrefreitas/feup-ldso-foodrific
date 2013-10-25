@@ -98,6 +98,20 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(Post.all().count(), 3)
         posts = getPostsByUserFollowing(user_id1)
         self.assertEqual(len(posts), 3)
+    
+    def test_datastore_addIngredients(self):
+        self.assertEqual(Post.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        post_id = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        if (addIngredients(post_id, ['cebola', 'batata'])):
+            self.assertEqual(Post.get_by_id(post_id).ingredients, ['cebola', 'batata'] )
         
         
         
