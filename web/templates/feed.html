@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Foodrific Feed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/feed.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/scripts.js"></script>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
+  </head>
+  <body>
+    <div id="header">
+      <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
+    </div>
+
+    <div class="container">
+      <button id="addPost">novo post</button>
+      <!-- New Post -->
+      <div id="newPost" class="box">
+        <form method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">
+          <div class="alert" id="titleAlert"></div>
+          <input type="text" name="title" placeholder="Qual é o título?"/> <br/>
+          <div class="photo">
+            <img src="images/post-photo.svg">
+          </div>
+          <input type="file" name="photo"/>
+          <div class="alert" id="ingredientsAlert"></div>
+          <input type="text" name="ingredients" placeholder="Ingredientes? ex: carne, arroz"/>
+          <input type="submit" value="Publicar" class="orange"/>
+        </form>
+      </div>
+      <!-- Posts -->
+      <div id="posts">
+          {% for post in posts %}
+            <div class="post box">
+              <div class="head">
+                <span class="title">{{post.title}}</span><br/>
+                <span class="author">por {{post.user.name}}</span><br/>
+              </div>
+              <div class="content">
+                <img src="/api/postimage?id={{post.key().id()}}" />
+                <div class="ingredients">
+                  {% for ingredient in post.ingredients %}
+                    <div class="ingredient"> {{ ingredient }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+
+  </body>
+</html>
