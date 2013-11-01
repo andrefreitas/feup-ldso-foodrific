@@ -1,0 +1,4 @@
+cron:
+- description: Clean security tokens generated previously
+  url: /cleantokens
+  schedule: every day 00:00

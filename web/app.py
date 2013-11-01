@@ -1,6 +1,7 @@
 import webapp2
 import os
 import datetime
+from tasks import *
 from pages import *
 import api
 
@@ -18,5 +19,6 @@ application = webapp2.WSGIApplication([
     ('/feed', Feed),
     ('/api/login', api.Login),
     ('/api/newpost', api.NewPost),
-    ('/api/postimage', api.PostImage)
+    ('/api/postimage', api.PostImage),
+    ('/cleantokens', CleanTokens)
 ], debug=True, config=config)

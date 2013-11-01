@@ -1,5 +1,5 @@
 from google.appengine.ext import db
-import base64
+import hashlib
 
 # ----------------- CLASS USER -----------------
 class User(db.Model):
@@ -9,6 +9,7 @@ class User(db.Model):
     birthday = db.DateProperty(required=True)
     gender = db.StringProperty(indexed=False, required=True, choices=set(["m", "f"]))
     photo = db.BlobProperty()
+    token = db.StringProperty(required=False)
 
 
 # ----------------- FUNCTIONS USER -----------------
@@ -97,9 +98,5 @@ def searchUserByEmail(email):
 # ----------------- ADDITIONAL FUNCTIONS -----------------
 # Needing salt element
 def encrypt(text):
-    encoded_string = base64.b64encode(text)
+    encoded_string = hashlib.sha256(text).hexdigest()
     return encoded_string
-
-def decrypt(text):
-    decoded_string = base64.b64decode(text)
-    return decoded_string
