@@ -14,6 +14,34 @@ $(document).ready(function(){
 	$('#publishPost').click(function(){
 		publishPostClick();
 	});
+	
+	$('.recoverPasswordButton').click(function(){
+		$('#recoverPasswordForm').bPopup({
+	    	easing: 'easeOutBack', //uses jQuery easing plugin
+       		speed: 450,
+        	transition: 'slideDown'
+    	});
+	});
+
+	$('.post').mouseenter(function(){
+		var id_post = $(this).attr("id");
+		
+		$('#' + id_post +' .delete_post_img').show();
+	});
+
+	$('.post').mouseleave(function(){
+		var id_post = $(this).attr("id");
+		
+		$('#' + id_post +' .delete_post_img').hide();
+	});
+
+	$('.delete_post_img').click(function()
+	{
+		var father = $(this).parent();
+		var id_post = father.attr("id");
+
+		deletePost(id_post);
+	});
 })
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -69,6 +97,23 @@ function validateRegisterForm(){
 	}
 
 	return true;
+}
+
+function validateRecoveryPasswordForm(){
+	var fields = $('#passwordForm form').serializeArray();
+	var password = fields[1]["value"],
+		passwordConfirm = fields[2]["value"];
+
+	if(!passwordsAreValid(password,passwordConfirm)){
+		if(password.length < 5)
+			$("#passwordAlert").html("A password tem que ter pelo menos 5 caracteres!").effect("shake");
+		else 
+			$("#passwordConfirmAlert").html("As passwords não são iguais!").effect("shake");
+		return false;
+	}
+
+	return true;
+
 }
 
 /** Validations **/
@@ -135,6 +180,47 @@ function validateLoginForm(){
 	return false;
 }
 
+function validateEmail()
+{
+	var email = $('#recoverPasswordForm [name=emailToRecover]').val();
+
+	if(!emailIsValid(email))
+	{
+		if(email.length ==0)
+		{
+			$("#recoverPasswordAlert").html("Escreva o email!").effect("shake");
+		}
+		else
+		{
+			$("#recoverPasswordAlert").html("Email inválido!").effect("shake");
+		}
+
+		return false;
+	}
+	else
+	{
+		if(emailDatabaseIsValid(email))
+		{
+			return true;
+		}
+		else
+		{
+			$("#recoverPasswordAlert").html("Email inválido!").effect("shake");
+			return false;
+		}
+	}
+}
+
+function emailDatabaseIsValid(email)
+{
+	$.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/send_recover",{
+            email: email
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
+}
+
 function loginIsValid(email, password){
 	 $.ajaxSetup( { "async": false } );
      var data = $.getJSON("api/login",{
@@ -159,4 +245,18 @@ function validatePublishPost(){
 		return false;
 	}
 	return true;
+}
+
+function deletePost(id_post)
+{
+	$.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/delete_post",{
+            id_post_to_delete: id_post
+     });
+    $.ajaxSetup( { "async": true } );
+
+    if($.parseJSON(data["responseText"])["answer"] == 'valid')
+    {
+    	$('#'+ id_post + '').remove();
+    }
 }

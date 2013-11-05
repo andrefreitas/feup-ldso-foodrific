@@ -26,3 +26,11 @@ def getPostYummys(post_id):
 	post_yummy = Post.get_by_id(post_id)
 	all_yummy = db.GqlQuery("SELECT * FROM Yummy WHERE post = :1", post_yummy)
 	return all_yummy.fetch(1000)
+
+def deletePostYummys(post_id):
+	yummy_posts = getPostYummys(post_id)
+	if(yummy_posts is None):
+		return True
+	else:
+		db.delete(yummy_posts)
+		return True

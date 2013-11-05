@@ -76,6 +76,3 @@ def deletePost(post_id):
 	post_to_delete = Post.get_by_id(post_id)
 	db.delete(post_to_delete)
 	return True
-
-
-	

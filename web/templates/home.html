@@ -9,6 +9,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/bPopup.js"></script>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
@@ -66,6 +67,15 @@
           <input type="submit" value="Entrar" class="orange"/>
         </form>
       </div>
+      <button type="button" class="recoverPasswordButton">Recuperar palavra-passe</button>
+    </div>
+    <!-- Recover Password Form -->
+    <div id="recoverPasswordForm">
+      <form onsubmit="return validateEmail()">
+        <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/>
+        <div id="recoverPasswordAlert" class="alert"></div>
+        <input type="submit" value="Recuperar"/>
+      </form>
     </div>
   </body>
 </html>

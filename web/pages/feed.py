@@ -15,7 +15,10 @@ class Feed(BaseHandler):
 
     def get(self):
     	if(self.isLoggedIn()):
-    		template_values = {"posts" : getPosts()}
+    		template_values = {
+                "posts" : getPosts(),
+                "user_email" : self.session.get("user")
+            }
     		template = JINJA_ENVIRONMENT.get_template('feed.html')
     		self.response.write(template.render(template_values))
     	else:

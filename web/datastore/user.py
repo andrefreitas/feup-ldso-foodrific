@@ -1,5 +1,10 @@
 from google.appengine.ext import db
 import hashlib
+import md5
+from random import randint
+from google.appengine.api import mail
+
+maxLimit = 999999999
 
 # ----------------- CLASS USER -----------------
 class User(db.Model):
@@ -18,6 +23,10 @@ def addUser(name, email, password, gender, birthday):
         encrypted_pw = encrypt(password)
         user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
         user.put()
+        sender_address = "Foodrific <no-reply@foodrific.com>"
+        subject = "Bem-vindo ao Foodrific!"
+        body = "Ola.\n\nBem-vindo ao Foodrific! Aqui poderas partilhar e encontrar novas receitas e experiencias.\nAcede ja a http://foodrific.appspot.com .\n\nA equipa Foodrific."
+        mail.send_mail(sender_address, email, subject, body)
         return user.key().id()
     else:
         return False
@@ -94,6 +103,31 @@ def searchUserByName(name):
 def searchUserByEmail(email):
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
     return user_query.get()
+
+def generateUserRecoveryToken(email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    if user_query is not None:
+        user_value = user_query.get()
+        user_value.token = encrypt(user_value.email + str(randint(1, maxLimit)))
+        sender_address = "Foodrific <no-reply@foodrific.com>"
+        subject = "Recuperacao de password"
+        body = "Ola.\n\nEfetuaste um pedido de recuperacao de password. Para prosseguir acede a http://foodrific.appspot.com/recovery?token=" + user_value.token + " .\n\nA equipa Foodrific."
+        mail.send_mail(sender_address, email, subject, body)
+        db.put(user_value)
+        return True
+    else:
+        return False
+    
+def changePasswordByToken(token, password):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE token = :1", token)
+    if user_query is not None:
+        user_value = user_query.get()
+        user_value.token = ""
+        user_value.password = encrypt(password)
+        db.put(user_value)
+        return True
+    else:
+        return False
 
 # ----------------- ADDITIONAL FUNCTIONS -----------------
 # Needing salt element

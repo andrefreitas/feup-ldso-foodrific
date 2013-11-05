@@ -20,5 +20,9 @@ application = webapp2.WSGIApplication([
     ('/api/login', api.Login),
     ('/api/newpost', api.NewPost),
     ('/api/postimage', api.PostImage),
-    ('/cleantokens', CleanTokens)
+    ('/api/send_recover', api.SendRecover),
+    ('/api/recovery', api.Recovery),
+    ('/api/delete_post', api.DeletePost),
+    ('/cleantokens', CleanTokens),
+    ('/recovery', Recovery)
 ], debug=True, config=config)

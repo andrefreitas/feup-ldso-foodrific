@@ -36,7 +36,10 @@
       <!-- Posts -->
       <div id="posts">
           {% for post in posts %}
-            <div class="post box">
+            <div class="post box" id="{{post.key().id()}}">
+              {% if user_email == post.user.email %}
+              <img class="delete_post_img" src="images/delete.svg" alt="Apagar Prato" width="20" height="20" hidden/>
+              {% endif %}
               <div class="head">
                 <span class="title">{{post.title}}</span><br/>
                 <span class="author">por {{post.user.name}}</span><br/>
