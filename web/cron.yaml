@@ -1,4 +1,4 @@
 cron:
 - description: Clean security tokens generated previously
-  url: /cleantokens
+  url: /cleantokens?key=TreyYWtmtDM33VbontpHbQJ63eGwByfz6N1INuaJeJ0ZQ7qxWs3AdB0o5bLlGOFc
   schedule: every day 00:00
