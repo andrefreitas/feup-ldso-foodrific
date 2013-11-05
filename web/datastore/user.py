@@ -128,6 +128,14 @@ def changePasswordByToken(token, password):
         return True
     else:
         return False
+    
+def getUserToken(email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    if user_query is not None:
+        user_value = user_query.get()
+        return user_value.token
+    else:
+        return
 
 # ----------------- ADDITIONAL FUNCTIONS -----------------
 # Needing salt element
