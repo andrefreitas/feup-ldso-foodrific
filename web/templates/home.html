@@ -44,8 +44,8 @@
           <div id="genderAlert" class="alert"></div>
           <select name="gender">
             <option selected="selected">escolher género</option>
-            <option value="m">homem</option>
-            <option value="f">mulher</option>
+            <option value="m">masculino</option>
+            <option value="f">feminino</option>
           </select> <br />
           <div id="passwordAlert" class="alert"></div>
           <input type="password" name="password" placeholder="senha"> <br/>
@@ -67,14 +67,14 @@
           <input type="submit" value="Entrar" class="orange"/>
         </form>
       </div>
-      <button type="button" class="recoverPasswordButton">Recuperar palavra-passe</button>
+      <button class="recoverPasswordButton blue">Recuperar password</button>
     </div>
     <!-- Recover Password Form -->
     <div id="recoverPasswordForm">
       <form onsubmit="return validateEmail()">
-        <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/>
         <div id="recoverPasswordAlert" class="alert"></div>
-        <input type="submit" value="Recuperar"/>
+        <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/> <br />
+        <input type="submit" value="Recuperar" class="orange"/>
       </form>
     </div>
   </body>

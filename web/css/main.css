@@ -31,7 +31,7 @@ h1 {
 	font-size: 58px;
 }
 
-input, select {
+input, select{
 	-webkit-appearance: none;
 	background: #FFF;
 	border-radius: 0;

@@ -56,6 +56,7 @@
 	width: 320px;
 }
 
+#recoverPasswordForm input[type="submit"],
 #registerForm input[type="submit"], 
 #loginForm input[type="submit"]{
 	width: 320px;
@@ -69,10 +70,16 @@
 	
 }
 
-#recoverPasswordForm
-{
+#recoverPasswordForm {
 	display: none;
 }
+
+.recoverPasswordButton {
+	width: 320px;
+	padding: 10px;
+	font-size: 24px;
+}
+
 
 @media screen and (max-width: 900px){
     .container {
