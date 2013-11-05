@@ -42,7 +42,7 @@ $(document).ready(function(){
 
 		deletePost(id_post);
 	});
-})
+});
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
 /**
