@@ -101,7 +101,21 @@ function validateRegisterForm(){
 		return false;
 	}
 
-	return true;
+	if(!registerIsValid(email)) {
+		$("#emailAlert").html("O email não é válido!").effect("shake");
+		return false;
+	}
+
+	else return true;
+}
+
+function registerIsValid(email){
+	 $.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/register_verification",{
+            email: email
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
 }
 
 function validateRecoveryPasswordForm(){
