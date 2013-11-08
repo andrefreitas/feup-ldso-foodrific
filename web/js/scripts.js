@@ -42,6 +42,11 @@ $(document).ready(function(){
 
 		deletePost(id_post);
 	});
+
+	$('#yummiAction').click(function(){
+		yummiClick(this);
+
+	});
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -259,4 +264,26 @@ function deletePost(id_post)
     {
     	$('#'+ id_post + '').remove();
     }
+}
+
+function getPostId(action){
+	var post = $(action).parent().parent();
+	var postId = post.attr("id");
+	return postId;
+}
+
+function yummiClick(action){
+	var postId = getPostId(action);
+	addYummi(postId);
+}
+
+function addYummi(postId){
+	/**
+	 $.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/yummi",{
+            postId: postId
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
+    **/
 }
