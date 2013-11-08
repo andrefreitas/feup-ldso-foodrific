@@ -23,21 +23,9 @@ $(document).ready(function(){
     	});
 	});
 
-	$('.post').mouseenter(function(){
-		var id_post = $(this).attr("id");
-		
-		$('#' + id_post +' .delete_post_img').show();
-	});
-
-	$('.post').mouseleave(function(){
-		var id_post = $(this).attr("id");
-		
-		$('#' + id_post +' .delete_post_img').hide();
-	});
-
 	$('.delete_post_img').click(function()
 	{
-		var father = $(this).parent();
+		var father = $(this).parent().parent();
 		var id_post = father.attr("id");
 
 		deletePost(id_post);
@@ -283,12 +271,15 @@ function deletePost(id_post)
 function getPostId(action){
 	var post = $(action).parent().parent();
 	var postId = post.attr("id");
+
+	alert(postId);
+
 	return postId;
 }
 
 function yummiClick(action){
 	var postId = getPostId(action);
-	addYummi(postId);
+	//addYummi(postId);
 }
 
 function addYummi(postId){
