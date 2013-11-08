@@ -23,7 +23,7 @@ def addUser(name, email, password, gender, birthday):
         encrypted_pw = encrypt(password)
         user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
         user.put()
-        sender_address = "Foodrific <no-reply@foodrific.com>"
+        sender_address = "foodrific.service@gmail.com"
         subject = "Bem-vindo ao Foodrific!"
         body = "Ola.\n\nBem-vindo ao Foodrific! Aqui poderas partilhar e encontrar novas receitas e experiencias.\nAcede ja a http://foodrific.appspot.com .\n\nA equipa Foodrific."
         mail.send_mail(sender_address, email, subject, body)
@@ -109,7 +109,7 @@ def generateUserRecoveryToken(email):
     if user_query is not None:
         user_value = user_query.get()
         user_value.token = encrypt(user_value.email + str(randint(1, maxLimit)))
-        sender_address = "Foodrific <no-reply@foodrific.com>"
+        sender_address = "foodrific.service@gmail.com"
         subject = "Recuperacao de password"
         body = "Ola.\n\nEfetuaste um pedido de recuperacao de password. Para prosseguir acede a http://foodrific.appspot.com/recovery?token=" + user_value.token + " .\n\nA equipa Foodrific."
         mail.send_mail(sender_address, email, subject, body)

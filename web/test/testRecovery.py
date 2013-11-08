@@ -41,7 +41,7 @@ class TestRecovery(DataStoreTestCase, unittest.TestCase):
         messages2 = self.mail_stub.get_sent_messages(to='example@ex.com')
         self.assertEqual(1, len(messages))
         self.assertEqual('carlos@gmail.com', messages[0].to)
-        self.assertEqual('Foodrific <no-reply@foodrific.com>', messages[0].sender)
+        self.assertEqual('foodrific.service@gmail.com', messages[0].sender)
         self.assertEqual('Recuperacao de password', messages[0].subject)
         
         textbody =  str(messages[0].body)
@@ -59,7 +59,7 @@ class TestRecovery(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(1, len(messages2))
         
         self.assertEqual('example@ex.com', messages2[0].to)
-        self.assertEqual('Foodrific <no-reply@foodrific.com>', messages2[0].sender)
+        self.assertEqual('foodrific.service@gmail.com', messages2[0].sender)
         self.assertEqual('Recuperacao de password', messages2[0].subject)
         
         textbody =  str(messages2[0].body)
