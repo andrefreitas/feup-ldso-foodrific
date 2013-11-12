@@ -20,6 +20,7 @@ $(document).ready(function(){
 	});
 
 	// BEGIN: Refactor
+	/*
 
 	$('.post').mouseenter(function(){
 		var id_post = $(this).attr("id");
@@ -39,12 +40,12 @@ $(document).ready(function(){
 
 		deletePost(id_post);
 	});
+	*/
 
 	// END: Refactor
 
 	$('#yummiAction').click(function(){
 		yummiClick(this);
-
 	});
 });
 
@@ -283,15 +284,21 @@ function deletePost(id_post)
 function getPostId(action){
 	var post = $(action).parent().parent();
 	var postId = post.attr("id");
-
-	alert(postId);
-
 	return postId;
+}
+
+function getPostYummis(action) {
+	var yummis = $(action).children().children('.text').first().html();
+	yummis = yummis.split(" ");
+	yummis = parseInt(yummis[0]);
+	return yummis;
 }
 
 function yummiClick(action){
 	var postId = getPostId(action);
-	//addYummi(postId);
+	var yummis = getPostYummis(action);
+	console.log(yummis)
+	addYummi(postId);
 }
 
 function addYummi(postId){
