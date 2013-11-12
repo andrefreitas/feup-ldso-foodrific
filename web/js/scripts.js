@@ -101,7 +101,21 @@ function validateRegisterForm(){
 		return false;
 	}
 
-	return true;
+	if(!registerIsValid(email)) {
+		$("#emailAlert").html("O email não é válido!").effect("shake");
+		return false;
+	}
+
+	else return true;
+}
+
+function registerIsValid(email){
+	 $.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/register_verification",{
+            email: email
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
 }
 
 function validateRecoveryPasswordForm(){
@@ -269,12 +283,15 @@ function deletePost(id_post)
 function getPostId(action){
 	var post = $(action).parent().parent();
 	var postId = post.attr("id");
+
+	alert(postId);
+
 	return postId;
 }
 
 function yummiClick(action){
 	var postId = getPostId(action);
-	addYummi(postId);
+	//addYummi(postId);
 }
 
 function addYummi(postId){
