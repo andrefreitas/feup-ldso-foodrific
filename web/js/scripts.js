@@ -16,12 +16,10 @@ $(document).ready(function(){
 	});
 	
 	$('.recoverPasswordButton').click(function(){
-		$('#recoverPasswordForm').bPopup({
-	    	easing: 'easeOutBack', //uses jQuery easing plugin
-       		speed: 450,
-        	transition: 'slideDown'
-    	});
+		recoverPasswordPopUp();
 	});
+
+	// BEGIN: Refactor
 
 	$('.post').mouseenter(function(){
 		var id_post = $(this).attr("id");
@@ -35,13 +33,14 @@ $(document).ready(function(){
 		$('#' + id_post +' .delete_post_img').hide();
 	});
 
-	$('.delete_post_img').click(function()
-	{
+	$('.delete_post_img').click(function(){
 		var father = $(this).parent();
 		var id_post = father.attr("id");
 
 		deletePost(id_post);
 	});
+
+	// END: Refactor
 
 	$('#yummiAction').click(function(){
 		yummiClick(this);
@@ -50,6 +49,7 @@ $(document).ready(function(){
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
+
 /**
 * When someone clicks on the register button
 **/
@@ -278,12 +278,18 @@ function yummiClick(action){
 }
 
 function addYummi(postId){
-	/**
-	 $.ajaxSetup( { "async": false } );
-     var data = $.getJSON("api/yummi",{
+	$.ajaxSetup( { "async": false } );
+    var data = $.getJSON("api/yummi",{
             postId: postId
      });
     $.ajaxSetup( { "async": true } );
-    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
-    **/
+    return $.parseJSON(data["responseText"])["answer"] == 'done' ;
+}
+
+function recoverPasswordPopUp(){
+	$('#recoverPasswordForm').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
 }

@@ -23,6 +23,7 @@ application = webapp2.WSGIApplication([
     ('/api/send_recover', api.SendRecover),
     ('/api/recovery', api.Recovery),
     ('/api/delete_post', api.DeletePost),
+    ('/api/yummi', api.Yummi),
     ('/cleantokens', CleanTokens),
     ('/recovery', Recovery)
 ], debug=True, config=config)
