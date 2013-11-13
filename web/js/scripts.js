@@ -22,20 +22,8 @@ $(document).ready(function(){
 	// BEGIN: Refactor
 	/*
 
-	$('.post').mouseenter(function(){
-		var id_post = $(this).attr("id");
-		
-		$('#' + id_post +' .delete_post_img').show();
-	});
-
-	$('.post').mouseleave(function(){
-		var id_post = $(this).attr("id");
-		
-		$('#' + id_post +' .delete_post_img').hide();
-	});
-
 	$('.delete_post_img').click(function(){
-		var father = $(this).parent();
+		var father = $(this).parent().parent();
 		var id_post = father.attr("id");
 
 		deletePost(id_post);
