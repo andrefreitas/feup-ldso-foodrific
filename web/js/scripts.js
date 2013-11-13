@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 	// END: Refactor
 
-	$('#yummiAction').click(function(){
+	$('.yummiAction').click(function(){
 		yummiClick(this);
 	});
 });
