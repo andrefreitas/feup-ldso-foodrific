@@ -14,12 +14,23 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class Feed(BaseHandler):
 
     def get(self):
-    	if(self.isLoggedIn()):
-    		template_values = {
-                "posts" : getPosts(),
+        if(self.isLoggedIn()):
+            posts = getPosts()
+            
+            def putYummis(post):
+                post_id = post.key().id()
+                yummis = getPostYummys(post_id)
+                post.yummis = len(yummis)
+                print  post.yummis
+                return post
+
+            posts = map(putYummis, posts)
+
+            template_values = {
+                "posts" : posts,
                 "user_email" : self.session.get("user")
             }
-    		template = JINJA_ENVIRONMENT.get_template('feed.html')
-    		self.response.write(template.render(template_values))
-    	else:
-    		return self.redirect('/')
+            template = JINJA_ENVIRONMENT.get_template('feed.html')
+            self.response.write(template.render(template_values))
+        else:
+            return self.redirect('/')

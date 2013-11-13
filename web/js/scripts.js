@@ -289,15 +289,21 @@ function getPostId(action){
 
 function getPostYummis(action) {
 	var yummis = $(action).children().children('.text').first().html();
+	console.log(yummis);
 	yummis = yummis.split(" ");
+	console.log(yummis);
 	yummis = parseInt(yummis[0]);
 	return yummis;
+}
+
+function setPostYummis(action, yummis) {
+	$(action).children().children('.text').first().html(yummis + " yummis");
 }
 
 function yummiClick(action){
 	var postId = getPostId(action);
 	var yummis = getPostYummis(action);
-	console.log(yummis)
+    setPostYummis(action, yummis+1) 
 	addYummi(postId);
 }
 
