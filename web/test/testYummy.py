@@ -4,7 +4,7 @@ from datastore.user import *
 from datastore.post import *
 from datastore.yummy import *
 from datetime import date
-from datastore.yummy import doYummy
+from datastore.yummy import toogleYummy
 
 class TestYummy(DataStoreTestCase, unittest.TestCase):
     def test_datastore_do_yummy(self):
@@ -12,11 +12,11 @@ class TestYummy(DataStoreTestCase, unittest.TestCase):
         user = searchUserByID(user_id)
         post_id = addPost(user, "My food is awesome", "photo_tester")
         self.assertEqual(Yummy.all().count(), 0)
-        yummy_done = doYummy(user_id, post_id)
+        yummy_done = toogleYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 1)
         self.assertTrue(yummy_done)
-        yummy_done = doYummy(user_id, post_id)
-        self.assertEqual(Yummy.all().count(), 1)
+        yummy_done = toogleYummy(user_id, post_id)
+        self.assertEqual(Yummy.all().count(), 0)
         self.assertFalse(yummy_done)
         
     def test_datastore_undo_yummy(self):
@@ -24,9 +24,9 @@ class TestYummy(DataStoreTestCase, unittest.TestCase):
         user = searchUserByID(user_id)
         post_id = addPost(user, "My food is awesome", "photo_tester")
         self.assertEqual(Yummy.all().count(), 0)
-        doYummy(user_id, post_id)
+        toogleYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 1)
-        undoYummy(user_id, post_id)
+        toogleYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 0)
         
     def test_datastore_get_post_yummys(self):
@@ -34,7 +34,7 @@ class TestYummy(DataStoreTestCase, unittest.TestCase):
         user = searchUserByID(user_id)
         post_id = addPost(user, "My food is awesome", "photo_tester")
         self.assertEqual(Yummy.all().count(), 0)
-        doYummy(user_id, post_id)
+        toogleYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 1)
         yummys = getPostYummys(post_id)
         self.assertEqual(len(yummys), 1)
@@ -44,7 +44,7 @@ class TestYummy(DataStoreTestCase, unittest.TestCase):
         user = searchUserByID(user_id)
         post_id = addPost(user, "My food is awesome", "photo_tester")
         self.assertEqual(Yummy.all().count(), 0)
-        doYummy(user_id, post_id)
+        toogleYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 1)
         deletePostYummys(post_id)
         self.assertEqual(Yummy.all().count(), 0)
