@@ -32,8 +32,8 @@ $(document).ready(function(){
 
 	// END: Refactor
 
-	$('.yummiAction').click(function(){
-		yummiClick(this);
+	$('.yummyAction').click(function(){
+		YummyClick(this);
 	});
 });
 
@@ -275,32 +275,32 @@ function getPostId(action){
 	return postId;
 }
 
-function getPostYummis(action) {
-	var yummis = $(action).children().children('.text').first().html();
-	console.log(yummis);
-	yummis = yummis.split(" ");
-	console.log(yummis);
-	yummis = parseInt(yummis[0]);
-	return yummis;
+function getPostYummys(action) {
+	var Yummys = $(action).children().children('.text').first().html();
+	Yummys = Yummys.split(" ");
+	Yummys = parseInt(Yummys[0]);
+	return Yummys;
 }
 
-function setPostYummis(action, yummis) {
-	$(action).children().children('.text').first().html(yummis + " yummis");
+function setPostYummys(action, Yummys) {
+	$(action).children().children('.text').first().html(Yummys + " yummys");
 }
 
-function yummiClick(action){
+function YummyClick(action){
 	var postId = getPostId(action);
-	var yummis = getPostYummis(action);
-    setPostYummis(action, yummis+1) 
-	addYummi(postId);
+	var Yummys = getPostYummys(action);
+    setPostYummys(action, Yummys+1) 
+	addYummy(postId);
 }
 
-function addYummi(postId){
+function addYummy(postId){
 	$.ajaxSetup( { "async": false } );
-    var data = $.getJSON("api/yummi",{
+    var data = $.getJSON("api/yummy",{
             postId: postId
      });
     $.ajaxSetup( { "async": true } );
+    console.log("Called api/yummy?postId="+postId)
+    console.log($.parseJSON(data["responseText"]));
     return $.parseJSON(data["responseText"])["answer"] == 'done' ;
 }
 

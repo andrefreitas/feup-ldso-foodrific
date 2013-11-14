@@ -16,15 +16,17 @@ class Feed(BaseHandler):
     def get(self):
         if(self.isLoggedIn()):
             posts = getPosts()
+            user_id = int(self.get_session_user_id())
             
-            def putYummis(post):
+            def putYummys(post):
+                post_user_id = post.user.key().id()
                 post_id = post.key().id()
-                yummis = getPostYummys(post_id)
-                post.yummis = len(yummis)
-                print  post.yummis
+                yummys = getPostYummys(post_id)
+                post.yummys = len(yummys)
+                post.yummyDone = False
                 return post
 
-            posts = map(putYummis, posts)
+            posts = map(putYummys, posts)
 
             template_values = {
                 "posts" : posts,
