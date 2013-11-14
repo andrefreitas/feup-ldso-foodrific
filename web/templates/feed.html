@@ -56,12 +56,12 @@
                 </div>
               </div>
               <div class="actions">
-                <div class="yummy yummyAction">
+                <div class="yummy yummyAction" id="{% if post.yummyDone %}done{% else %}undone{% endif %}">
                   <div class="action">
                     {% if post.yummyDone %}
-                    <img src="images/yummy.svg" height="45px"> 
+                    <img src="images/yummy-done.svg" height="45px">
                     {% else %}
-                    <img src="images/yummy.svg" height="45px"> 
+                    <img src="images/yummy.svg" height="45px">
                     {% endif %}
                     <div class="text">{{post.yummys}} yummys</div>
                   </div>

@@ -33,7 +33,7 @@ $(document).ready(function(){
 	// END: Refactor
 
 	$('.yummyAction').click(function(){
-		YummyClick(this);
+		yummyClick(this);
 	});
 });
 
@@ -286,10 +286,34 @@ function setPostYummys(action, Yummys) {
 	$(action).children().children('.text').first().html(Yummys + " yummys");
 }
 
-function YummyClick(action){
+function isPostYummi(action) {
+	return $(action).attr("id") == "done";
+}
+
+function setPostYummiIcon(action, status) {
+	var imgDone = "images/yummy-done.svg";
+	var imgUndone = "images/yummy.svg";
+	if(status) {
+		$(action).children(".action").first().children().first().attr("src", imgDone);
+		$(action).attr("id", "done");
+	} else {
+		$(action).children(".action").first().children().first().attr("src", imgUndone);
+		$(action).attr("id", "undone");
+	}
+}
+
+function yummyClick(action){
 	var postId = getPostId(action);
 	var Yummys = getPostYummys(action);
-    setPostYummys(action, Yummys+1) 
+	var isDone = isPostYummi(action);
+	if(isDone) {
+		setPostYummys(action, Yummys - 1);
+		setPostYummiIcon(action, false);
+	} else {
+		setPostYummys(action, Yummys + 1);
+		setPostYummiIcon(action, true);
+	}
+    
 	addYummy(postId);
 }
 

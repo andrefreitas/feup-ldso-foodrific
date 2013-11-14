@@ -204,7 +204,21 @@ body {
 		margin-top: 5px;
 	}
 
+	.actions .action .text {
+  	   display: none;
+    }  
+
+	.actions .action{
+	  	text-align: center;
+	}
+
+	.post .actions div .action img {
+	  	float: none;
+		margin: 0 auto;
+	}
+
 }
+
 
 @media screen and (max-width: 350px){
 
