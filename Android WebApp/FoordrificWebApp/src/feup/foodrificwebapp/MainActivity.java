@@ -1,13 +1,20 @@
 package feup.foodrificwebapp;
 
 import feup.foodrificwebapp.R;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.AndroidCharacter;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class MainActivity extends Activity {
@@ -15,15 +22,37 @@ public class MainActivity extends Activity {
 	private WebView webView;
 	 
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_main);
+		ConnectivityManager cm =
+		        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		 
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		boolean isConnected = activeNetwork != null &&
+		                      activeNetwork.isConnectedOrConnecting();
 		
-		webView = (WebView) findViewById(R.id.webView);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.setWebViewClient(new Callback()); 
-		webView.loadUrl("http://www.foodrific.appspot.com");		
- 
+		if (isConnected) {
+			super.onCreate(savedInstanceState);
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+			setContentView(R.layout.activity_main);
+			
+			webView = (WebView) findViewById(R.id.webView);
+			webView.getSettings().setJavaScriptEnabled(true);
+			webView.setWebViewClient(new Callback()); 
+			webView.loadUrl("http://www.foodrific.appspot.com");
+		}
+		
+		if (!isConnected) {
+			super.onCreate(savedInstanceState);
+			requestWindowFeature(Window.FEATURE_NO_TITLE);
+			setContentView(R.layout.activity_check_connection);	
+			if (webView.isShown()) {
+				Context context = getApplicationContext();
+				CharSequence text = "Hello toast!";
+				int duration = Toast.LENGTH_LONG;
+
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();
+			}
+		}
 	}
 	
 	@Override
@@ -32,6 +61,10 @@ public class MainActivity extends Activity {
 	    if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
 	        webView.goBack();
 	        return true;
+	    }
+	    else {
+	    	Intent i = new Intent(getApplicationContext(), MainActivity.class);
+	    	startActivity(i);
 	    }
 	    // If it wasn't the Back key or there's no web page history, bubble up to the default
 	    // system behavior (probably exit the activity)

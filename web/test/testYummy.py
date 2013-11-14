@@ -12,8 +12,12 @@ class TestYummy(DataStoreTestCase, unittest.TestCase):
         user = searchUserByID(user_id)
         post_id = addPost(user, "My food is awesome", "photo_tester")
         self.assertEqual(Yummy.all().count(), 0)
-        doYummy(user_id, post_id)
+        yummy_done = doYummy(user_id, post_id)
         self.assertEqual(Yummy.all().count(), 1)
+        self.assertTrue(yummy_done)
+        yummy_done = doYummy(user_id, post_id)
+        self.assertEqual(Yummy.all().count(), 1)
+        self.assertFalse(yummy_done)
         
     def test_datastore_undo_yummy(self):
         user_id = addUser("Carlos", "carlos@gmail.com", "jubdGi12", "m", date(2000, 3, 22))
