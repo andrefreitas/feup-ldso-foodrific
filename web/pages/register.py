@@ -18,7 +18,8 @@ class Register(BaseHandler):
         birthMonth = int(birthday.split("/")[1])
         birthYear = int(birthday.split("/")[2])
         birthTime = date(birthYear, birthMonth, birthDay)
-        addUser(name, email, password, gender, birthTime)
+        user_id = addUser(name, email, password, gender, birthTime)
         self.session["user"] = email
+        self.session["user_id"] = user_id
         self.redirect('/feed')
         
