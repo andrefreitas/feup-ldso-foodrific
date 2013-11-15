@@ -9,6 +9,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/bPopup.js"></script>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
@@ -67,13 +68,21 @@
                   </div>
                 </div>
                 <div class="comments">
-                
                 </div>
               </div>
             </div>
           {% endfor %}
       </div>
+      <div id="questionPopUp">
+        <div class="question">
+          Deseja apagar a publicação?
+        </div>
+        <br>
+        <div class="buttons">
+          <input type="button" class="orange" name="yes" value="Sim" onclick="deletePostYes()"/>
+          <input type="button" class="blue" name "no" value="Não" onclick="deletePostNo()"/>
+        </div>
+      </div>
     </div>
-
   </body>
 </html>

@@ -1,3 +1,6 @@
+//Global variables jQuery
+window.toDelete;
+
 $(document).ready(function(){
 	$('#register').click(function(){
 		registerClick();
@@ -22,12 +25,19 @@ $(document).ready(function(){
 	// BEGIN: Refactor
 
 	$('.delete_post_img').click(function(){
+
+		$('#questionPopUp').bPopup({
+	    	easing: 'easeOutBack', //uses jQuery easing plugin
+       		speed: 450,
+        	transition: 'slideDown'
+    	});
+
 		var father = $(this).parent().parent();
 		var id_post = father.attr("id");
 
-		deletePost(id_post);
+		toDelete = id_post;
 	});
-
+	
 	// END: Refactor
 
 	$('.yummyAction').click(function(){
@@ -332,4 +342,16 @@ function recoverPasswordPopUp(){
        	speed: 450,
         transition: 'slideDown'
     });
+}
+
+function deletePostYes()
+{
+	$('#questionPopUp').bPopup().close();
+	
+	deletePost(toDelete);
+}
+
+function deletePostNo()
+{
+	$('#questionPopUp').bPopup().close();
 }
