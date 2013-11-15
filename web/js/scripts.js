@@ -20,7 +20,6 @@ $(document).ready(function(){
 	});
 
 	// BEGIN: Refactor
-	/*
 
 	$('.delete_post_img').click(function(){
 		var father = $(this).parent().parent();
@@ -28,7 +27,6 @@ $(document).ready(function(){
 
 		deletePost(id_post);
 	});
-	*/
 
 	// END: Refactor
 
