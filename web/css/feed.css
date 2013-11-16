@@ -232,6 +232,15 @@ body {
 		float: none;
 	}
 
+	/* Question Popup */
+	#questionPopUp {
+		width: 80%;
+	}
+
+	#questionPopUp input {
+		width: 90%;
+	}
+
 }
 
 
