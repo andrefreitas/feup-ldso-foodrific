@@ -23,24 +23,10 @@ $(document).ready(function(){
 		recoverPasswordPopUp();
 	});
 
-	// BEGIN: Refactor
-
 	$('.deletePost').click(function(){
-
-		$('#questionPopUp').bPopup({
-	    	easing: 'easeOutBack', //uses jQuery easing plugin
-       		speed: 450,
-        	transition: 'slideDown'
-    	});
-
-		var father = $(this).parent().parent();
-		var id_post = father.attr("id");
-
-		toDelete = id_post;
+		deletePostClick(this);
 	});
 	
-	// END: Refactor
-
 	$('.yummyAction').click(function(){
 		yummyClick(this);
 	});
@@ -264,16 +250,15 @@ function validatePublishPost(){
 	return true;
 }
 
-function deletePost(id_post)
-{
+function deletePost(id_post){
 	$.ajaxSetup( { "async": false } );
      var data = $.getJSON("api/delete_post",{
-            id_post_to_delete: id_post
+            postId: id_post
      });
     $.ajaxSetup( { "async": true } );
-
-    if($.parseJSON(data["responseText"])["answer"] == 'valid')
-    {
+    console.log("Called api/delete_post?postId="+id_post);
+    console.log($.parseJSON(data["responseText"]));
+    if($.parseJSON(data["responseText"])["answer"] == 'valid'){
     	$('#'+ id_post + '').remove();
     }
 }
@@ -345,14 +330,22 @@ function recoverPasswordPopUp(){
     });
 }
 
-function deletePostYes()
-{
+function deletePostClick(elem) {
+	$('#questionPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
+	var father = $(elem).parent().parent().parent();
+	var id_post = father.attr("id");
+	toDelete = id_post;
+}
+
+function deletePostYes(){
 	$('#questionPopUp').bPopup().close();
-	
 	deletePost(toDelete);
 }
 
-function deletePostNo()
-{
+function deletePostNo(){
 	$('#questionPopUp').bPopup().close();
 }
