@@ -90,10 +90,8 @@ body {
 	margin-bottom: 10px;
 }
 
-.post .inner .delete_post_img{
-	position: absolute;
-	margin-top: 0.4%;
-	margin-left: 32.4%;
+.post .deletePost {
+	float: right;
 	cursor: pointer;
 }
 

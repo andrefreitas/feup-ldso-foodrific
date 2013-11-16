@@ -41,7 +41,9 @@
             <div class="post box" id="{{post.key().id()}}">
               <div class="inner">
                 {% if user_email == post.user.email %}
-                <img class="delete_post_img" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+                  <div class="authorActions">
+                    <img class="deletePost" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+                  </div>
                 {% endif %}
                 <div class="head">
                   <span class="title">{{post.title}}</span><br/>

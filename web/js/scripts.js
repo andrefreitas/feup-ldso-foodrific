@@ -2,6 +2,7 @@
 window.toDelete;
 
 $(document).ready(function(){
+
 	$('#register').click(function(){
 		registerClick();
 	});
@@ -24,7 +25,7 @@ $(document).ready(function(){
 
 	// BEGIN: Refactor
 
-	$('.delete_post_img').click(function(){
+	$('.deletePost').click(function(){
 
 		$('#questionPopUp').bPopup({
 	    	easing: 'easeOutBack', //uses jQuery easing plugin
