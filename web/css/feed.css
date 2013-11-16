@@ -65,6 +65,8 @@ body {
 	right:0px;
 }
 
+/* Post */
+
 .post {
 	margin-top: 20px;
 	overflow: auto;
@@ -88,6 +90,10 @@ body {
 	color: #d98451;
 	text-align: center;
 	margin-bottom: 10px;
+}
+
+.post .authorActions {
+	
 }
 
 .post .deletePost {
@@ -209,17 +215,17 @@ body {
 		margin-top: 5px;
 	}
 
-	.actions .action .text {
-  	   display: none;
-    }  
-
-	.actions .action{
-	  	text-align: center;
+	/* Adapt Yummy */
+	.post .actions div .action .text{
+		display: none;
 	}
 
+	.post .actions div .action {
+		text-align: center;
+		width: auto;
+	}
 	.post .actions div .action img {
-	  	float: none;
-		margin: 0 auto;
+		float: none;
 	}
 
 }
