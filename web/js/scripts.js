@@ -30,6 +30,13 @@ $(document).ready(function(){
 	$('.yummyAction').click(function(){
 		yummyClick(this);
 	});
+
+	$('#tags').tagsInput({	
+	'height':'',
+	'width':'',	
+	'defaultText':'Novo Ingrediente',	
+	'placeholderColor' : '#AAAAAA'
+	});
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;

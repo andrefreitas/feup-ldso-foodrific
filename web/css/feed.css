@@ -41,6 +41,29 @@ body {
 	margin-bottom: 20px;
 }
 
+#newPost div.tagsinput{
+	width: 92.5%;
+	height: auto;
+	margin: 0 auto;
+	border: solid 1px #efc296;
+	margin-bottom: 20px;
+}
+
+#newPost input#tags_tag{
+	border: none;
+	font-size: 24px;
+	width: 200px;
+	color: #b3612f;
+	margin-bottom: 5px;
+}
+
+#newPost div.tagsinput span.tag, 
+#newPost div.tagsinput span.tag a{
+	border: none;
+	background-color: #d98451;
+	color: #FFF;
+	font-size: 24px;
+}
 #newPost .photo{
 	border: solid 1px #efc296;
 	width: 95%;
