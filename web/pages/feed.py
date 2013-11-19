@@ -23,7 +23,7 @@ class Feed(BaseHandler):
                 post_id = post.key().id()
                 yummys = getPostYummys(post_id)
                 post.yummys = len(yummys)
-                post.yummyDone = False
+                post.yummyDone = YummyDone(user_id, post_id)
                 return post
 
             posts = map(putYummys, posts)

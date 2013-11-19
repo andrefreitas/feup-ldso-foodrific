@@ -1,4 +1,8 @@
+//Global variables jQuery
+window.toDelete;
+
 $(document).ready(function(){
+
 	$('#register').click(function(){
 		registerClick();
 	});
@@ -19,21 +23,12 @@ $(document).ready(function(){
 		recoverPasswordPopUp();
 	});
 
-	// BEGIN: Refactor
-	/*
-
-	$('.delete_post_img').click(function(){
-		var father = $(this).parent().parent();
-		var id_post = father.attr("id");
-
-		deletePost(id_post);
+	$('.deletePost').click(function(){
+		deletePostClick(this);
 	});
-	*/
-
-	// END: Refactor
-
+	
 	$('.yummyAction').click(function(){
-		YummyClick(this);
+		yummyClick(this);
 	});
 });
 
@@ -255,16 +250,15 @@ function validatePublishPost(){
 	return true;
 }
 
-function deletePost(id_post)
-{
+function deletePost(id_post){
 	$.ajaxSetup( { "async": false } );
      var data = $.getJSON("api/delete_post",{
-            id_post_to_delete: id_post
+            postId: id_post
      });
     $.ajaxSetup( { "async": true } );
-
-    if($.parseJSON(data["responseText"])["answer"] == 'valid')
-    {
+    console.log("Called api/delete_post?postId="+id_post);
+    console.log($.parseJSON(data["responseText"]));
+    if($.parseJSON(data["responseText"])["answer"] == 'valid'){
     	$('#'+ id_post + '').remove();
     }
 }
@@ -286,10 +280,34 @@ function setPostYummys(action, Yummys) {
 	$(action).children().children('.text').first().html(Yummys + " yummys");
 }
 
-function YummyClick(action){
+function isPostYummi(action) {
+	return $(action).attr("id") == "done";
+}
+
+function setPostYummiIcon(action, status) {
+	var imgDone = "images/yummy-done.svg";
+	var imgUndone = "images/yummy.svg";
+	if(status) {
+		$(action).children(".action").first().children().first().attr("src", imgDone);
+		$(action).attr("id", "done");
+	} else {
+		$(action).children(".action").first().children().first().attr("src", imgUndone);
+		$(action).attr("id", "undone");
+	}
+}
+
+function yummyClick(action){
 	var postId = getPostId(action);
 	var Yummys = getPostYummys(action);
-    setPostYummys(action, Yummys+1) 
+	var isDone = isPostYummi(action);
+	if(isDone) {
+		setPostYummys(action, Yummys - 1);
+		setPostYummiIcon(action, false);
+	} else {
+		setPostYummys(action, Yummys + 1);
+		setPostYummiIcon(action, true);
+	}
+    
 	addYummy(postId);
 }
 
@@ -310,4 +328,24 @@ function recoverPasswordPopUp(){
        	speed: 450,
         transition: 'slideDown'
     });
+}
+
+function deletePostClick(elem) {
+	$('#questionPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
+	var father = $(elem).parent().parent().parent();
+	var id_post = father.attr("id");
+	toDelete = id_post;
+}
+
+function deletePostYes(){
+	$('#questionPopUp').bPopup().close();
+	deletePost(toDelete);
+}
+
+function deletePostNo(){
+	$('#questionPopUp').bPopup().close();
 }

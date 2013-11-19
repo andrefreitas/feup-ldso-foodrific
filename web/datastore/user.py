@@ -1,6 +1,5 @@
 from google.appengine.ext import db
 import hashlib
-import md5
 from random import randint
 from google.appengine.api import mail
 

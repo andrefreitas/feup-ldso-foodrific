@@ -44,7 +44,8 @@ input, select{
 	margin-bottom: 10px;
 }
 
-input[type="submit"].orange, 
+input[type="submit"].orange,
+input[type="button"].orange, 
 button.orange{
 	background-color: #d93600;
 	color: #FFF;
@@ -52,11 +53,13 @@ button.orange{
 }
 
 input[type="submit"].orange:hover,
+input[type="button"].orange:hover, 
 button.orange:hover{
 	background-color: #e7501b;
 }
 
 input[type="submit"].blue,
+input[type="button"].blue, 
 button.blue{
 	background-color: #4078d5;
 	color: #FFF;
@@ -64,6 +67,7 @@ button.blue{
 }
 
 input[type="submit"].blue:hover,
+input[type="button"].blue:hover, 
 button.blue:hover{
 	background-color: #508aea;
 }
