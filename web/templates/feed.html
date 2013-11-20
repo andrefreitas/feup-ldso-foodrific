@@ -4,11 +4,15 @@
     <title>Foodrific Feed</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    
+    <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/feed.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/scripts.js"></script>
+    <script src="js/bPopup.js"></script>
+    <script src="js/jquery.tagsinput.min.js"></script>
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
@@ -30,7 +34,7 @@
           </div>
           <input type="file" name="photo"/>
           <div class="alert" id="ingredientsAlert"></div>
-          <input type="text" name="ingredients" placeholder="Ingredientes? ex: carne, arroz"/>
+          <input name="ingredients" id="tags"/>
           <input type="submit" value="Publicar" class="orange"/>
         </form>
       </div>
@@ -40,7 +44,9 @@
             <div class="post box" id="{{post.key().id()}}">
               <div class="inner">
                 {% if user_email == post.user.email %}
-                <img class="delete_post_img" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+                  <div class="authorActions">
+                    <img class="deletePost" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+                  </div>
                 {% endif %}
                 <div class="head">
                   <span class="title">{{post.title}}</span><br/>
@@ -67,13 +73,25 @@
                   </div>
                 </div>
                 <div class="comments">
-                
                 </div>
               </div>
             </div>
           {% endfor %}
       </div>
-    </div>
 
+      <!-- BEGIN Delete Post popup -->
+      <div id="questionPopUp">
+        <div class="container">
+          <h1>Confirma apagar?</h1>
+          <br>
+          <div class="buttons">
+            <input type="button" class="orange" name="yes" value="Sim" onclick="deletePostYes()"/>
+            <input type="button" class="blue" name "no" value="Não" onclick="deletePostNo()"/>
+          </div>
+        </div>
+      </div>
+      <!-- END Delete Post popup -->
+      
+    </div>
   </body>
 </html>

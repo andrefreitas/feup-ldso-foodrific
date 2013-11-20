@@ -5,11 +5,11 @@ import json
 class DeletePost(webapp2.RequestHandler):
 
 	def get(self):
-		id_post_str = self.request.get("id_post_to_delete")
-		id_post = int(id_post_str)
-		self.response.headers['Content-Type'] = 'application/json'
 		output = {}
 		try:
+			id_post_str = self.request.get("postId")
+			id_post = int(id_post_str)
+			self.response.headers['Content-Type'] = 'application/json'
 			if(deletePost(id_post)):
 				output["answer"] = "valid"
 				deleteCommentsForPost(id_post)

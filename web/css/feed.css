@@ -41,6 +41,29 @@ body {
 	margin-bottom: 20px;
 }
 
+#newPost div.tagsinput{
+	width: 92.5%;
+	height: auto;
+	margin: 0 auto;
+	border: solid 1px #efc296;
+	margin-bottom: 20px;
+}
+
+#newPost input#tags_tag{
+	border: none;
+	font-size: 24px;
+	width: 200px;
+	color: #b3612f;
+	margin-bottom: 5px;
+}
+
+#newPost div.tagsinput span.tag, 
+#newPost div.tagsinput span.tag a{
+	border: none;
+	background-color: #d98451;
+	color: #FFF;
+	font-size: 24px;
+}
 #newPost .photo{
 	border: solid 1px #efc296;
 	width: 95%;
@@ -64,6 +87,8 @@ body {
 	padding-top: 12px;
 	right:0px;
 }
+
+/* Post */
 
 .post {
 	margin-top: 20px;
@@ -90,10 +115,12 @@ body {
 	margin-bottom: 10px;
 }
 
-.post .inner .delete_post_img{
-	position: absolute;
-	margin-top: 0.4%;
-	margin-left: 32.4%;
+.post .authorActions {
+	
+}
+
+.post .deletePost {
+	float: right;
 	cursor: pointer;
 }
 
@@ -169,6 +196,17 @@ body {
 	padding-top: 9px;
 }
 
+#questionPopUp{
+	display: none;
+	background-color: #ffdfbf;
+	text-align: center;
+	padding: 30px 0 30px 0;
+}
+
+#questionPopUp h1{
+	font-size: 30px;
+}
+
 @media screen and (max-width: 500px){
     .container {
     	width: auto;
@@ -204,17 +242,26 @@ body {
 		margin-top: 5px;
 	}
 
-	.actions .action .text {
-  	   display: none;
-    }  
-
-	.actions .action{
-	  	text-align: center;
+	/* Adapt Yummy */
+	.post .actions div .action .text{
+		display: none;
 	}
 
+	.post .actions div .action {
+		text-align: center;
+		width: auto;
+	}
 	.post .actions div .action img {
-	  	float: none;
-		margin: 0 auto;
+		float: none;
+	}
+
+	/* Question Popup */
+	#questionPopUp {
+		width: 80%;
+	}
+
+	#questionPopUp input {
+		width: 90%;
 	}
 
 }
@@ -228,3 +275,4 @@ body {
 	}
 
 }
+
