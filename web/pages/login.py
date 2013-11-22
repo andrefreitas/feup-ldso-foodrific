@@ -1,18 +1,20 @@
+import jinja2
 import webapp2
 import cgi
+import datetime
+import os
 from base_handler import *
-from datastore import *
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader('templates'),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 class Login(BaseHandler):
 
     def get(self):
-    	email = self.request.get("email")
-    	password = self.request.get("password")
-    	self.login(email, password)
-    	return self.redirect('/feed')
-
-    def post(self):
-    	email = self.request.get("email")
-    	password = self.request.get("password")
-    	self.login(email, password)
-    	return self.redirect('/feed')
+    	if self.isLoggedIn():
+    		return self.redirect('/feed')
+    	else:
+    		template = JINJA_ENVIRONMENT.get_template('login.html')
+    		self.response.write(template.render())
