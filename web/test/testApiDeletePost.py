@@ -9,7 +9,6 @@ from datastore.user import *
 from datastore.post import *
 from datastore.comment import *
 from datetime import date
-from google.appengine.ext.remote_api.remote_api_pb import Response
 
 class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
     def setUp(self):
@@ -25,9 +24,8 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
         postId='192313712381723'
         self.testbed.init_memcache_stub()
         response = self.testapp.get('/api/delete_post?postId='+postId)
-        response.decode_content
         self.assertEqual(response.status, "200 OK")
-        self.assertEqual(response.json, {'result': 'error'})
+        self.assertEqual(response.json, {'answer':'invalid', 'result': 'error'})
         
     def testDeletePost(self):
         self.assertEqual(Post.all().count(), 0)

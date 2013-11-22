@@ -24,6 +24,7 @@ class DeletePost(webapp2.RequestHandler):
 				output["result"] = "ok"
 				self.response.out.write(json.dumps(output))
 			else:
+				output["answer"] = "invalid"
 				output["result"] = "error"
 				self.response.out.write(json.dumps(output))
 		except:
