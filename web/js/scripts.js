@@ -350,6 +350,9 @@ function deletePostClick(elem) {
 
 function deletePostYes(){
 	$('#questionPopUp').bPopup().close();
+	var confirmation = '<div class="notification confirmation">O post foi eliminado!</div>';
+	$('.notifications').append(confirmation);
+	console.log("cheguei aqui");
 	deletePost(toDelete);
 }
 

@@ -207,6 +207,28 @@ body {
 	font-size: 30px;
 }
 
+
+.notifications {
+	margin-top: 10px;
+}
+
+.notification {
+	padding: 10px 5px 10px 5px;
+	background: #7cc576;
+	text-align: center;
+	display: none;
+}
+
+.notification.confirmation{
+	background: #7cc576;
+	color: #FFF;
+}
+
+.notification.error{
+	background: #f25e4f;
+	color: #FFF;
+}
+
 @media screen and (max-width: 500px){
     .container {
     	width: auto;
