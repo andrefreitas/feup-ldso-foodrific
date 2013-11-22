@@ -19,3 +19,7 @@ def existIngredient(name):
         return False
     else:
         return True
+
+def getIngredients():
+    ingredient_query = db.GqlQuery("SELECT * FROM Ingredient")
+    return ingredient_query.fetch(1000)

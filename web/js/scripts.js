@@ -35,8 +35,12 @@ $(document).ready(function(){
 	'height':'',
 	'width':'',	
 	'defaultText':'Novo Ingrediente',	
-	'placeholderColor' : '#AAAAAA'
+	'placeholderColor' : '#AAAAAA',
+	'autocomplete_url' : 'api/ingtags_autocomplete',
+	'autocomplete':{selectFirst:true,autoFill:true}
 	});
+
+
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
