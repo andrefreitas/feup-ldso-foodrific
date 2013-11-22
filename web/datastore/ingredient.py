@@ -23,3 +23,7 @@ def existIngredient(name):
 def getIngredients():
     ingredient_query = db.GqlQuery("SELECT * FROM Ingredient")
     return ingredient_query.fetch(1000)
+
+def searchIngredients(term):
+    ingredient_query = Ingredient.find({"name": "/.*term.*/"})    
+    return ingredient_query.fetch(5)
