@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Foodrific</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/bPopup.js"></script>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
+  </head>
+  <body>
+    <div id="header">
+      <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
+    </div>
+    <div id="banner">
+      <div class="container">
+        <div id="loginForm">
+          <div class="container">
+            <h1>Entrar</h1>
+            <form action="login_handler" method="post" onsubmit="return validateLoginForm()">
+              <div id="emailLoginAlert" class="alert"></div>
+              <input type="text" name="email" placeholder="escreve o teu email.."/><br/>
+              <div id="passwordLoginAlert" class="alert"></div>
+              <input type="password" name="password" placeholder="escreve a tua password"/><br/>
+              <input id="loginButton" type="submit" value="Entrar" class="orange"/><br/>
+              <input id="recoverPasswordButton" type="button" class="recoverPasswordButton blue" value="Recuperar password"></input>
+            </form>
+          </div>
+        </div>
+        <!-- Recover Password Form -->
+        <div id="recoverPasswordForm">
+          <form onsubmit="return validateEmail()">
+            <div id="recoverPasswordAlert" class="alert"></div>
+            <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/><br />
+            <input type="submit" value="Recuperar" class="orange"/>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -45,10 +45,7 @@ var PASSWORDS_MINIMUM_LENGTH = 5;
 * When someone clicks on the register button
 **/
 function registerClick(){
-	$("#banner").fadeOut(400, function(){
-		$("#banner").remove();
-		$('#registerForm').css("display", "block");
-	});	
+	window.location.assign("/register")
 }
 
 /** 
@@ -159,11 +156,7 @@ function passwordsAreValid(password, passwordConfirm){
 /** Login Click **/
 
 function loginClick(){
-	$("#banner").fadeOut(400, function(){
-		$("#banner").remove();
-		$('#loginForm').css("display", "block");
-	});	
-
+	window.location.assign("/login")
 }
 
 function validateLoginForm(){
