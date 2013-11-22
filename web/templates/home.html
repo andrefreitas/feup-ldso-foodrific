@@ -29,53 +29,5 @@
         </div>
       </div>
     </div>
-    <!-- Registration Form -->
-    <div id="registerForm">
-      <div class="container">
-        <h1>Novo Registo</h1>
-
-        <form action="register" method="post" onsubmit="return validateRegisterForm()">
-          <div id="nameAlert" class="alert"></div>
-          <input type="text" name="name" placeholder="nome"/> <br/>
-          <div id="emailAlert" class="alert"></div>
-          <input type="email" name="email" placeholder="email"/> <br/>
-          <div id="birthdayAlert" class="alert"></div>
-          <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)"> <br/>
-          <div id="genderAlert" class="alert"></div>
-          <select name="gender">
-            <option selected="selected">escolher género</option>
-            <option value="m">masculino</option>
-            <option value="f">feminino</option>
-          </select> <br />
-          <div id="passwordAlert" class="alert"></div>
-          <input type="password" name="password" placeholder="senha"> <br/>
-          <div id="passwordConfirmAlert" class="alert"></div>
-          <input type="password" name="passwordConfirm" placeholder="confirmar senha"> <br/>
-          <input type="submit" value="Registar" class="blue"/>
-        </form>
-      </div>
-    </div>
-    <!-- Login Form -->
-    <div id="loginForm">
-      <div class="container">
-        <h1>Entrar</h1>
-        <form action="login" method="post" onsubmit="return validateLoginForm()">
-          <div id="emailLoginAlert" class="alert"></div>
-          <input type="text" name="email" placeholder="escreve o teu email.."/><br/>
-          <div id="passwordLoginAlert" class="alert"></div>
-          <input type="password" name="password" placeholder="escreve a tua password"/><br/>
-          <input type="submit" value="Entrar" class="orange"/>
-        </form>
-      </div>
-      <button class="recoverPasswordButton blue">Recuperar password</button>
-    </div>
-    <!-- Recover Password Form -->
-    <div id="recoverPasswordForm">
-      <form onsubmit="return validateEmail()">
-        <div id="recoverPasswordAlert" class="alert"></div>
-        <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/> <br />
-        <input type="submit" value="Recuperar" class="orange"/>
-      </form>
-    </div>
   </body>
 </html>

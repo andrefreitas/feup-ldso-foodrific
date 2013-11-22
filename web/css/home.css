@@ -45,7 +45,6 @@
 #loginForm {
 	padding-top: 15px;
 	text-align: center;
-	display: none;
 }
 
 #registerForm h1{
@@ -74,12 +73,13 @@
 	display: none;
 }
 
-.recoverPasswordButton {
+#loginButton {
 	width: 320px;
-	padding: 10px;
-	font-size: 24px;
 }
 
+#recoverPasswordButton {
+	width: 320px;
+}
 
 @media screen and (max-width: 900px){
     .container {

@@ -1,25 +1,20 @@
+import jinja2
 import webapp2
 import cgi
-from datetime import date
+import datetime
+import os
 from base_handler import *
-from datastore import *
 
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader('templates'),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 class Register(BaseHandler):
-    
-    def post(self):
-        # Fields
-        name = cgi.escape(self.request.get('name'))
-        email = cgi.escape(self.request.get('email'))
-        birthday = cgi.escape(self.request.get('birthday'))
-        gender = cgi.escape(self.request.get('gender'))
-        password = cgi.escape(self.request.get('password'))
-        birthDay = int(birthday.split("/")[0])
-        birthMonth = int(birthday.split("/")[1])
-        birthYear = int(birthday.split("/")[2])
-        birthTime = date(birthYear, birthMonth, birthDay)
-        user_id = addUser(name, email, password, gender, birthTime)
-        self.session["user"] = email
-        self.session["user_id"] = user_id
-        self.redirect('/feed')
-        
+
+    def get(self):
+    	if self.isLoggedIn():
+    		return self.redirect('/feed')
+    	else:
+    		template = JINJA_ENVIRONMENT.get_template('register.html')
+    		self.response.write(template.render())
