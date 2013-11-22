@@ -9,6 +9,7 @@ from datastore.user import *
 from datastore.post import *
 from datastore.comment import *
 from datetime import date
+from google.appengine.ext.remote_api.remote_api_pb import Response
 
 class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
     def setUp(self):
@@ -18,14 +19,12 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
         self.testbed.activate()
         
     def tearDown(self):
-     self.testbed.deactivate()
-
+        self.testbed.deactivate()
+        
     def testCacheHandler(self):
-        key = 'answer'
-        value = '42'
+        postId='192313712381723'
         self.testbed.init_memcache_stub()
-        params = {'key': key, 'value': value}
-        # Then pass those values to the handler.
-        response = self.testapp.post('/api/delete_post', params)
-        # Finally verify that the passed-in values are actually stored in Memcache.
-        #self.assertEqual(value, )
+        response = self.testapp.get('/api/delete_post?postId='+postId)
+        response.decode_content
+        self.assertEqual(response.status, "200 OK")
+        self.assertEqual(response.json, {'result': 'error'})
