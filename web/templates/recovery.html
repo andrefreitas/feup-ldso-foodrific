@@ -16,17 +16,21 @@
     <div id="header">
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
     </div>
-    <div id="passwordForm">
+    <div id="banner">
       <div class="container">
-        <h1>Nova password</h1>
-        <form action="api/recovery" method="post" onsubmit="return validateRecoveryPasswordForm()">
-          <input type="token" name="token" placeholder="token" value="{{token}}" hidden> <br/>
-          <div id="passwordAlert" class="alert"></div>
-          <input type="password" name="password" placeholder="password"> <br/>
-          <div id="passwordConfirmAlert" class="alert"></div>
-          <input type="password" name="passwordConfirm" placeholder="confirmar password"> <br/>
-          <input type="submit" value="Alterar" class="blue"/>
-        </form>
+        <div id="passwordForm">
+          <div class="container">
+            <h1>Nova password</h1>
+            <form action="api/recovery" method="post" onsubmit="return validateRecoveryPasswordForm()">
+              <input type="token" name="token" placeholder="token" value="{{token}}" hidden> <br/>
+              <div id="passwordAlert" class="alert"></div>
+              <input type="password" name="password" placeholder="password"> <br/>
+              <div id="passwordConfirmAlert" class="alert"></div>
+              <input type="password" name="passwordConfirm" placeholder="confirmar password"> <br/>
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </body>
