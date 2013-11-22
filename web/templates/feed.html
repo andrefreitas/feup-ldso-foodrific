@@ -75,7 +75,14 @@
                     {% else %}
                     <img src="images/yummy.svg" height="45px">
                     {% endif %}
-                    <div class="text">{{post.yummys}} yummys</div>
+
+                    <div class="text">{{post.yummys}}
+                    {% if post.yummys != 1 %}
+                      yummys
+                    {% else %}
+                      yummy
+                    {% endif %}
+                    </div>
                   </div>
                 </div>
                 <div class="comments">

@@ -36,7 +36,7 @@ $(document).ready(function(){
 	'width':'',	
 	'defaultText':'Novo Ingrediente',	
 	'placeholderColor' : '#AAAAAA',
-	'autocomplete_url' : 'api/ingtags_autocomplete',
+	'autocomplete_url' : 'api/ing_tags',
 	'autocomplete':{selectFirst:true,autoFill:true}
 	});
 
@@ -281,7 +281,8 @@ function getPostYummys(action) {
 }
 
 function setPostYummys(action, Yummys) {
-	$(action).children().children('.text').first().html(Yummys + " yummys");
+	
+	$(action).children().children('.text').first().html(Yummys + (Yummys != 1?" yummys":" yummy"));
 }
 
 function isPostYummi(action) {
