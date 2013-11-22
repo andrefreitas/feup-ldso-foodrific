@@ -89,22 +89,5 @@ class testComment(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(Comment.all().count(), 4)
         deleteCommentsForPost(post_id.id())
         self.assertEqual(Comment.all().count(), 0)
-
-    def test_datastore_deleteCommentsForPost(self):
-        self.assertEqual(Post.all().count(), 0)
-        self.assertEqual(User.all().count(), 0)
-        self.assertEqual(Comment.all().count(), 0)
-        u = User(birthday = date(2000, 3, 11),
-                 name = "Carlos",
-                 email = "carlos@gmail.com",
-                 password = "Hdjdejdh3h",
-                 gender = "m"
-                 )
-        user_id = u.put()
-        self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
-        post_id = p.put()
-        self.assertEqual(Post.all().count(), 1)
-        self.assertEqual(Comment.all().count(), 0)
         deleteCommentsForPost(post_id.id())
         self.assertEqual(Comment.all().count(), 0)
