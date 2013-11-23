@@ -41,15 +41,12 @@ public class MainActivity extends Activity {
 		 
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 		
-		boolean connectedBiatch = isNetworkConnected();
+		boolean connectionDone = isNetworkConnected();
 		
-		if(connectedBiatch)
-			System.out.println("lol");
+		if(connectionDone)
+			System.out.println("Connected");
 		else			
-			{
-			
-			System.out.println("ohhh FUCK");
-			
+			{			
 			Toast.makeText(getApplicationContext(), "No Internet!", Toast.LENGTH_SHORT).show();
 			NotificationManager nm=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
 			Notification notification=new Notification(android.R.drawable.stat_notify_more, "IMPORTANTE", System.currentTimeMillis());
