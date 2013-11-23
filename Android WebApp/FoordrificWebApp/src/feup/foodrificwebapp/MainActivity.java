@@ -13,6 +13,9 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,12 +23,48 @@ import android.content.Intent;
 public class MainActivity extends Activity {
 
 	private WebView webView;
-	 
+	
+	
+	private boolean isNetworkConnected() {
+		  ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		  NetworkInfo ni = cm.getActiveNetworkInfo();
+		  if (ni == null) {
+		   // There are no active networks.
+		   return false;
+		  } else
+		   return true;
+		 }
+	
 	public void onCreate(Bundle savedInstanceState) {
 		ConnectivityManager cm =
 		        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		 
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		
+		boolean connectedBiatch = isNetworkConnected();
+		
+		if(connectedBiatch)
+			System.out.println("lol");
+		else			
+			{
+			
+			System.out.println("ohhh FUCK");
+			
+			Toast.makeText(getApplicationContext(), "No Internet!", Toast.LENGTH_SHORT).show();
+			NotificationManager nm=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+			Notification notification=new Notification(android.R.drawable.stat_notify_more, "IMPORTANTE", System.currentTimeMillis());
+			Context context=MainActivity.this;
+			CharSequence title="Falha de ligação à internet";
+			CharSequence detail="Por favor ligue a sua ligação antes de abrir Foodrific";
+			Intent intent=new Intent(context,MainActivity.class);
+			PendingIntent  pending=PendingIntent.getActivity(context, 0, intent, 0);
+			notification.setLatestEventInfo(context, title, detail, pending);
+			nm.notify(0, notification);
+			android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+			}
+
+		
 		boolean isConnected = activeNetwork != null &&
 		                      activeNetwork.isConnectedOrConnecting();
 		
@@ -53,7 +92,15 @@ public class MainActivity extends Activity {
 				toast.show();
 			}
 		}
+		webView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                webView.loadUrl("file:///android_asset/myerrorpage.html");
+
+            }
+        });
 	}
+	
+	
 	
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
