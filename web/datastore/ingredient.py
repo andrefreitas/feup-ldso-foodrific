@@ -1,4 +1,5 @@
 from google.appengine.ext import db
+import re
 
 class Ingredient(db.Model):
     name = db.StringProperty(required=True);
@@ -25,5 +26,10 @@ def getIngredients():
     return ingredient_query.fetch(1000)
 
 def searchIngredients(term):
-    ingredient_query = Ingredient.find({"name": "/.*term.*/"})    
-    return ingredient_query.fetch(5)
+    ingredients_query = getIngredients()
+    match_ingredients = []
+    if ingredients_query is not None:
+        for ing in ingredients_query:
+            if re.search(term,ing.name) is not None:
+                match_ingredients.append(ing.name)
+        return match_ingredients

@@ -37,7 +37,12 @@ $(document).ready(function(){
 	'defaultText':'Novo Ingrediente',	
 	'placeholderColor' : '#AAAAAA',
 	'autocomplete_url' : 'api/ing_tags',
-	'autocomplete':{selectFirst:true,autoFill:true}
+	'autocomplete':{
+			selectFirst:true,
+			autoFill:true, 
+			delay: 500, 
+			minLength: 3
+		}
 	});
 
 

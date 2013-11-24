@@ -14,5 +14,5 @@ class NewPost(BaseHandler):
 		postId = addPost(user, title, photo)
 		addIngredients(postId, ingredients)
 		for ing in ingredients:
-			Ingredient.addIngredient(ing,None)
+			addIngredient(ing,None)
 		return self.redirect('/')
