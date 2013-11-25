@@ -250,6 +250,36 @@ body {
 	color: #FFF;
 }
 
+/* Comment Section */
+
+.commentSection {
+	padding: 20px;
+	font-size: 15px;
+	overflow: auto;
+}
+
+.commentSection textarea{
+	width: 95%;
+	padding: 2%;
+	border: solid 1px #efc296;
+	font-size: 15px;
+	color: #a9a7a5;
+
+}
+
+.commentSection button{
+	float: right;
+	font-size: 15px;
+	border-radius: 0;
+	padding: 5px 15px 5px 15px;
+	background: #ffcf9f;
+	border: none;
+	color: #d98451;
+	cursor: pointer;
+	margin-top: 5px;
+
+}
+
 @media screen and (max-width: 500px){
     .container {
     	width: auto;
