@@ -18,14 +18,30 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
         self.testbed.activate()
         
     def tearDown(self):
-     self.testbed.deactivate()
-
-    def testCacheHandler(self):
-        key = 'answer'
-        value = '42'
+        self.testbed.deactivate()
+        
+    def testDeletePostNonExistent(self):
+        postId='192313712381723'
         self.testbed.init_memcache_stub()
-        params = {'key': key, 'value': value}
-        # Then pass those values to the handler.
-        response = self.testapp.post('/api/delete_post', params)
-        # Finally verify that the passed-in values are actually stored in Memcache.
-        #self.assertEqual(value, )
+        response = self.testapp.get('/api/delete_post?postId='+postId)
+        self.assertEqual(response.status, "200 OK")
+        self.assertEqual(response.json, {'answer':'invalid', 'result': 'error'})
+        
+    def testDeletePost(self):
+        self.assertEqual(Post.all().count(), 0)
+        self.assertEqual(User.all().count(), 0)
+        u = User(birthday = date(2000, 3, 11),
+                 name = "Carlos",
+                 email = "carlos@gmail.com",
+                 password = "Hdjdejdh3h",
+                 gender = "m"
+                 )
+        u.put()
+        self.assertEqual(User.all().count(), 1)
+        postId = addPost(u, "My food is awesome", "photo_tester")
+        self.assertEqual(Post.all().count(), 1)
+        self.testbed.init_memcache_stub()
+        response = self.testapp.get('/api/delete_post?postId='+str(postId))
+        response.decode_content
+        self.assertEqual(response.status, "200 OK")
+        self.assertEqual(response.json, {'answer':'valid', 'result': 'ok'})

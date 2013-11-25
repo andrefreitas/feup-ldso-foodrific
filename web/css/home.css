@@ -42,27 +42,42 @@
 
 
 #registerForm,
-#loginForm {
+#loginForm,
+#passwordForm{
 	padding-top: 15px;
 	text-align: center;
 }
 
 #registerForm h1{
-	margin-bottom: 5px;
+	margin-bottom: 30px;
 }
 
 #registerForm select{
 	width: 320px;
 }
 
+#loginForm h1{
+	margin-bottom: 30px;
+}
+
+#passwordForm h1{
+	margin-bottom: 5px;
+}
+
+#passwordForm select{
+	width: 320px;
+}
+
 #recoverPasswordForm input[type="submit"],
 #registerForm input[type="submit"], 
-#loginForm input[type="submit"]{
+#loginForm input[type="submit"],
+#passwordForm input[type="submit"]{
 	width: 320px;
 }
 
 #registerForm .alert,
-#loginForm .alert{
+#loginForm .alert,
+#passwordForm .alert{
 	width: 320px;
 	margin: 0 auto;
 	text-align: left;
