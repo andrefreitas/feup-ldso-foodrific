@@ -18,6 +18,7 @@ class Feed(BaseHandler):
             posts = getPosts()
             user_id = int(self.get_session_user_id())
             
+            # Get post yummis
             def putYummys(post):
                 post_user_id = post.user.key().id()
                 post_id = post.key().id()
@@ -26,7 +27,18 @@ class Feed(BaseHandler):
                 post.yummyDone = YummyDone(user_id, post_id)
                 return post
 
+            # Get post comments
+            def putComments(post):
+                post_id = post.key().id()
+                comments = getCommentsForPost(post_id)
+                post.comments = comments
+                post.commentsNumber = len(comments)
+                return post
+
+            
+
             posts = map(putYummys, posts)
+            posts = map(putComments, posts)
 
             template_values = {
                 "posts" : posts,

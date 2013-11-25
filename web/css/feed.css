@@ -170,7 +170,16 @@ body {
 	height: 100%;
 	width: 50%;
 	float: right;
+}
 
+
+.post .actions .comments .action .text{
+	color: #d98451;
+}
+
+.post .actions .comments img{
+	margin-top: 7px;
+	margin-right: 5px;
 }
 
 .post .actions div {
