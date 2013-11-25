@@ -37,6 +37,14 @@ $(document).ready(function(){
 	'defaultText':'Novo Ingrediente',	
 	'placeholderColor' : '#AAAAAA'
 	});
+
+	$('.comments').click(function(){
+		showCommentsClick(this);
+	});
+
+	$('.addComment').click(function(){
+		addCommentClick(this);
+	});
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -235,7 +243,10 @@ function loginIsValid(email, password){
 }
 
 function addPostClick(){
-	$("#newPost").fadeIn();
+	if($("#newPost").is(':visible'))
+		$("#newPost").fadeOut();
+	else
+		$("#newPost").fadeIn();
 }
 
 function validatePublishPost(){
@@ -365,4 +376,41 @@ function addNotification(parentElement, text, type){
 		$(this).remove();
 	});
 
+}
+
+function showCommentsClick(elem){
+	var commentSection = $(elem).parent().parent().children(".commentSection");
+	if($(commentSection).is(':visible'))
+		$(commentSection).fadeOut();
+	else
+		$(commentSection).fadeIn();
+}
+
+function addCommentClick(elem){
+	var comment = $(elem).parent().children('textarea').val();
+	var postID = $(elem).parent().parent().attr("id");
+	$(elem).parent().children('textarea').val("");
+	if(comment.length > 0) {
+		requestAddComment(postID, comment);
+	}
+}
+
+function addCommentUI(postId, author, comment, commentId, time) {
+	var comment = '<div class="comment" id="' + commentId +'">'
+				+ '<div class="commentText"><span class="author">' + author + '</span>'
+				+ comment + '</div>'
+				+ '<span class="time">' + time + '</span></div>';
+	$('.post#'+postId).children('.commentSection').children('.commentsUpdates').prepend(comment);
+}
+
+function requestAddComment(postId, comment) {
+	var url = "api/new_comment";
+    $.getJSON(url,{
+            postId: postId,
+            comment : comment
+     }).done(function(data){
+     	addCommentUI(postId, "André", comment, "2323212123", "agora mesmo");
+     });
+    $.ajaxSetup( { "async": true } );
+    console.log("Called " + url + "?postId="+  postId + "&comment=" + comment);
 }

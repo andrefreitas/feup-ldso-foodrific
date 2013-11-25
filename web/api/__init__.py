@@ -6,3 +6,4 @@ from send_recover import SendRecover
 from delete_post import DeletePost
 from yummy import Yummy
 from register_verification import RegisterVerification
+from new_comment import *

@@ -256,6 +256,7 @@ body {
 	padding: 20px;
 	font-size: 15px;
 	overflow: auto;
+	display: none;
 }
 
 .commentSection textarea{
@@ -278,6 +279,34 @@ body {
 	cursor: pointer;
 	margin-top: 5px;
 
+}
+
+.commentsUpdates {
+	overflow: auto;
+	clear: right;
+	margin-top: 10px;
+
+}
+
+.commentsUpdates .comment{
+	margin-bottom: 5px;
+	color: #a09f9e;
+}
+
+.commentsUpdates .comment .time{
+	font-size: 12px;
+}
+
+.commentsUpdates .comment .author{
+	font-size: 12px;
+	margin-right: 5px;
+	color: #d98451;
+}
+
+
+.commentsUpdates .comment .commentText{
+	font-size: 12px;
+	font-weight: none;
 }
 
 @media screen and (max-width: 500px){

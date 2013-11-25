@@ -84,7 +84,15 @@
               </div>
               <div class="commentSection">
                 <textarea name="commentary" placeholder="Escrever comentário..."></textarea>
-                <button>comentar</button>
+                <button class="addComment">comentar</button>
+                <div class="commentsUpdates">
+                  {% for comment in post.comments %}
+                  <div class="comment" id="{{comment.key().id()}}">
+                    <div class="commentText"><span class="author">{{comment.user.name}}</span>{{comment.content}}</div>
+                    <span class="time">{{comment.date}}</span>
+                  </div>
+                  {% endfor %}
+                </div>
               </div>
             </div>
           {% endfor %}

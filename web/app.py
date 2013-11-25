@@ -26,6 +26,7 @@ application = webapp2.WSGIApplication([
     ('/api/recovery', api.Recovery),
     ('/api/delete_post', api.DeletePost),
     ('/api/yummy', api.Yummy),
+    ('/api/new_comment', api.NewComment),
     ('/api/register_verification', api.RegisterVerification),
     ('/cleantokens', CleanTokens),
     ('/recovery', Recovery)
