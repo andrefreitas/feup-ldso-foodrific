@@ -212,11 +212,23 @@ body {
 	margin-top: 10px;
 }
 
+.notification img {
+	position: relative;
+	height: 20px;
+	width: auto;
+	margin-top: 2px;
+	float: right;
+	margin-right: 15px;
+}
+
 .notification {
 	padding: 10px 5px 10px 5px;
 	background: #7cc576;
 	text-align: center;
 	display: none;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	cursor: pointer;
 }
 
 .notification.confirmation{

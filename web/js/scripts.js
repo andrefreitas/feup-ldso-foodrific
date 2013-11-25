@@ -258,10 +258,17 @@ function deletePost(id_post){
     $.ajaxSetup( { "async": true } );
     console.log("Called api/delete_post?postId="+id_post);
     console.log($.parseJSON(data["responseText"]));
+    var postBox = $('#'+ id_post);
+	$(postBox).attr("class", "");
+	$(postBox).html("");
     if($.parseJSON(data["responseText"])["answer"] == 'valid'){
-    	$('#'+ id_post + '').remove();
+		addNotification(postBox, 'O post foi eliminado!', "confirmation");
+    } else {
+    	addNotification(postBox, 'Falhou a eliminar :(', "error");
     }
 }
+
+
 
 function getPostId(action){
 	var post = $(action).parent().parent();
@@ -343,12 +350,19 @@ function deletePostClick(elem) {
 
 function deletePostYes(){
 	$('#questionPopUp').bPopup().close();
-	var confirmation = '<div class="notification confirmation">O post foi eliminado!</div>';
-	$('.notifications').append(confirmation);
-	console.log("cheguei aqui");
 	deletePost(toDelete);
 }
 
 function deletePostNo(){
 	$('#questionPopUp').bPopup().close();
+}
+
+function addNotification(parentElement, text, type){
+	var confirmation = '<div class="notification ' + type + '">' + text + '<img src="images/close-white.svg"></div>';
+	$(parentElement).append(confirmation);
+	$('.notification').fadeIn();
+	$('.notification').click(function(){
+		$(this).remove();
+	});
+
 }
