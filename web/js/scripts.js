@@ -409,8 +409,17 @@ function requestAddComment(postId, comment) {
             postId: postId,
             comment : comment
      }).done(function(data){
-     	addCommentUI(postId, "André", comment, "2323212123", "agora mesmo");
+     	var author = getSessionData()["name"];
+     	addCommentUI(postId, author, comment, "2323212123", "agora mesmo");
      });
     $.ajaxSetup( { "async": true } );
     console.log("Called " + url + "?postId="+  postId + "&comment=" + comment);
+}
+
+function getSessionData(){
+	var url = "api/session_data";
+	$.ajaxSetup( { "async": false } );
+    var data = $.getJSON(url);
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"];
 }
