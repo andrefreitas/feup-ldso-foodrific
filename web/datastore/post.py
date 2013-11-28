@@ -1,6 +1,9 @@
 from google.appengine.ext import db
+from google.appengine.api import images
 from user import *
 from datastore.user import getUserID
+
+STANDARD_WIDTH = 800
 
 # ----------------- CLASS POST -----------------
 class Post(db.Model):
@@ -8,7 +11,7 @@ class Post(db.Model):
 	title = db.StringProperty(required=True)
 	photo = db.BlobProperty(required=True)
 	rating = db.RatingProperty()
-	receipt = db.TextProperty()
+	recipe = db.TextProperty()
 	ingredients = db.ListProperty(str)
 	original_date = db.DateTimeProperty(auto_now_add=True)
 	last_update_date = db.DateTimeProperty(auto_now=True)
@@ -16,23 +19,34 @@ class Post(db.Model):
 
 # ----------------- FUNCTIONS POST -----------------
 def addPost(user, title, photo):
-	post = Post(user=user, title=title, photo=photo)
-	post.put()
-	return post.key().id()
+	try:
+		image = images.Image(db.Blob(photo))
+		image.resize(width=STANDARD_WIDTH)
+		photo = image.execute_transforms(output_encoding=images.JPEG)
+		size = len(photo)/1024
+		if size < 1000 and size > 0: 
+			post = Post(user=user, title=title, photo=photo)
+			post.put()
+			return post.key().id()
+		else:
+			return None
+	except TypeError, e:
+		return None
+		
 
 def addIngredients(post_id, ingredients):
 	post = Post.get_by_id(post_id)
-	if (post != None):
+	if (post != None and len(ingredients) > 0):
 		post.ingredients.extend(ingredients)
 		post.put()
 		return True
 	else:
 		return False
 	
-def addReceipt(post_id, receipt):
+def addRecipe(post_id, recipe):
 	post = Post.get_by_id(post_id)
 	if (post != None):
-		post.receipt = receipt
+		post.recipe = recipe
 		post.put()
 		return True
 	else:

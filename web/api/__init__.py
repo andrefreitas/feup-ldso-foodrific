@@ -8,3 +8,4 @@ from yummy import Yummy
 from register_verification import RegisterVerification
 from new_comment import *
 from session_data import *
+from ing_tags import IngTags
