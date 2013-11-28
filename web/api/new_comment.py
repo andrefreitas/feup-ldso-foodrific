@@ -14,7 +14,8 @@ class NewComment(BaseHandler):
 			user_id = int(self.get_session_user_id())
 			self.response.headers['Content-Type'] = 'application/json'
 			if(len(comment) > 0):
-				addComment(user_id, post_id, comment)
+				comment_id = addComment(user_id, post_id, comment)
+				output["comment_id"] = comment_id
 				output["answer"] = "done"
 				output["result"] = "ok"
 			else:

@@ -410,7 +410,10 @@ function requestAddComment(postId, comment) {
             comment : comment
      }).done(function(data){
      	var author = getSessionData()["name"];
-     	addCommentUI(postId, author, comment, "2323212123", "agora mesmo");
+     	var commentId = data["comment_id"];
+     	console.log(data);
+     	addCommentUI(postId, author, comment, commentId, "agora mesmo");
+
      });
     $.ajaxSetup( { "async": true } );
     console.log("Called " + url + "?postId="+  postId + "&comment=" + comment);
