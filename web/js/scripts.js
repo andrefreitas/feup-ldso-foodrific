@@ -438,8 +438,11 @@ function addCommentUI(postId, author, comment, commentId, time) {
 	var comment = '<div class="comment" id="' + commentId +'">'
 				+ '<div class="commentText"><img src="api/get_avatar"><span class="author">' + author + '</span>'
 				+ comment + '</div>'
-				+ '<span class="time">' + time + '</span></div>';
+				+ '<span class="time">' + time + '</span> <span class="delete">eliminar</span></div>';
 	$('.post#'+postId).children('.commentSection').children('.commentsUpdates').prepend(comment);
+	$('.comment .delete').click(function(){
+		deleteCommentClick(this);
+	});
 }
 
 function requestAddComment(postId, comment) {
