@@ -58,6 +58,10 @@ $(document).ready(function(){
 		addCommentClick(this);
 	});
 
+	$('.comment .delete').click(function(){
+		deleteCommentClick(this);
+	});
+
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -472,4 +476,23 @@ function incrementCommentsNumberUI(postId, value) {
 	if(number != 1)
 		sufix = "s";
 	$(commentsText).html(number + " comentário" + sufix);
+}
+
+function deleteCommentClick(elem){
+	var post_id = $(elem).parent().parent().parent().parent().attr("id");
+	var comment_id = $(elem).parent().attr("id");
+	requestDeleteComment(comment_id, post_id);
+}
+
+function requestDeleteComment(comment_id, post_id) {
+	var url = "api/delete_comment";
+    $.getJSON(url,{
+            comment_id: comment_id
+     }).done(function(data){
+     	console.log(data);
+     	$(".comment#" +comment_id).fadeOut();
+     	incrementCommentsNumberUI(post_id, -1);
+
+     });
+    console.log("Called " + url + "?comment_id="+  comment_id);
 }

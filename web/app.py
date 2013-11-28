@@ -28,6 +28,7 @@ application = webapp2.WSGIApplication([
     ('/api/yummy', api.Yummy),
     ('/api/get_avatar', api.GetAvatar),
     ('/api/new_comment', api.NewComment),
+    ('/api/delete_comment', api.DeleteComment),
     ('/api/session_data', api.SessionData),
     ('/api/ing_tags', api.IngTags),
     ('/api/register_verification', api.RegisterVerification),

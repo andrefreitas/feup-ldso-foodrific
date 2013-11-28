@@ -331,6 +331,18 @@ body {
 	margin-bottom: 15px;
 }
 
+.commentsUpdates .comment .delete{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #d98451;
+	cursor: pointer;
+}
+
+.commentsUpdates .comment .delete:hover{
+	color: #FF0000;
+}
+
+
 @media screen and (max-width: 500px){
     .container {
     	width: auto;
