@@ -432,7 +432,7 @@ function addCommentClick(elem){
 
 function addCommentUI(postId, author, comment, commentId, time) {
 	var comment = '<div class="comment" id="' + commentId +'">'
-				+ '<div class="commentText"><span class="author">' + author + '</span>'
+				+ '<div class="commentText"><img src="api/get_avatar"><span class="author">' + author + '</span>'
 				+ comment + '</div>'
 				+ '<span class="time">' + time + '</span></div>';
 	$('.post#'+postId).children('.commentSection').children('.commentsUpdates').prepend(comment);
@@ -468,5 +468,8 @@ function incrementCommentsNumberUI(postId, value) {
 	var html = $(commentsText).html();
 	var number = parseInt(html.trim().split(" ")[0]);
 	number = number + value;
-	$(commentsText).html(number + " comentários");
+	var sufix = "";
+	if(number != 1)
+		sufix = "s";
+	$(commentsText).html(number + " comentário" + sufix);
 }

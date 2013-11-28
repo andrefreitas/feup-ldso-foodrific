@@ -88,7 +88,7 @@
                 <div class="comments">
                   <div class="action">
                     <img src="images/comments.svg" height="35px">
-                    <div class="text">{{post.commentsNumber}} comentários</div>
+                    <div class="text">{{post.commentsNumber}} comentário{% if post.commentsNumber != 1 %}s{% endif %}</div>
                   </div>
                 </div>
               </div>
@@ -98,8 +98,8 @@
                 <div class="commentsUpdates">
                   {% for comment in post.comments %}
                   <div class="comment" id="{{comment.key().id()}}">
-                    <div class="commentText"><span class="author">{{comment.user.name}}</span>{{comment.content}}</div>
-                    <span class="time">{{comment.date}}</span>
+                    <div class="commentText"><img src="api/get_avatar?email={{comment.user.email}}"><span class="author">{{comment.user.name}}</span>{{comment.content}}</div>
+                    <span class="time">{{comment.date.strftime("%d/%m/%y %H:%M")}}</span>
                   </div>
                   {% endfor %}
                 </div>

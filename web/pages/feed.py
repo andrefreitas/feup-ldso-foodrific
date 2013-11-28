@@ -31,7 +31,7 @@ class Feed(BaseHandler):
             def putComments(post):
                 post_id = post.key().id()
                 comments = getCommentsForPost(post_id)
-                post.comments = comments
+                post.comments = sorted(comments, key=lambda c: c.date, reverse=True)
                 post.commentsNumber = len(comments)
                 return post
 

@@ -7,7 +7,7 @@ class Comment(db.Model):
 	user = db.ReferenceProperty(User)
 	post = db.ReferenceProperty(Post)
 	content = db.TextProperty()
-	date = db.DateProperty(auto_now=True)
+	date = db.DateTimeProperty(auto_now=True)
 	
 
 # ----------------- FUNCTIONS COMMENT -----------------

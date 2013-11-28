@@ -26,6 +26,7 @@ application = webapp2.WSGIApplication([
     ('/api/recovery', api.Recovery),
     ('/api/delete_post', api.DeletePost),
     ('/api/yummy', api.Yummy),
+    ('/api/get_avatar', api.GetAvatar),
     ('/api/new_comment', api.NewComment),
     ('/api/session_data', api.SessionData),
     ('/api/ing_tags', api.IngTags),

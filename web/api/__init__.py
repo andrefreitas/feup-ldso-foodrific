@@ -9,3 +9,4 @@ from register_verification import RegisterVerification
 from new_comment import *
 from session_data import *
 from ing_tags import IngTags
+from get_avatar import *

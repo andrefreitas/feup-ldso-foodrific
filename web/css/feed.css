@@ -165,6 +165,7 @@ body {
 	height: 55px;
 	overflow: auto;
 	clear: left;
+	overflow: hidden;
 }
 
 .post .actions .yummy {
@@ -275,6 +276,7 @@ body {
 	border: solid 1px #efc296;
 	font-size: 15px;
 	color: #a9a7a5;
+	margin-top: 10px;
 
 }
 
@@ -294,13 +296,15 @@ body {
 .commentsUpdates {
 	overflow: auto;
 	clear: right;
-	margin-top: 10px;
+	margin-top: 40px;
 
 }
 
 .commentsUpdates .comment{
 	margin-bottom: 5px;
 	color: #a09f9e;
+	overflow: auto;
+	clear: right;
 }
 
 .commentsUpdates .comment .time{
@@ -317,6 +321,14 @@ body {
 .commentsUpdates .comment .commentText{
 	font-size: 12px;
 	font-weight: none;
+}
+
+.commentsUpdates .comment .commentText img{
+	width: 30px;
+	height: auto;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 15px;
 }
 
 @media screen and (max-width: 500px){
