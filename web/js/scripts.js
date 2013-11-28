@@ -1,5 +1,7 @@
 //Global variables jQuery
 window.toDelete;
+window.comment_id;
+window.post_id;
 
 $(document).ready(function(){
 
@@ -482,9 +484,13 @@ function incrementCommentsNumberUI(postId, value) {
 }
 
 function deleteCommentClick(elem){
-	var post_id = $(elem).parent().parent().parent().parent().attr("id");
-	var comment_id = $(elem).parent().attr("id");
-	requestDeleteComment(comment_id, post_id);
+	post_id = $(elem).parent().parent().parent().parent().attr("id");
+	comment_id = $(elem).parent().attr("id");
+	$('#deleteCommentPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
 }
 
 function requestDeleteComment(comment_id, post_id) {
@@ -498,4 +504,13 @@ function requestDeleteComment(comment_id, post_id) {
 
      });
     console.log("Called " + url + "?comment_id="+  comment_id);
+}
+
+function deleteCommentYes(){
+	$('#deleteCommentPopUp').bPopup().close();
+	requestDeleteComment(comment_id, post_id);
+}
+
+function deleteCommentNo(){
+	$('#deleteCommentPopUp').bPopup().close();
 }
