@@ -448,6 +448,7 @@ function requestAddComment(postId, comment) {
      	var commentId = data["comment_id"];
      	console.log(data);
      	addCommentUI(postId, author, comment, commentId, "agora mesmo");
+     	incrementCommentsNumberUI(postId, 1);
 
      });
     $.ajaxSetup( { "async": true } );
@@ -460,4 +461,12 @@ function getSessionData(){
     var data = $.getJSON(url);
     $.ajaxSetup( { "async": true } );
     return $.parseJSON(data["responseText"])["answer"];
+}
+
+function incrementCommentsNumberUI(postId, value) {
+	var commentsText = $("#" + postId).children(".actions").first().children(".comments").first().children(".action").first().children(".text");
+	var html = $(commentsText).html();
+	var number = parseInt(html.trim().split(" ")[0]);
+	number = number + value;
+	$(commentsText).html(number + " comentários");
 }
