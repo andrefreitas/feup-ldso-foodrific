@@ -33,3 +33,6 @@ class BaseHandler(webapp2.RequestHandler):
 
     def get_session_user_id(self):
         return self.session["user_id"]
+
+    def get_session_email(self):
+        return self.session["user"]

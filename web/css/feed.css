@@ -198,6 +198,7 @@ body {
 	height: 55px;
 	overflow: auto;
 	clear: left;
+	overflow: hidden;
 }
 
 .post .actions .yummy {
@@ -248,14 +249,16 @@ body {
 	padding-top: 9px;
 }
 
-#questionPopUp{
+#questionPopUp,
+.popup {
 	display: none;
 	background-color: #ffdfbf;
 	text-align: center;
 	padding: 30px 0 30px 0;
 }
 
-#questionPopUp h1{
+#questionPopUp h1,
+.popup h1{
 	font-size: 30px;
 }
 
@@ -308,6 +311,7 @@ body {
 	border: solid 1px #efc296;
 	font-size: 15px;
 	color: #a9a7a5;
+	margin-top: 10px;
 
 }
 
@@ -327,13 +331,15 @@ body {
 .commentsUpdates {
 	overflow: auto;
 	clear: right;
-	margin-top: 10px;
+	margin-top: 40px;
 
 }
 
 .commentsUpdates .comment{
 	margin-bottom: 5px;
 	color: #a09f9e;
+	overflow: auto;
+	clear: right;
 }
 
 .commentsUpdates .comment .time{
@@ -351,6 +357,26 @@ body {
 	font-size: 12px;
 	font-weight: none;
 }
+
+.commentsUpdates .comment .commentText img{
+	width: 30px;
+	height: auto;
+	float: left;
+	margin-right: 15px;
+	margin-bottom: 15px;
+}
+
+.commentsUpdates .comment .delete{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #d98451;
+	cursor: pointer;
+}
+
+.commentsUpdates .comment .delete:hover{
+	color: #FF0000;
+}
+
 
 @media screen and (max-width: 500px){
     .container {

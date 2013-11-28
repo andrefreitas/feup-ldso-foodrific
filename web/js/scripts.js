@@ -1,5 +1,7 @@
 //Global variables jQuery
 window.toDelete;
+window.comment_id;
+window.post_id;
 
 $(document).ready(function(){
 
@@ -56,6 +58,10 @@ $(document).ready(function(){
 
 	$('.addComment').click(function(){
 		addCommentClick(this);
+	});
+
+	$('.comment .delete').click(function(){
+		deleteCommentClick(this);
 	});
 
 });
@@ -432,10 +438,13 @@ function addCommentClick(elem){
 
 function addCommentUI(postId, author, comment, commentId, time) {
 	var comment = '<div class="comment" id="' + commentId +'">'
-				+ '<div class="commentText"><span class="author">' + author + '</span>'
+				+ '<div class="commentText"><img src="api/get_avatar"><span class="author">' + author + '</span>'
 				+ comment + '</div>'
-				+ '<span class="time">' + time + '</span></div>';
+				+ '<span class="time">' + time + '</span> <span class="delete">eliminar</span></div>';
 	$('.post#'+postId).children('.commentSection').children('.commentsUpdates').prepend(comment);
+	$('.comment .delete').click(function(){
+		deleteCommentClick(this);
+	});
 }
 
 function requestAddComment(postId, comment) {
@@ -448,6 +457,7 @@ function requestAddComment(postId, comment) {
      	var commentId = data["comment_id"];
      	console.log(data);
      	addCommentUI(postId, author, comment, commentId, "agora mesmo");
+     	incrementCommentsNumberUI(postId, 1);
 
      });
     $.ajaxSetup( { "async": true } );
@@ -460,4 +470,47 @@ function getSessionData(){
     var data = $.getJSON(url);
     $.ajaxSetup( { "async": true } );
     return $.parseJSON(data["responseText"])["answer"];
+}
+
+function incrementCommentsNumberUI(postId, value) {
+	var commentsText = $("#" + postId).children(".actions").first().children(".comments").first().children(".action").first().children(".text");
+	var html = $(commentsText).html();
+	var number = parseInt(html.trim().split(" ")[0]);
+	number = number + value;
+	var sufix = "";
+	if(number != 1)
+		sufix = "s";
+	$(commentsText).html(number + " comentário" + sufix);
+}
+
+function deleteCommentClick(elem){
+	post_id = $(elem).parent().parent().parent().parent().attr("id");
+	comment_id = $(elem).parent().attr("id");
+	$('#deleteCommentPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
+}
+
+function requestDeleteComment(comment_id, post_id) {
+	var url = "api/delete_comment";
+    $.getJSON(url,{
+            comment_id: comment_id
+     }).done(function(data){
+     	console.log(data);
+     	$(".comment#" +comment_id).fadeOut();
+     	incrementCommentsNumberUI(post_id, -1);
+
+     });
+    console.log("Called " + url + "?comment_id="+  comment_id);
+}
+
+function deleteCommentYes(){
+	$('#deleteCommentPopUp').bPopup().close();
+	requestDeleteComment(comment_id, post_id);
+}
+
+function deleteCommentNo(){
+	$('#deleteCommentPopUp').bPopup().close();
 }
