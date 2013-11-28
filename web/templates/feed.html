@@ -6,6 +6,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1.0, user-scalable=no">
     
     <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.min.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/feed.css">
     <script src="js/jquery.js"></script>
@@ -26,15 +27,17 @@
       <button id="addPost">novo post</button>
       <!-- New Post -->
       <div id="newPost" class="box">
-        <form method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">
+        <form id="newpost" method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">
           <div class="alert" id="titleAlert"></div>
           <input type="text" name="title" placeholder="Qual é o título?"/> <br/>
           <div class="photo">
-            <img src="images/post-photo.svg">
+            <img id="foodImage" src="images/post-photo.svg" alt="Preview da Imagem">
           </div>
-          <input type="file" name="photo"/>
+          <div class="alert" id="photoAlert"></div>
+          <input type="file" name="photo" id="uploadImage" />
           <div class="alert" id="ingredientsAlert"></div>
           <input name="ingredients" id="tags"/>
+          <textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="newpost"></textarea> <br/>
           <input type="submit" value="Publicar" class="orange"/>
         </form>
       </div>

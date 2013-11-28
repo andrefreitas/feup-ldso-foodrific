@@ -6,7 +6,9 @@ class Ingredient(db.Model):
     photo = db.BlobProperty()
 
 def addIngredient(name, photo):
-    if(existIngredient(name)):
+    name = name.lower()
+    name = name.strip()
+    if(existIngredient(name) or len(name) == 0 or name is None):
         return False
     else:
         ingredient = Ingredient(name = name, photo = photo)
@@ -29,6 +31,8 @@ def searchIngredients(term):
     ingredients_query = getIngredients()
     match_ingredients = []
     if ingredients_query is not None:
+        term = term.lower()
+        term = term.strip()
         for ing in ingredients_query:
             if re.search(term,ing.name) is not None:
                 match_ingredients.append(ing.name)
