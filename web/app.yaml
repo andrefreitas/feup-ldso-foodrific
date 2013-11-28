@@ -27,6 +27,8 @@ libraries:
 - name: jinja2
   version: latest
   
+- name: PIL
+  version: "1.1.7"
 inbound_services:
   - mail
   

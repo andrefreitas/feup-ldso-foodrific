@@ -31,11 +31,23 @@ $(document).ready(function(){
 		yummyClick(this);
 	});
 
+	$("#uploadImage").change(function(){
+    	readImageURL(this);
+	});
+
 	$('#tags').tagsInput({	
 	'height':'',
-	'width':'',	
+	'width':'',
+	'color':'',
 	'defaultText':'Novo Ingrediente',	
-	'placeholderColor' : '#AAAAAA'
+	'placeholderColor' : '#AAAAAA',
+	'autocomplete_url' : 'api/ing_tags',
+	'autocomplete':{
+			selectFirst:true,
+			autoFill:true, 
+			delay: 250, 
+			minLength: 3
+		}
 	});
 
 	$('.comments').click(function(){
@@ -45,6 +57,7 @@ $(document).ready(function(){
 	$('.addComment').click(function(){
 		addCommentClick(this);
 	});
+
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -249,6 +262,21 @@ function addPostClick(){
 		$("#newPost").fadeIn();
 }
 
+function readImageURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#foodImage').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }else{
+    	$('#foodImage').attr('src', 'images/post-photo.svg');
+    }
+}
+
 function validatePublishPost(){
 	var fields = $('#newPost form').serializeArray();
 	var title = fields[0]["value"];
@@ -258,7 +286,13 @@ function validatePublishPost(){
 		$("#titleAlert").html("Escreva um título!").effect("shake");
 		return false;
 	}
-	return true;
+	var imgVal = $('#uploadImage').val(); 
+    if(imgVal=='') 
+    { 
+        $("#photoAlert").html("Insira uma imagem!").effect("shake");
+        return false; 
+    }   
+	
 }
 
 function deletePost(id_post){
@@ -295,7 +329,8 @@ function getPostYummys(action) {
 }
 
 function setPostYummys(action, Yummys) {
-	$(action).children().children('.text').first().html(Yummys + " yummys");
+	
+	$(action).children().children('.text').first().html(Yummys + (Yummys != 1?" yummys":" yummy"));
 }
 
 function isPostYummi(action) {
