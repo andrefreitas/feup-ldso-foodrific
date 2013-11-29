@@ -4,6 +4,9 @@ from datastore.user import *
 from datastore.post import *
 from datastore.follow import *
 from datetime import date
+import urllib
+IMG_URL = "http://static4.businessinsider.com/image/51f03f966bb3f73c7700000b-480/big-mac-mcdonalds.jpg"
+IMG_DATA = urllib.urlopen(IMG_URL).read()
 
 class testPost(DataStoreTestCase, unittest.TestCase):
     def test_datastore_post(self):
@@ -17,7 +20,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  )
         u.put()
         self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
+        p = Post(user=u, title="First Post", photo=IMG_DATA)
         p.put()
         self.assertEqual(Post.all().count(), 1)
         
@@ -30,7 +33,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        addPost(u, "My food is awesome", "photo_tester")
+        addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         
     def test_datastore_get_posts_user(self):
@@ -42,7 +45,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        addPost(u, "My food is awesome", "photo_tester")
+        addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         user_id = getUserID("carlos@gmail.com")
         posts = getPostsByUser(user_id)
@@ -57,7 +60,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        post_id = addPost(u, "My food is awesome", "photo_tester")
+        post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         deletePost(post_id)
         self.assertEqual(Post.all().count(), 0)
@@ -92,9 +95,9 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         addUserToFollow(user_id1, user_id3)
         self.assertEqual(Follow.all().count(), 2)
         self.assertEqual(Post.all().count(), 0)
-        addPost(u2, "My food is awesome", "photo_tester")
-        addPost(u2, "My food is very very awesome", "photo_tester2")
-        addPost(u3, "My food is even more awesome", "photo_tester3")
+        addPost(u2, "My food is awesome", IMG_DATA)
+        addPost(u2, "My food is very very awesome", IMG_DATA)
+        addPost(u3, "My food is even more awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 3)
         posts = getPostsByUserFollowing(user_id1)
         self.assertEqual(len(posts), 3)
@@ -108,7 +111,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        post_id = addPost(u, "My food is awesome", "photo_tester")
+        post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         if (addIngredients(post_id, ['cebola', 'batata'])):
             self.assertEqual(Post.get_by_id(post_id).ingredients, ['cebola', 'batata'] )
@@ -122,7 +125,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        post_id = addPost(u, "My food is awesome", "photo_tester")
+        post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         if (addRating(post_id, 5)):
             self.assertEqual(Post.get_by_id(post_id).rating, 5 )
@@ -138,7 +141,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        post_id = addPost(u, "My food is awesome", "photo_tester")
+        post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         if (addReceipt(post_id, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas.")):
             self.assertEqual(Post.get_by_id(post_id).receipt, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas." )
@@ -159,13 +162,13 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "f"
                  )
         u2.put()
-        addPost(u, "My food is awesome", "photo_tester")
-        addPost(u, "My food is very awesome", "photo_tester")
-        addPost(u, "Batatas fritas com arroz", "photo_tester")
-        addPost(u, "Peito de peru grelhado com arroz de tomate", "photo_tester")
-        addPost(u, "Salada russa", "photo_tester")
-        addPost(u2, "Feijoada alentejana", "photo_tester")
-        addPost(u2, "Ervilha com carne de vaca e arroz branco", "photo_tester")
+        addPost(u, "My food is awesome", IMG_DATA)
+        addPost(u, "My food is very awesome", IMG_DATA)
+        addPost(u, "Batatas fritas com arroz", IMG_DATA)
+        addPost(u, "Peito de peru grelhado com arroz de tomate", IMG_DATA)
+        addPost(u, "Salada russa", IMG_DATA)
+        addPost(u2, "Feijoada alentejana", IMG_DATA)
+        addPost(u2, "Ervilha com carne de vaca e arroz branco", IMG_DATA)
         self.assertEqual(Post.all().count(), 7)
         posts = getPosts()
         self.assertEqual(len(posts), 7)
@@ -179,11 +182,11 @@ class testPost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        post_id = addPost(u, "My food is awesome", "photo_tester")
+        post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         post = getPostByID(post_id)
         self.assertEqual(post.title, "My food is awesome")
-        self.assertEqual(post.photo, "photo_tester")
+        self.assertEqual(post.photo, IMG_DATA)
         
         
         
