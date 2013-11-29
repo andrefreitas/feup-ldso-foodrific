@@ -6,8 +6,8 @@ from send_recover import SendRecover
 from delete_post import DeletePost
 from yummy import Yummy
 from register_verification import RegisterVerification
-from new_comment import *
-from session_data import *
+from new_comment import NewComment
+from session_data import SessionData
 from ing_tags import IngTags
-from get_avatar import *
-from delete_comment import *
+from get_avatar import GetAvatar
+from delete_comment import DeleteComment
