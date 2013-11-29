@@ -22,6 +22,11 @@
         <div id="loginForm">
           <div class="container">
             <h1>Entrar</h1>
+            {% if message != '' %}
+              <div class="notification error">
+                  {{ message }}
+              </div> 
+            {% endif %}
             <form action="login_handler" method="post" onsubmit="return validateLoginForm()">
               <div id="emailLoginAlert" class="alert"></div>
               <input type="text" name="email" placeholder="escreve o teu email.."/><br/>
@@ -34,7 +39,7 @@
         </div>
         <!-- Recover Password Form -->
         <div id="recoverPasswordForm">
-          <form onsubmit="return validateEmail()">
+          <form action="send_recover" onsubmit="return validateEmail()" method="post">
             <div id="recoverPasswordAlert" class="alert"></div>
             <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/><br />
             <input type="submit" value="Recuperar" class="orange"/>

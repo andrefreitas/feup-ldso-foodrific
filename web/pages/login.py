@@ -16,5 +16,10 @@ class Login(BaseHandler):
     	if self.isLoggedIn():
     		return self.redirect('/feed')
     	else:
+    		message = self.request.get("message")
+    		template_values = {
+    			"message" : message
+    		}
+
     		template = JINJA_ENVIRONMENT.get_template('login.html')
-    		self.response.write(template.render())
+    		self.response.write(template.render(template_values))

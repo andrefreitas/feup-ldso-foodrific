@@ -20,6 +20,12 @@
     </div>
     <div id="banner">
       <div class="container">
+        {% if message != '' %}
+          <div class="notification confirmation">
+              {{ message }}
+          </div> 
+        {% endif %}
+        
         <div class="food">
         <img src="images/icon.svg" width="350px" />
         </div>

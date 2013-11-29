@@ -231,18 +231,8 @@ function validateEmail()
 
 		return false;
 	}
-	else
-	{
-		if(emailDatabaseIsValid(email))
-		{
-			return true;
-		}
-		else
-		{
-			$("#recoverPasswordAlert").html("Email inválido!").effect("shake");
-			return false;
-		}
-	}
+	
+	return true;
 }
 
 function emailDatabaseIsValid(email)
