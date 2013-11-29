@@ -274,7 +274,15 @@ function addPostClick(){
 
 function readImageURL(input) {
 
-    if (input.files && input.files[0]) {
+	var imgVal = $('#uploadImage').val();
+	$("#photoAlert").html("");
+	var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
+    if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
+    {
+    	$("#photoAlert").html("Insira uma imagem válida!").effect("shake");
+    }
+    else if (input.files && input.files[0]) {
+        
         var reader = new FileReader();
 
         reader.onload = function (e) {
@@ -284,7 +292,7 @@ function readImageURL(input) {
         reader.readAsDataURL(input.files[0]);
     }else{
     	$('#foodImage').attr('src', 'images/post-photo.svg');
-    }
+    }    
 }
 
 function validatePublishPost(){
@@ -296,12 +304,20 @@ function validatePublishPost(){
 		$("#titleAlert").html("Escreva um título!").effect("shake");
 		return false;
 	}
-	var imgVal = $('#uploadImage').val(); 
-    if(imgVal=='') 
+	var imgVal = $('#uploadImage').val();
+	
+	if(imgVal=='') 
     { 
         $("#photoAlert").html("Insira uma imagem!").effect("shake");
         return false; 
-    }   
+    }  
+    var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
+    if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
+    {
+    	$("#photoAlert").html("Insira uma imagem válida!").effect("shake");
+    	return false;
+    }
+                
 	
 }
 

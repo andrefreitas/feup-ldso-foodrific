@@ -72,9 +72,10 @@
                   </div>
                 </div>
               </div>
+              {% if post.recipe != None %}
               <div class="recipe">Ver Receita</div>                
               <div class="recipeSection">{{post.recipe}}</div>
-
+              {% endif %}
               <div class="actions">
                 <div class="yummy yummyAction" id="{% if post.yummyDone %}done{% else %}undone{% endif %}">
                   <div class="action">
