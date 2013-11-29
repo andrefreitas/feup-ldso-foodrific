@@ -41,13 +41,43 @@ body {
 	border: solid 1px #efc296;
 }
 
-#newPost textarea{
+#newPost div.fileinputs{
 	width: 95%;
-	max-width: 95%;
+	position: relative;
+	margin: 0 auto;
+}
+
+#newPost button#addImage{
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;	
+	background-color: #d98451;
+	padding: 15px;
+	border: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+#newPost input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+
+#newPost textarea{
+	width: 90%;
+	max-width: 90%;
 	border: solid 1px #efc296;
 	margin: 0 auto;
-	padding-top: 4px;
-	padding-left: 4px;
 	display: block;
 	font-size: 24px;
 }
@@ -57,14 +87,16 @@ body {
 	height: auto;
 	margin: 20px auto;
 	border: solid 1px #efc296;
+	font-family: 'Verdana', sans-serif;
 }
 
 #newPost input#tags_tag{
 	border: none;
 	font-size: 24px;
-	width: 200px;
+	width: 250px;
 	color: #b3612f;
 	margin-bottom: 5px;
+	font-family: 'Verdana', sans-serif;
 }
 
 #newPost div.tagsinput span.tag, 
@@ -73,6 +105,7 @@ body {
 	background-color: #d98451;
 	color: #FFF;
 	font-size: 24px;
+	font-family: 'Verdana', sans-serif;
 }
 #newPost .photo{
 	border: solid 1px #efc296;
@@ -411,6 +444,10 @@ body {
   .post .content .ingredients .ingredient{
 		width: 90%; 
 	}
+
+	#newPost button#addImage{
+	font-size: 19px;
+}
 
 }
 
