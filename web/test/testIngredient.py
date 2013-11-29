@@ -21,7 +21,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(Ingredient.all().count(), 2)
         addIngredient("ervilhas", None)
         self.assertEqual(Ingredient.all().count(), 3)
-        addIngredient("puré", None)
+        addIngredient("pure", None)
         self.assertEqual(Ingredient.all().count(), 4)
-        self.assertEqual(Ingredient.existIngredient("ervilhas"), True)
+        self.assertEqual(existIngredient("ervilhas"), True)
         

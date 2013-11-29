@@ -132,7 +132,7 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         
         
         
-    def test_datastore_addReceipt(self):
+    def test_datastore_addRecipe(self):
         self.assertEqual(Post.all().count(), 0)
         u = User(birthday = date(2000, 3, 11),
                  name = "Carlos",
@@ -143,8 +143,8 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         u.put()
         post_id = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
-        if (addReceipt(post_id, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas.")):
-            self.assertEqual(Post.get_by_id(post_id).receipt, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas." )
+        if (addRecipe(post_id, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas.")):
+            self.assertEqual(Post.get_by_id(post_id).recipe, "Cozer as batatas numa panela com agua e sal. Deitar as cebolas." )
             
     def test_datastore_get_posts(self):
         self.assertEqual(Post.all().count(), 0)
@@ -186,12 +186,3 @@ class testPost(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(Post.all().count(), 1)
         post = getPostByID(post_id)
         self.assertEqual(post.title, "My food is awesome")
-        self.assertEqual(post.photo, IMG_DATA)
-        
-        
-        
-        
-        
-        
-        
-        

@@ -3,7 +3,6 @@ from pages import BaseHandler
 from google.appengine.api import images
 import urllib, hashlib
 import json
-import Image
 
 class GetAvatar(BaseHandler):
 
