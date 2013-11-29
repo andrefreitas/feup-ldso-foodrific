@@ -9,6 +9,9 @@ from datastore.user import *
 from datastore.post import *
 from datastore.comment import *
 from datetime import date
+import urllib
+IMG_URL = "http://static4.businessinsider.com/image/51f03f966bb3f73c7700000b-480/big-mac-mcdonalds.jpg"
+IMG_DATA = urllib.urlopen(IMG_URL).read()
 
 class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
     def setUp(self):
@@ -38,7 +41,7 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
                  )
         u.put()
         self.assertEqual(User.all().count(), 1)
-        postId = addPost(u, "My food is awesome", "photo_tester")
+        postId = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         self.testbed.init_memcache_stub()
         response = self.testapp.get('/api/delete_post?postId='+str(postId))

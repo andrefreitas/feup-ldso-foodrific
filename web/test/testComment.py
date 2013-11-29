@@ -4,6 +4,9 @@ from datastore.user import *
 from datastore.post import *
 from datastore.comment import *
 from datetime import date
+import urllib
+IMG_URL = "http://static4.businessinsider.com/image/51f03f966bb3f73c7700000b-480/big-mac-mcdonalds.jpg"
+IMG_DATA = urllib.urlopen(IMG_URL).read()
 
 class testComment(DataStoreTestCase, unittest.TestCase):
     def test_datastore_addComment(self):
@@ -18,7 +21,7 @@ class testComment(DataStoreTestCase, unittest.TestCase):
                  )
         user_id = u.put()
         self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
+        p = Post(user=u, title="First Post", photo=IMG_DATA)
         post_id = p.put()
         self.assertEqual(Post.all().count(), 1)
         addComment(user_id.id(), post_id.id(), "Muito bom!! P.S. Nao faco a minima ideia do que seja este post!!!! :)")
@@ -36,7 +39,7 @@ class testComment(DataStoreTestCase, unittest.TestCase):
                  )
         user_id = u.put()
         self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
+        p = Post(user=u, title="First Post", photo=IMG_DATA)
         post_id = p.put()
         self.assertEqual(Post.all().count(), 1)
         comment_id = addComment(user_id.id(), post_id.id(), "Muito bom!! P.S. Nao faco a minima ideia do que seja este post!!!! :)")
@@ -56,7 +59,7 @@ class testComment(DataStoreTestCase, unittest.TestCase):
                  )
         user_id = u.put()
         self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
+        p = Post(user=u, title="First Post", photo=IMG_DATA)
         post_id = p.put()
         self.assertEqual(Post.all().count(), 1)
         addComment(user_id.id(), post_id.id(), "Muito bom!! P.S. Nao faco a minima ideia do que seja este post!!!! :)")
@@ -79,7 +82,7 @@ class testComment(DataStoreTestCase, unittest.TestCase):
                  )
         user_id = u.put()
         self.assertEqual(User.all().count(), 1)
-        p = Post(user=u, title="First Post", photo="photo_tester")
+        p = Post(user=u, title="First Post", photo=IMG_DATA)
         post_id = p.put()
         self.assertEqual(Post.all().count(), 1)
         addComment(user_id.id(), post_id.id(), "Muito bom!! P.S. Nao faco a minima ideia do que seja este post!!!! :)")
