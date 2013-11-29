@@ -71,6 +71,7 @@ body {
 	filter:alpha(opacity: 0);
 	opacity: 0;
 	z-index: 2;
+	cursor: pointer;
 }
 
 #newPost textarea{
@@ -207,7 +208,23 @@ body {
 	width: 50%;
 	float: left;
 }
+.post .recipe{
+	background: #D98451;
+	height: 40px;
+	text-align: center;
+	cursor: pointer;
+	color: #FFF;
+	font-size: 24px;
+	padding-top: 10px;
+	margin-bottom: 10px;
+}
 
+.post .recipeSection{
+	color: #a09f9e;
+	margin-top: -10px;
+	font-size: 20px;
+	padding: 20px;
+}
 
 .post .actions .comments{
 	background: #FFCF9F;
@@ -217,7 +234,8 @@ body {
 }
 
 
-.post .actions .comments .action .text{
+.post .actions .comments .action .text, 
+.post .recipe .text{
 	color: #d98451;
 }
 

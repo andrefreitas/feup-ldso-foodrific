@@ -72,6 +72,9 @@
                   </div>
                 </div>
               </div>
+              <div class="recipe">Ver Receita</div>                
+              <div class="recipeSection">{{post.recipe}}</div>
+
               <div class="actions">
                 <div class="yummy yummyAction" id="{% if post.yummyDone %}done{% else %}undone{% endif %}">
                   <div class="action">
@@ -80,7 +83,6 @@
                     {% else %}
                     <img src="images/yummy.svg" height="45px">
                     {% endif %}
-
                     <div class="text">{{post.yummys}}
                     {% if post.yummys != 1 %}
                       yummys

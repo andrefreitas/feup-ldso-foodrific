@@ -56,6 +56,10 @@ $(document).ready(function(){
 		showCommentsClick(this);
 	});
 
+	$('.recipe').click(function(){
+		showRecipeClick(this);
+	});
+
 	$('.addComment').click(function(){
 		addCommentClick(this);
 	});
@@ -425,6 +429,14 @@ function showCommentsClick(elem){
 		$(commentSection).fadeOut();
 	else
 		$(commentSection).fadeIn();
+}
+
+function showRecipeClick(elem){
+	var recipeSection = $(elem).parent().children(".recipeSection");
+	if($(recipeSection).is(':visible'))
+		$(recipeSection).fadeOut();
+	else
+		$(recipeSection).fadeIn();
 }
 
 function addCommentClick(elem){
