@@ -534,5 +534,9 @@ function deleteCommentNo(){
 }
 
 function editName() {
-	alert('editName');
+	$('#editFieldForm').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
 }

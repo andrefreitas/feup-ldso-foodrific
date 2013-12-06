@@ -123,3 +123,12 @@ button.blue:hover{
 	background: #FFFFFF;
 	margin-bottom: 10px;
 }
+
+#editProfileForm {
+	padding-top: 15px;
+	text-align: center;
+}
+
+#editProfileForm h1 {
+	margin-bottom: 30px !important;
+}
