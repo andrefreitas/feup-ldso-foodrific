@@ -4,7 +4,13 @@ window.comment_id;
 window.post_id;
 
 $(document).ready(function(){
-
+	
+	$( "#datepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "images/calendar.gif",
+		buttonImageOnly: true
+	});
+	
 	$('#register').click(function(){
 		registerClick();
 	});
@@ -531,4 +537,12 @@ function deleteCommentYes(){
 
 function deleteCommentNo(){
 	$('#deleteCommentPopUp').bPopup().close();
+}
+
+function editName() {
+	$('#editFieldForm').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
 }
