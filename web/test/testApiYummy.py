@@ -37,3 +37,13 @@ class testApiYummy(DataStoreTestCase, unittest.TestCase):
         self.assertEqual(1, len(getPostYummys(self.post_id)))
         response = self.testapp.get('/api/yummy?postId=' + str(self.post_id))
         self.assertEqual(0, len(getPostYummys(self.post_id)))
+        user_id = addUser("Carlos Faria", "carlossdd@gfas.com", "12345", "m", date(1985, 5, 22))
+        self.testapp.get('/login_handler?email=carlossdd@gfas.com&password=12345')
+        response = self.testapp.get('/api/yummy?postId=' + str(self.post_id))
+        self.assertEqual(response.json, {'answer':'done', 'result': 'ok'})
+        self.assertEqual(1, len(getPostYummys(self.post_id)))
+        self.testapp.get('/login_handler?email=p.andrefreitas@gmail.com&password=12345')
+        response = self.testapp.get('/api/yummy?postId=' + str(self.post_id))
+        self.assertEqual(response.json, {'answer':'done', 'result': 'ok'})
+        self.assertEqual(2, len(getPostYummys(self.post_id)))
+

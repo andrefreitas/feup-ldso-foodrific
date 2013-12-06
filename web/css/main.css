@@ -94,11 +94,12 @@ button.blue:hover{
 }
 
 .label_show {
-	width: 300px;
-	font-size: 24px;
+	width: 276px;
+	font-size: 22px;
 	text-align: left;
 	display: inline-block;
 	font-weight:bold;
+	color: #b3612f;
 }
 
 .field_value {
@@ -107,8 +108,18 @@ button.blue:hover{
 	font-size: 18px;
 	text-align: center;
 	display: inline-block;
+	color: #999999;
 }
 
 .button_change {
 	width: 320px;
+}
+
+.field_display {
+	width: 320px;
+	display: block;
+	margin: 0 auto;
+	border: solid 2px #efc296;
+	background: #FFFFFF;
+	margin-bottom: 10px;
 }
