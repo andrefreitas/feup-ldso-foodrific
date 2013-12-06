@@ -81,6 +81,7 @@ body {
 	margin: 0 auto;
 	display: block;
 	font-size: 24px;
+	font-family: 'Verdana', sans-serif;
 }
 
 #newPost div.tagsinput{
@@ -207,6 +208,7 @@ body {
 	height: 100%;
 	width: 50%;
 	float: left;
+	text-align: center;
 }
 .post .recipe{
 	background: #D98451;
@@ -232,6 +234,7 @@ body {
 	height: 100%;
 	width: 50%;
 	float: right;
+	text-align: center;
 }
 
 
@@ -252,9 +255,10 @@ body {
 
 .post .actions div .action{
 	padding-top: 5px;
-	width: 190px;
+	width: 100px;
 	margin: 0 auto;
 	overflow: auto;
+	text-align: center;
 }
 
 .post .actions div .action img{
@@ -331,7 +335,7 @@ body {
 	font-size: 15px;
 	color: #a9a7a5;
 	margin-top: 10px;
-
+	font-family: 'Verdana', sans-serif;
 }
 
 .commentSection button{
