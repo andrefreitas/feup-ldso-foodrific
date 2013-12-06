@@ -18,7 +18,7 @@
   </head>
   <body>
     <div id="header">
-      <a id="profileButton" href="/show_profile"><img src="images/profile.svg" height="25px"/></a>
+      <a id="profileButton" href="/show_profile"><img src="images/profile.svg" height="20px"/></a>
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
       <a id="logoutButton" href="/logout"><img src="images/logout.svg" height="25px" /></a>
     </div>
@@ -29,7 +29,7 @@
       <div id="newPost" class="box">
         <form id="newpost" method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">
           <div class="alert" id="titleAlert"></div>
-          <input type="text" name="title" placeholder="Qual é o título?"/> <br/>
+          <input type="text" name="title" placeholder="Qual é o título?" maxlength="25px"/> <br/>
           <div class="photo">
             <img id="foodImage" src="images/post-photo.svg" alt="Preview da Imagem">
           </div>

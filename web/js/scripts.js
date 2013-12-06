@@ -62,6 +62,7 @@ $(document).ready(function(){
 	'height':'',
 	'width':'',
 	'color':'',
+	'maxChars' : 8,
 	'defaultText':'Novo Ingrediente',	
 	'placeholderColor' : '#AAAAAA',
 	'autocomplete_url' : 'api/ing_tags',
