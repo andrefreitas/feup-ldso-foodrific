@@ -86,18 +86,13 @@
                     <img src="images/yummy.svg" height="45px">
                     {% endif %}
                     <div class="text">{{post.yummys}}
-                    {% if post.yummys != 1 %}
-                      yummys
-                    {% else %}
-                      yummy
-                    {% endif %}
                     </div>
                   </div>
                 </div>
                 <div class="comments">
                   <div class="action">
                     <img src="images/comments.svg" height="35px">
-                    <div class="text">{{post.commentsNumber}} comentário{% if post.commentsNumber != 1 %}s{% endif %}</div>
+                    <div class="text">{{post.commentsNumber}}</div>
                   </div>
                 </div>
               </div>

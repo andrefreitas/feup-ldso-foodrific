@@ -346,7 +346,7 @@ function getPostYummys(action) {
 
 function setPostYummys(action, Yummys) {
 	
-	$(action).children().children('.text').first().html(Yummys + (Yummys != 1?" yummys":" yummy"));
+	$(action).children().children('.text').first().html(Yummys);
 }
 
 function isPostYummi(action) {
@@ -498,7 +498,7 @@ function incrementCommentsNumberUI(postId, value) {
 	var sufix = "";
 	if(number != 1)
 		sufix = "s";
-	$(commentsText).html(number + " comentário" + sufix);
+	$(commentsText).html(number);
 }
 
 function deleteCommentClick(elem){
