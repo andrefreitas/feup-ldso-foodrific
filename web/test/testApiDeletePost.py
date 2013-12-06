@@ -32,7 +32,6 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
         
     def testDeletePost(self):
         self.assertEqual(Post.all().count(), 0)
-        self.assertEqual(User.all().count(), 0)
         u = User(birthday = date(2000, 3, 11),
                  name = "Carlos",
                  email = "carlos@gmail.com",
@@ -40,7 +39,6 @@ class testApiDeletePost(DataStoreTestCase, unittest.TestCase):
                  gender = "m"
                  )
         u.put()
-        self.assertEqual(User.all().count(), 1)
         postId = addPost(u, "My food is awesome", IMG_DATA)
         self.assertEqual(Post.all().count(), 1)
         self.testbed.init_memcache_stub()
