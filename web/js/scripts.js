@@ -532,3 +532,7 @@ function deleteCommentYes(){
 function deleteCommentNo(){
 	$('#deleteCommentPopUp').bPopup().close();
 }
+
+function editName() {
+	alert('editName');
+}
