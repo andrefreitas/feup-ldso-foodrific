@@ -126,13 +126,6 @@ body {
 	margin-bottom: 20px;
 }
 
-#logoutButton {
-	position: absolute;
-	padding-right: 20px;
-	padding-top: 12px;
-	right:0px;
-}
-
 /* Post */
 
 .post {
