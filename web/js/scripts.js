@@ -4,7 +4,13 @@ window.comment_id;
 window.post_id;
 
 $(document).ready(function(){
-
+	
+	$( "#datepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "images/calendar.gif",
+		buttonImageOnly: true
+	});
+	
 	$('#register').click(function(){
 		registerClick();
 	});
