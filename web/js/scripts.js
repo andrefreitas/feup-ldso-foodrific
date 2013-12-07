@@ -76,7 +76,7 @@ $(document).ready(function(){
 	$("#uploadImage").change(function(){
     	readImageURL(this);
 	});
-	
+
 	$('.comments').click(function(){
 		showCommentsClick(this);
 	});
@@ -333,8 +333,29 @@ function validatePublishPost(){
     	$("#photoAlert").html("Insira uma imagem válida!").effect("shake");
     	return false;
     }
-                
+}
+
+function validateEditPost()
+{
+	var fields = $('#editPost form').serializeArray();
+	var title = fields[1]["value"];
+
+	$(".alert").html("");	
+	if(title.length < 1){
+		$("#editpost #titleAlert").html("Escreva um título!").effect("shake");
+		return false;
+	}
+	var imgVal = $('#uploadImage').val();
 	
+	if(imgVal != '')
+	{ 
+	    var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
+	    if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
+	    {
+	    	$("#editpost #photoAlert").html("Insira uma imagem válida!").effect("shake");
+	    	return false;
+	    }
+	}
 }
 
 function deletePost(id_post){
@@ -357,6 +378,8 @@ function deletePost(id_post){
 
 function editPost(id_post)
 {
+	$('#posts #' + id_post).hide();
+
 	$.ajaxSetup( { "async": false } );
      var data = $.getJSON("api/get_post",{
             postId: id_post
@@ -368,14 +391,15 @@ function editPost(id_post)
 
     if(resultEditPost["result"] == "ok")
     {
-    	alert("Faz bem!!");
+    	console.log("Faz bem!!");
 
     	var $header = $('.editPost' + id_post);
-    	var $form_header = $('<form id="editpost" method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">').appendTo($header);
+    	var $form_header = $('<form id="editpost" method="post" action="api/edit_post" onsubmit="return validateEditPost()" enctype="multipart/form-data">').appendTo($header);
+    	$('<input type="hidden" name="postId" value="'+ id_post +'" />').appendTo($form_header);
     	$('<div class="alert" id="titleAlert"></div>').appendTo($form_header);
     	$('<input type="text" name="title" placeholder="Qual é o título?" value="'+ resultEditPost["title"] +'"/> <br/>').appendTo($form_header);
     	var $divPhoto = $('<div class="photo">').appendTo($form_header);
-    	$('<img id="foodImage" src="/api/postimage?id='+ id_post +'" alt="Preview da Imagem">').appendTo($divPhoto);
+    	$('<img id="foodImage" src="/api/postimage?id='+ id_post +'" alt="Imagem do prato">').appendTo($divPhoto);
     	$('</div>').appendTo($form_header);
     	$('<div class="alert" id="photoAlert"></div>').appendTo($form_header);
     	var $fileInputs = $('<div class="fileinputs">').appendTo($form_header);
@@ -420,20 +444,40 @@ function editPost(id_post)
 
         $('#posts #' + id_post).siblings("#posts .editPost"+ id_post).show();
         
-        $('#editPost #tagsEdit' + id_post).tagsInput({	
-			'height':'',
-			'width':'',
-			'color':'',
-			'defaultText':'Novo Ingrediente',	
-			'placeholderColor' : '#AAAAAA',
-			'autocomplete_url' : 'api/ing_tags',
-			'autocomplete':{
-					selectFirst:true,
-					autoFill:true, 
-					delay: 250, 
-					minLength: 3
-				}
-		});
+        if(resultEditPost["ingredients"] != "")
+        {
+	        $('#editPost #tagsEdit' + id_post).tagsInput({	
+				'height':'',
+				'width':'',
+				'color':'',
+				'defaultText':'',	
+				'placeholderColor' : '#AAAAAA',
+				'autocomplete_url' : 'api/ing_tags',
+				'autocomplete':{
+						selectFirst:true,
+						autoFill:true, 
+						delay: 250, 
+						minLength: 3
+					}
+			});
+    	}
+    	else if(resultEditPost["ingredients"] == "")
+        {
+	        $('#editPost #tagsEdit' + id_post).tagsInput({	
+				'height':'',
+				'width':'',
+				'color':'',
+				'defaultText':'Novo Ingrediente',	
+				'placeholderColor' : '#AAAAAA',
+				'autocomplete_url' : 'api/ing_tags',
+				'autocomplete':{
+						selectFirst:true,
+						autoFill:true, 
+						delay: 250, 
+						minLength: 3
+					}
+			});
+    	}
 
 		$('#editPost input#tagsEdit' + id_post +'_tag').css("border", "none");
 		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-size", "24px");

@@ -90,3 +90,22 @@ def deletePost(post_id):
 	post_to_delete = Post.get_by_id(post_id)
 	db.delete(post_to_delete)
 	return True
+
+def editPost(post_id, title, photo, recipe, ingredients):
+	post_to_change = Post.get_by_id(post_id)
+	if(post_to_change is not None):
+		post_to_change.title = title
+		if(photo != ''):
+			image = images.Image(db.Blob(photo))
+			image.resize(width=STANDARD_WIDTH)
+			photo = image.execute_transforms(output_encoding=images.JPEG)
+			size = len(photo)/1024
+			if size < 1000 and size > 0: 
+				post_to_change.photo = photo
+		if(len(recipe) > 0):
+			post_to_change.recipe = recipe
+		post_to_change.ingredients = ingredients
+		db.put(post_to_change)
+		return True
+	else:
+		return False
