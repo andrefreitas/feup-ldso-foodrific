@@ -75,6 +75,14 @@
 	width: 320px;
 }
 
+#editName, #editEmail, #editBirthday, #editGender,
+#editPassword{
+	display: none;
+	background-color: #ffdfbf;
+	text-align: center;
+	padding: 10px 0 10px 0;
+}
+
 #registerForm .alert,
 #loginForm .alert,
 #passwordForm .alert{

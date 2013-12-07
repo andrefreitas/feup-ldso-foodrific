@@ -699,9 +699,38 @@ function deleteCommentNo(){
 }
 
 function editName() {
-	$('#editFieldForm').bPopup({
+	$('#editName').bPopup({
 	    easing: 'easeOutBack', //uses jQuery easing plugin
        	speed: 450,
         transition: 'slideDown'
     });
 }
+
+function editEmail() {
+	$('#editEmail').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
+}      
+function editBirthday() {
+	$('#editBirthday').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
+}
+function editGender() {
+	$('#editGender').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
+}
+function editPassword() {
+	$('#editPassword').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
+} 

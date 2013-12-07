@@ -30,7 +30,7 @@ class ShowProfile(BaseHandler):
             template_values = {
                 "p_name" : user_data.name,
                 "p_email" : user_data.email,
-                "p_birthday" : user_data.birthday,
+                "p_birthday" : user_data.birthday.strftime("%d-%m-%Y"),
                 "p_gender" : gender
             }
             template = JINJA_ENVIRONMENT.get_template('show_profile.html')

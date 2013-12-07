@@ -48,12 +48,70 @@
           </div>
         </div>
         <!-- Edit field profile -->
-        <div id="editFieldForm">
-          <!--<form action="send_recover" onsubmit="return validateEmail()" method="post">
-            <div id="recoverPasswordAlert" class="alert"></div>
-            <input type="email" name="emailToRecover" placeholder="Introduzir e-mail..."/><br />
-            <input type="submit" value="Recuperar" class="orange"/>
-          </form>-->
+        <div id="editName">
+          <div class="container">
+            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+              <div id="nameAlert" class="alert"></div>
+              <input type="text" name="name" placeholder="nome" value="{{ p_name }}" maxlength="25"/><br/>
+              <br/>
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
+        </div>
+
+        <div id="editEmail">
+          <div class="container">
+            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+              <div id="emailAlert" class="alert"></div>
+              <input type="email" name="email" placeholder="email" value="{{ p_email }}" /><br/>
+              <br/>
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
+        </div>
+
+        <div id="editBirthday">
+          <div class="container">
+            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+              <div id="birthdayAlert" class="alert"></div>
+              <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)" value="{{ p_birthday }}"><br/>
+              <br/>
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
+        </div>
+
+        <div id="editGender">
+          <div class="container">
+            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+              <div id="genderAlert" class="alert"></div>
+              <select name="gender">
+              {% if p_gender == 'masculino' %}
+                <option value="m" selected="selected">masculino</option>
+                <option value="f">feminino</option>
+                {% endif %}
+                {% if p_gender == 'feminino' %}
+                <option value="m">masculino</option>
+                <option value="f" selected="selected">feminino</option>
+                {% endif %}
+              </select><br/>
+              <br/>
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
+        </div>
+
+        <div id="editPassword">
+          <div class="container">
+            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+              <div id="passwordAlert" class="alert"></div>
+              <input type="password" name="password" placeholder="senha"><br/>
+              <div id="passwordConfirmAlert" class="alert"></div>
+              <input type="password" name="passwordConfirm" placeholder="confirmar senha"><br/>
+              <br />
+              <input type="submit" value="Alterar" class="blue"/>
+            </form>
+          </div>
         </div>
       </div>
     </div>
