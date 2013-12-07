@@ -28,6 +28,25 @@ $(document).ready(function(){
 	$('.deletePost').click(function(){
 		deletePostClick(this);
 	});
+
+	$('.editPost').click(function(){
+		editPostClick(this);
+	});
+
+	$('#newPost #tags').tagsInput({	
+		'height':'',
+		'width':'',
+		'color':'',
+		'defaultText':'Novo Ingrediente',	
+		'placeholderColor' : '#AAAAAA',
+		'autocomplete_url' : 'api/ing_tags',
+		'autocomplete':{
+				selectFirst:true,
+				autoFill:true, 
+				delay: 250, 
+				minLength: 3
+			}
+	});
 	
 	$('.yummyAction').click(function(){
 		yummyClick(this);
@@ -35,21 +54,6 @@ $(document).ready(function(){
 
 	$("#uploadImage").change(function(){
     	readImageURL(this);
-	});
-
-	$('#tags').tagsInput({	
-	'height':'',
-	'width':'',
-	'color':'',
-	'defaultText':'Novo Ingrediente',	
-	'placeholderColor' : '#AAAAAA',
-	'autocomplete_url' : 'api/ing_tags',
-	'autocomplete':{
-			selectFirst:true,
-			autoFill:true, 
-			delay: 250, 
-			minLength: 3
-		}
 	});
 
 	$('.comments').click(function(){
@@ -67,7 +71,6 @@ $(document).ready(function(){
 	$('.comment .delete').click(function(){
 		deleteCommentClick(this);
 	});
-
 });
 
 var PASSWORDS_MINIMUM_LENGTH = 5;
@@ -256,10 +259,12 @@ function loginIsValid(email, password){
 }
 
 function addPostClick(){
-	if($("#newPost").is(':visible'))
+	if($("#newPost").is(':visible')){
 		$("#newPost").fadeOut();
-	else
+	}
+	else{
 		$("#newPost").fadeIn();
+	}
 }
 
 function readImageURL(input) {
@@ -326,6 +331,94 @@ function deletePost(id_post){
 		addNotification(postBox, 'O post foi eliminado!', "confirmation");
     } else {
     	addNotification(postBox, 'Falhou a eliminar :(', "error");
+    }
+}
+
+function editPost(id_post)
+{
+	$.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/edit_post",{
+            postId: id_post
+     });
+
+    var resultEditPost = $.parseJSON(data["responseText"]);
+    console.log("Called api/edit_post?postId="+id_post);
+    console.log(resultEditPost);
+
+    if(resultEditPost["result"] == "ok")
+    {
+    	alert("Faz bem!!");
+
+    	var $header = $('.editPost' + id_post);
+    	var $form_header = $('<form id="editpost" method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">').appendTo($header);
+    	$('<div class="alert" id="titleAlert"></div>').appendTo($form_header);
+    	$('<input type="text" name="title" placeholder="Qual é o título?" value="'+ resultEditPost["title"] +'"/> <br/>').appendTo($form_header);
+    	var $divPhoto = $('<div class="photo">').appendTo($form_header);
+    	$('<img id="foodImage" src="/api/postimage?id='+ id_post +'" alt="Preview da Imagem">').appendTo($divPhoto);
+    	$('</div>').appendTo($form_header);
+    	$('<div class="alert" id="photoAlert"></div>').appendTo($form_header);
+    	var $fileInputs = $('<div class="fileinputs">').appendTo($form_header);
+    	$('<input type="file" name="photo" id="uploadImage" class="file" />').appendTo($fileInputs);
+    	$('<button class="fakefile" id="addImage"> Adicionar Imagem </button>').appendTo($fileInputs);
+    	$('</div>').appendTo($form_header);
+    	$('<div class="alert" id="ingredientsAlert"></div>').appendTo($form_header);
+    	
+    	if(resultEditPost["ingredients"] == "")
+    	{
+    		$('<input name="ingredients" id="tagsEdit'+ id_post +'"/>').appendTo($form_header);
+    	}
+    	else if(resultEditPost["ingredients"].length != "")
+    	{
+    		var values = "";
+    	    
+    	    for(var i = 0; i < resultEditPost["ingredients"].length; i++)
+    		{
+    			if(i == 0)
+    			{
+    				values = resultEditPost["ingredients"][i];
+    			}
+    			else
+    			{
+    				values = values + "," + resultEditPost["ingredients"][i];
+    			}
+    		}
+
+    		$('<input name="ingredients" id="tagsEdit'+ id_post +'" value="'+ values +'">').appendTo($form_header);
+	    }
+
+	    if(resultEditPost["recipe"] == null)
+    	{
+    		$('<textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="editpost"></textarea> <br/>').appendTo($form_header);
+    	}
+    	else
+    	{
+        	$('<textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="editpost">'+ resultEditPost["recipe"] + '</textarea> <br/>').appendTo($form_header);
+        }
+        $('<input type="submit" value="Publicar" class="orange"/>').appendTo($form_header);
+        $('</form>').appendTo($header);
+
+        $('#posts #' + id_post).siblings("#posts .editPost"+ id_post).show();
+        
+        $('#editPost #tagsEdit' + id_post).tagsInput({	
+			'height':'',
+			'width':'',
+			'color':'',
+			'defaultText':'Novo Ingrediente',	
+			'placeholderColor' : '#AAAAAA',
+			'autocomplete_url' : 'api/ing_tags',
+			'autocomplete':{
+					selectFirst:true,
+					autoFill:true, 
+					delay: 250, 
+					minLength: 3
+				}
+		});
+
+		$('#editPost input#tagsEdit' + id_post +'_tag').css("border", "none");
+		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-size", "24px");
+		$('#editPost input#tagsEdit' + id_post +'_tag').css("width", "250px");
+		$('#editPost input#tagsEdit' + id_post +'_tag').css("margin-bottom", "5px");
+		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-family", "'Verdana', sans-serif");
     }
 }
 
@@ -408,6 +501,13 @@ function deletePostClick(elem) {
 	var father = $(elem).parent().parent().parent();
 	var id_post = father.attr("id");
 	toDelete = id_post;
+}
+
+function editPostClick(elem)
+{
+	var father = $(elem).parent().parent().parent();
+	var id_post = father.attr("id");
+	editPost(id_post);
 }
 
 function deletePostYes(){

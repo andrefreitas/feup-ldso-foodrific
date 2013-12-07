@@ -36,9 +36,7 @@
           <div class="alert" id="photoAlert"></div>
           <div class="fileinputs">
             <input type="file" name="photo" id="uploadImage" class="file" />
-            <button class="fakefile" id="addImage">
-              Adicionar Imagem
-            </button>
+            <button class="fakefile" id="addImage">Adicionar Imagem</button>
           </div>
           <div class="alert" id="ingredientsAlert"></div>
           <input name="ingredients" id="tags"/>
@@ -56,6 +54,7 @@
               <div class="inner">
                 {% if user_email == post.user.email %}
                   <div class="authorActions">
+                    <img class="editPost" src="images/edit_post.svg" alt="Editar Prato" width="20" height="20" />
                     <img class="deletePost" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
                   </div>
                 {% endif %}
@@ -109,6 +108,7 @@
                 </div>
               </div>
             </div>
+            <div id="editPost" class="box editPost{{post.key().id()}}"></div>
           {% endfor %}
       </div>
 
