@@ -453,7 +453,7 @@ function editPost(id_post)
     	{
         	$('<textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="editpost">'+ resultEditPost["recipe"] + '</textarea> <br/>').appendTo($form_header);
         }
-        $('<input type="submit" value="Publicar" class="orange"/>').appendTo($form_header);
+        $('<input type="submit" value="Alterar" class="orange"/>').appendTo($form_header);
         $('</form>').appendTo($header);
 
         $('#posts #' + id_post).siblings("#posts .editPost"+ id_post).show();
