@@ -68,6 +68,10 @@ $(document).ready(function(){
 				minLength: 3
 			}
 	});
+
+	$('#newPost input#tags_tag').keyup(function(){
+		delimiterTags();
+	});
 	
 	$('.yummyAction').click(function(){
 		yummyClick(this);
@@ -311,6 +315,16 @@ function readImageURL(input) {
     }    
 }
 
+function delimiterTags()
+{
+	var str_tag = $('#newPost input#tags_tag').val();
+
+	if(str_tag.length > 8)
+	{
+		$('#newPost input#tags_tag').val(str_tag.substring(0, str_tag.length-1));
+	}
+}
+
 function validatePublishPost(){
 	var fields = $('#newPost form').serializeArray();
 	var title = fields[0]["value"];
@@ -439,7 +453,7 @@ function editPost(id_post)
     	{
         	$('<textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="editpost">'+ resultEditPost["recipe"] + '</textarea> <br/>').appendTo($form_header);
         }
-        $('<input type="submit" value="Publicar" class="orange"/>').appendTo($form_header);
+        $('<input type="submit" value="Alterar" class="orange"/>').appendTo($form_header);
         $('</form>').appendTo($header);
 
         $('#posts #' + id_post).siblings("#posts .editPost"+ id_post).show();
@@ -484,6 +498,15 @@ function editPost(id_post)
 		$('#editPost input#tagsEdit' + id_post +'_tag').css("width", "250px");
 		$('#editPost input#tagsEdit' + id_post +'_tag').css("margin-bottom", "5px");
 		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-family", "'Verdana', sans-serif");
+		$('#editPost input#tagsEdit' + id_post +'_tag').keyup(function(event)
+		{
+			var str_tag = $('#editPost input#tagsEdit' + id_post +'_tag').val();
+
+			if(str_tag.length > 8)
+			{
+				$('#editPost input#tagsEdit' + id_post +'_tag').val(str_tag.substring(0, str_tag.length-1));
+			}
+		});
     }
 }
 
