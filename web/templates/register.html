@@ -7,9 +7,12 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/home.css">
     <script src="js/jquery.js"></script>
+    <script src="js/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/scripts.js"></script>
     <script src="js/bPopup.js"></script>
+    <script src="js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
     <link rel="icon" type="image/png" href="images/favicon.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
@@ -25,11 +28,11 @@
 
             <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
               <div id="nameAlert" class="alert"></div>
-              <input type="text" name="name" placeholder="nome"/><br/>
+              <input type="text" name="name" placeholder="nome" maxlength="25"/><br/>
               <div id="emailAlert" class="alert"></div>
               <input type="email" name="email" placeholder="email"/><br/>
               <div id="birthdayAlert" class="alert"></div>
-              <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)"><br/>
+              <input type="text" name="birthday" placeholder="data de nascimento" id="datepicker"><br/>
               <div id="genderAlert" class="alert"></div>
               <select name="gender">
                 <option selected="selected">escolher género</option>

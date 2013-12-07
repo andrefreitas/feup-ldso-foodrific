@@ -9,3 +9,4 @@ from feed import Feed
 from recovery import Recovery
 from base_handler import *
 from send_recover_handler import *
+from show_profile import ShowProfile

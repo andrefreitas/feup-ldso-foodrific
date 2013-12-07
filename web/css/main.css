@@ -78,3 +78,57 @@ button.blue:hover{
 	font-weight: bold;
 	font-size: 25px;
 }
+
+#logoutButton {
+	position: absolute;
+	padding-right: 20px;
+	padding-top: 12px;
+	right:0px;
+}
+
+#profileButton {
+	position: absolute;
+	padding-left: 20px;
+	padding-top: 12px;
+	left:0px;
+}
+
+.label_show {
+	width: 276px;
+	font-size: 22px;
+	text-align: left;
+	display: inline-block;
+	font-weight:bold;
+	color: #b3612f;
+}
+
+.field_value {
+	width: 300px;
+	padding: 10px;
+	font-size: 18px;
+	text-align: center;
+	display: inline-block;
+	color: #999999;
+}
+
+.button_change {
+	width: 320px;
+}
+
+.field_display {
+	width: 320px;
+	display: block;
+	margin: 0 auto;
+	border: solid 2px #efc296;
+	background: #FFFFFF;
+	margin-bottom: 10px;
+}
+
+#editProfileForm {
+	padding-top: 15px;
+	text-align: center;
+}
+
+#editProfileForm h1 {
+	margin-bottom: 30px !important;
+}

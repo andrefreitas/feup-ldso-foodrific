@@ -4,7 +4,28 @@ window.comment_id;
 window.post_id;
 
 $(document).ready(function(){
-
+	$( "#datepicker" ).datepicker({
+		showButtonPanel: true,
+		changeMonth: true,
+		changeYear: true,
+		yearRange:'-90:-12',
+		defaultDate: '-12Y',
+		reverseYearRange: true,
+		closeText: 'Fechar',
+		prevText: '&#x3c;Anterior',
+		nextText: 'Seguinte',
+		currentText: 'Hoje',
+		monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
+		'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+		monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun',
+		'Jul','Ago','Set','Out','Nov','Dez'],
+		dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','S&aacute;bado'],
+		dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
+		dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
+		weekHeader: 'Sem',
+		dateFormat: 'dd/mm/yy'
+	});
+	
 	$('#register').click(function(){
 		registerClick();
 	});
@@ -56,6 +77,25 @@ $(document).ready(function(){
     	readImageURL(this);
 	});
 
+<<<<<<< HEAD
+=======
+	$('#tags').tagsInput({	
+	'height':'',
+	'width':'',
+	'color':'',
+	'maxChars' : 8,
+	'defaultText':'Novo Ingrediente',	
+	'placeholderColor' : '#AAAAAA',
+	'autocomplete_url' : 'api/ing_tags',
+	'autocomplete':{
+			selectFirst:true,
+			autoFill:true, 
+			delay: 250, 
+			minLength: 3
+		}
+	});
+
+>>>>>>> 3c237140d9584916082de0976ef826c96a99fe6c
 	$('.comments').click(function(){
 		showCommentsClick(this);
 	});
@@ -631,4 +671,12 @@ function deleteCommentYes(){
 
 function deleteCommentNo(){
 	$('#deleteCommentPopUp').bPopup().close();
+}
+
+function editName() {
+	$('#editFieldForm').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+        transition: 'slideDown'
+    });
 }

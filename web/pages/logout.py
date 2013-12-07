@@ -6,6 +6,6 @@ from datastore import *
 class Logout(BaseHandler):
 
     def get(self):
-    	if "user" in self.session:
-    		del self.session["user"]
-    		return self.redirect('/')
+    	for key in self.session.keys():
+    		del self.session[key]
+    	return self.redirect('/')
