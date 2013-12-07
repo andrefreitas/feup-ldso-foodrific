@@ -6,7 +6,7 @@ from datastore.post import *
 import json
 from datastore.post import getPostByID
 
-class EditPost(webapp2.RequestHandler):
+class GetPost(webapp2.RequestHandler):
 
 	def get(self):
 		output = {}

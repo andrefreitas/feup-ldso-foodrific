@@ -76,26 +76,7 @@ $(document).ready(function(){
 	$("#uploadImage").change(function(){
     	readImageURL(this);
 	});
-
-<<<<<<< HEAD
-=======
-	$('#tags').tagsInput({	
-	'height':'',
-	'width':'',
-	'color':'',
-	'maxChars' : 8,
-	'defaultText':'Novo Ingrediente',	
-	'placeholderColor' : '#AAAAAA',
-	'autocomplete_url' : 'api/ing_tags',
-	'autocomplete':{
-			selectFirst:true,
-			autoFill:true, 
-			delay: 250, 
-			minLength: 3
-		}
-	});
-
->>>>>>> 3c237140d9584916082de0976ef826c96a99fe6c
+	
 	$('.comments').click(function(){
 		showCommentsClick(this);
 	});
@@ -377,12 +358,12 @@ function deletePost(id_post){
 function editPost(id_post)
 {
 	$.ajaxSetup( { "async": false } );
-     var data = $.getJSON("api/edit_post",{
+     var data = $.getJSON("api/get_post",{
             postId: id_post
      });
 
     var resultEditPost = $.parseJSON(data["responseText"]);
-    console.log("Called api/edit_post?postId="+id_post);
+    console.log("Called api/get_post?postId="+id_post);
     console.log(resultEditPost);
 
     if(resultEditPost["result"] == "ok")
