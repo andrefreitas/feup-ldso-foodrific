@@ -44,9 +44,7 @@
               <div><span class="label_show">Password: </span><a style="cursor: pointer" onclick="editPassword()"><img src="images/edit_field.svg" height="22px"/></a></div>
               <span class="field_value">********</span>
             </div>
-            <form method="post" action="api/delete_user" enctype="multipart/form-data">
-            <input class="button_change orange" type="submit" value="Apagar perfil"/>
-            </form>
+            <input class="button_change orange" onclick="deleteUserClick()" type="submit" value="Apagar perfil"/>
           </div>
         </div>
         <!-- Edit field profile -->
@@ -115,6 +113,19 @@
             </form>
           </div>
         </div>
+
+        <div id="questionPopUp">
+        <div class="container">
+          <h1>Confirma apagar?</h1>
+          <br>
+          <div class="buttons">
+          <form method="post" action="api/delete_user" enctype="multipart/form-data">
+            <input class="button_change orange" type="submit" value="Sim"/>
+            </form>
+            <input type="button" class="blue" name "no" value="Não" onclick="deleteUserNo()"/>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </body>

@@ -132,3 +132,23 @@ button.blue:hover{
 #editProfileForm h1 {
 	margin-bottom: 30px !important;
 }
+
+#questionPopUp,
+.popup {
+	display: none;
+	background-color: #ffdfbf;
+	text-align: center;
+	padding: 30px 0 30px 0;
+}
+
+#questionPopUp h1,
+.popup h1{
+	font-size: 30px;
+}
+#questionPopUp {
+		width: 80%;
+}
+
+#questionPopUp input {
+	width: 90%;
+}

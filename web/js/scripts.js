@@ -50,6 +50,10 @@ $(document).ready(function(){
 		deletePostClick(this);
 	});
 
+	$('.deleteUser').click(function(){
+		deleteUserClick(this);
+	});
+
 	$('.editPost').click(function(){
 		editPostClick(this);
 	});
@@ -604,6 +608,27 @@ function editPostClick(elem)
 	var father = $(elem).parent().parent().parent();
 	var id_post = father.attr("id");
 	editPost(id_post);
+}
+
+function deleteUserClick(elem) {
+	$('#questionPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
+}
+
+function deleteUser(){
+	
+}
+
+function deleteUserYes(){
+	$('#questionPopUp').bPopup().close();
+	deleteUser();
+}
+
+function deleteUserNo(){
+	$('#questionPopUp').bPopup().close();
 }
 
 function deletePostYes(){
