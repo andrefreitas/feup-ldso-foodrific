@@ -14,6 +14,7 @@ application = webapp2.WSGIApplication([
     ('/', Home),
     ('/login_handler', LoginHandler),
     ('/register_handler', RegisterHandler),
+    ('/edit_profile_handler', EditProfileHandler),
     ('/login', Login),
     ('/register', Register),
     ('/logout', Logout),

@@ -45,6 +45,61 @@ def editUser(name, old_email, new_email,  password, gender, birthday):
     else:
         return False
 
+def editUserName(email, newName):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        user_verify.name = newName
+        db.put(user_verify)
+        return True
+    else:
+        return False
+
+def editUserEmail(old_email, new_email):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", old_email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        user_verify.email = new_email
+        db.put(user_verify)
+        return True
+    else:
+        return False
+
+def editUserBirthday(email, birthday):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        user_verify.birthday = birthday
+        db.put(user_verify)
+        return True
+    else:
+        return False
+
+def editUserGender(email, gender):
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        user_verify.gender = gender
+        db.put(user_verify)
+        return True
+    else:
+        return False
+
+def editUserPassword(email, old_password, new_password):
+    old_encrypted_pw = encrypt(old_password)
+    encrypted_pw = encrypt(new_password)
+    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_verify = user_query.get()
+    if (user_verify is not None):
+        if user_verify.password == old_encrypted_pw:
+            user_verify.password = encrypted_pw
+            db.put(user_verify)
+            return True
+        else:
+            return False
+    else:
+        return False
+
 def loginUser(email, password):
     user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1 AND password = :2", email, encrypt(password))
     user = user_query.get()

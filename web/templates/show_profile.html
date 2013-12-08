@@ -50,7 +50,8 @@
         <!-- Edit field profile -->
         <div id="editName">
           <div class="container">
-            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+              <input type="text" name="type" value="name" hidden/>
               <div id="nameAlert" class="alert"></div>
               <input type="text" name="name" placeholder="nome" value="{{ p_name }}" maxlength="25"/><br/>
               <br/>
@@ -61,7 +62,8 @@
 
         <div id="editEmail">
           <div class="container">
-            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+              <input type="text" name="type" value="email" hidden/>
               <div id="emailAlert" class="alert"></div>
               <input type="email" name="email" placeholder="email" value="{{ p_email }}" /><br/>
               <br/>
@@ -72,7 +74,8 @@
 
         <div id="editBirthday">
           <div class="container">
-            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+              <input type="text" name="type" value="birthday" hidden/>
               <div id="birthdayAlert" class="alert"></div>
               <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)" value="{{ p_birthday }}"><br/>
               <br/>
@@ -83,7 +86,8 @@
 
         <div id="editGender">
           <div class="container">
-            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+              <input type="text" name="type" value="gender" hidden/>
               <div id="genderAlert" class="alert"></div>
               <select name="gender">
               {% if p_gender == 'masculino' %}
@@ -103,11 +107,14 @@
 
         <div id="editPassword">
           <div class="container">
-            <form action="register_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+              <input type="text" name="type" value="password" hidden/>
               <div id="passwordAlert" class="alert"></div>
-              <input type="password" name="password" placeholder="senha"><br/>
+              <input type="password" name="old_password" placeholder="senha antiga"><br/>
+              <div id="passwordAlert" class="alert"></div>
+              <input type="password" name="password" placeholder="nova senha"><br/>
               <div id="passwordConfirmAlert" class="alert"></div>
-              <input type="password" name="passwordConfirm" placeholder="confirmar senha"><br/>
+              <input type="password" name="passwordConfirm" placeholder="confirmar nova senha"><br/>
               <br />
               <input type="submit" value="Alterar" class="blue"/>
             </form>
