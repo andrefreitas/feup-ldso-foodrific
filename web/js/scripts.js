@@ -399,6 +399,8 @@ function editPost(id_post)
             postId: id_post
      });
 
+    var numTag = Math.floor((Math.random()*100000000000000000)+1);
+
     var resultEditPost = $.parseJSON(data["responseText"]);
     console.log("Called api/get_post?postId="+id_post);
     console.log(resultEditPost);
@@ -424,7 +426,7 @@ function editPost(id_post)
     	
     	if(resultEditPost["ingredients"] == "")
     	{
-    		$('<input name="ingredients" id="tagsEdit'+ id_post +'"/>').appendTo($form_header);
+    		$('<input name="ingredients" id="tagsEdit'+ numTag +'"/>').appendTo($form_header);
     	}
     	else if(resultEditPost["ingredients"].length != "")
     	{
@@ -442,7 +444,7 @@ function editPost(id_post)
     			}
     		}
 
-    		$('<input name="ingredients" id="tagsEdit'+ id_post +'" value="'+ values +'">').appendTo($form_header);
+    		$('<input name="ingredients" id="tagsEdit'+ numTag +'" value="'+ values +'">').appendTo($form_header);
 	    }
 
 	    if(resultEditPost["recipe"] == null)
@@ -454,13 +456,14 @@ function editPost(id_post)
         	$('<textarea name="recipe" placeholder="Qual é a receita?" rows="3" cols="50" form="editpost">'+ resultEditPost["recipe"] + '</textarea> <br/>').appendTo($form_header);
         }
         $('<input type="submit" value="Alterar" class="orange"/>').appendTo($form_header);
+        $('<input type="button" value="Cancelar" class="blue" onclick="return cancelEdit('+ id_post +')"/>').appendTo($form_header);
         $('</form>').appendTo($header);
 
         $('#posts #' + id_post).siblings("#posts .editPost"+ id_post).show();
         
         if(resultEditPost["ingredients"] != "")
         {
-	        $('#editPost #tagsEdit' + id_post).tagsInput({	
+	        $('#editPost #tagsEdit' + numTag).tagsInput({	
 				'height':'',
 				'width':'',
 				'color':'',
@@ -477,7 +480,7 @@ function editPost(id_post)
     	}
     	else if(resultEditPost["ingredients"] == "")
         {
-	        $('#editPost #tagsEdit' + id_post).tagsInput({	
+	        $('#editPost #tagsEdit' + numTag).tagsInput({	
 				'height':'',
 				'width':'',
 				'color':'',
@@ -493,24 +496,29 @@ function editPost(id_post)
 			});
     	}
 
-		$('#editPost input#tagsEdit' + id_post +'_tag').css("border", "none");
-		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-size", "24px");
-		$('#editPost input#tagsEdit' + id_post +'_tag').css("width", "250px");
-		$('#editPost input#tagsEdit' + id_post +'_tag').css("margin-bottom", "5px");
-		$('#editPost input#tagsEdit' + id_post +'_tag').css("font-family", "'Verdana', sans-serif");
-		$('#editPost input#tagsEdit' + id_post +'_tag').keyup(function(event)
+		$('#editPost input#tagsEdit' + numTag +'_tag').css("border", "none");
+		$('#editPost input#tagsEdit' + numTag +'_tag').css("font-size", "24px");
+		$('#editPost input#tagsEdit' + numTag +'_tag').css("width", "250px");
+		$('#editPost input#tagsEdit' + numTag +'_tag').css("margin-bottom", "5px");
+		$('#editPost input#tagsEdit' + numTag +'_tag').css("font-family", "'Verdana', sans-serif");
+		$('#editPost input#tagsEdit' + numTag +'_tag').keyup(function(event)
 		{
-			var str_tag = $('#editPost input#tagsEdit' + id_post +'_tag').val();
+			var str_tag = $('#editPost input#tagsEdit' + numTag +'_tag').val();
 
 			if(str_tag.length > 8)
 			{
-				$('#editPost input#tagsEdit' + id_post +'_tag').val(str_tag.substring(0, str_tag.length-1));
+				$('#editPost input#tagsEdit' + numTag +'_tag').val(str_tag.substring(0, str_tag.length-1));
 			}
 		});
     }
 }
 
-
+function cancelEdit(id_post)
+{
+	$("#posts .editPost"+ id_post + " #editpost").remove();
+	$("#posts .editPost"+ id_post).hide();
+	$('#posts #' + id_post).show();
+}
 
 function getPostId(action){
 	var post = $(action).parent().parent();
