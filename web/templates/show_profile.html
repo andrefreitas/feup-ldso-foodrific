@@ -44,7 +44,9 @@
               <div><span class="label_show">Password: </span><a style="cursor: pointer" onclick="editPassword()"><img src="images/edit_field.svg" height="22px"/></a></div>
               <span class="field_value">********</span>
             </div>
-            <input class="button_change orange" type="button" value="Apagar perfil"/>
+            <form method="post" action="api/delete_user" enctype="multipart/form-data">
+            <input class="button_change orange" type="submit" value="Apagar perfil"/>
+            </form>
           </div>
         </div>
         <!-- Edit field profile -->

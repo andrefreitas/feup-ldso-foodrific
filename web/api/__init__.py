@@ -13,3 +13,4 @@ from get_avatar import GetAvatar
 from delete_comment import DeleteComment
 from get_post import GetPost
 from edit_post import EditPost
+from delete_user import DeleteUser
