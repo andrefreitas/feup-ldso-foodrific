@@ -23,8 +23,8 @@ def addPost(user, title, photo):
 		image = images.Image(db.Blob(photo))
 		image.resize(width=STANDARD_WIDTH)
 		photo = image.execute_transforms(output_encoding=images.JPEG)
-		size = len(photo)/1024
-		if size < 1000 and size > 0: 
+		size = len(photo)
+		if size < 1000*1024 and size > 0: 
 			post = Post(user=user, title=title, photo=photo)
 			post.put()
 			return post.key().id()
