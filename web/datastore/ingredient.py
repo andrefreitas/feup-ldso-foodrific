@@ -30,10 +30,9 @@ def getIngredients():
 def searchIngredients(term):
     ingredients_query = getIngredients()
     match_ingredients = []
-    if ingredients_query is not None:
-        term = term.lower()
-        term = term.strip()
+    if ingredients_query:
+        term = term.lower().strip()
         for ing in ingredients_query:
-            if re.search(term,ing.name) is not None:
+            if re.search(term, ing.name) is not None:
                 match_ingredients.append(ing.name)
         return match_ingredients
