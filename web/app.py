@@ -38,6 +38,7 @@ application = webapp2.WSGIApplication([
     ('/api/session_data', api.SessionData),
     ('/api/ing_tags', api.IngTags),
     ('/api/register_verification', api.RegisterVerification),
+    ('/api/verifyPassword', api.PasswordVerification),
     ('/cleantokens', CleanTokens),
     ('/recovery', Recovery)
 ], debug=True, config=config)
