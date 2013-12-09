@@ -3,6 +3,7 @@ import webapp2
 import cgi
 import datetime
 import os
+import time
 from base_handler import *
 from datastore import *
 
@@ -15,7 +16,7 @@ class ShowProfile(BaseHandler):
 
     def get(self):
         if(self.isLoggedIn()):
-
+            time.sleep(1)
             email = self.get_session_email()
             user_data = searchUserByEmail(email)
             
