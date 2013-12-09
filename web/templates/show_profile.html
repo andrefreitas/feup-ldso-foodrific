@@ -50,10 +50,10 @@
         <!-- Edit field profile -->
         <div id="editName">
           <div class="container">
-            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateEditNameForm()">
               <input type="text" name="type" value="name" hidden/>
               <div id="nameAlert" class="alert"></div>
-              <input type="text" name="name" placeholder="nome" value="{{ p_name }}" maxlength="25"/><br/>
+              <input id="editNameField" type="text" name="name" placeholder="nome" value="{{ p_name }}" maxlength="25"/><br/>
               <br/>
               <input type="submit" value="Alterar" class="blue"/>
             </form>
@@ -62,10 +62,10 @@
 
         <div id="editEmail">
           <div class="container">
-            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateEditEmailForm()">
               <input type="text" name="type" value="email" hidden/>
               <div id="emailAlert" class="alert"></div>
-              <input type="email" name="email" placeholder="email" value="{{ p_email }}" /><br/>
+              <input id="editEmailField" type="email" name="email" placeholder="email" value="{{ p_email }}" /><br/>
               <br/>
               <input type="submit" value="Alterar" class="blue"/>
             </form>
