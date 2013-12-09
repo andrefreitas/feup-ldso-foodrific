@@ -111,6 +111,31 @@ function registerClick(){
 	window.location.assign("/register")
 }
 
+/**
+* Validate editForms
+**/
+function validateEditNameForm(){
+	var name = $('#editNameField').val();
+
+	if(!nameIsValid(name)){
+		$("#nameAlert").html("Nome inválido!").effect("shake");
+		return false;
+	}
+
+	return true;
+}
+
+function validateEditEmailForm(){
+	var email = $('#editEmailField').val();
+
+	if(!emailIsValid(email)){
+		$("#emailAlert").html("Email inválido!").effect("shake");
+		return false;
+	}
+
+	return true;
+}
+
 /** 
 * Validate the registration form
 **/
