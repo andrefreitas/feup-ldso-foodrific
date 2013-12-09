@@ -136,6 +136,47 @@ function validateEditEmailForm(){
 	return true;
 }
 
+function validateEditBirthdayForm(){
+	var birthday = $('#editBirthdayField').val();
+
+	if(!dateIsValid(birthday)){
+		$("#birthdayAlert").html("Data de nascimento inválida!").effect("shake");
+		return false;
+	}
+
+	return true;
+}
+
+function validateEditPasswordForm(){
+	oldPassword = $('#editOldPasswordField').val();
+	password = $('#editNewPasswordField').val();
+	passwordConfirm = $('#editConfNewPasswordField').val();
+
+	if(!passwordIsValid(oldPassword)) {
+		$("#oldPasswordAlert").html("Password atual inválida!").effect("shake");
+		return false;
+	}
+
+	if(!passwordsAreValid(password,passwordConfirm)){
+		if(password.length < 5)
+			$("#passwordAlert").html("A password tem que ter pelo menos 5 caracteres!").effect("shake");
+		else 
+			$("#passwordConfirmAlert").html("As passwords não são iguais!").effect("shake");
+		return false;
+	}
+
+	return true;
+}
+
+function passwordIsValid(password){
+	$.ajaxSetup( { "async": false } );
+     var data = $.getJSON("api/verifyPassword",{
+            password: password
+     });
+    $.ajaxSetup( { "async": true } );
+    return $.parseJSON(data["responseText"])["answer"] == 'valid' ;
+}
+
 /** 
 * Validate the registration form
 **/

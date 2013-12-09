@@ -74,10 +74,10 @@
 
         <div id="editBirthday">
           <div class="container">
-            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateEditBirthdayForm()">
               <input type="text" name="type" value="birthday" hidden/>
               <div id="birthdayAlert" class="alert"></div>
-              <input type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)" value="{{ p_birthday }}"><br/>
+              <input id="editBirthdayField" type="name" name="birthday" placeholder="nascimento(DD/MM/AAAA)" value="{{ p_birthday }}"><br/>
               <br/>
               <input type="submit" value="Alterar" class="blue"/>
             </form>
@@ -86,7 +86,7 @@
 
         <div id="editGender">
           <div class="container">
-            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post">
               <input type="text" name="type" value="gender" hidden/>
               <div id="genderAlert" class="alert"></div>
               <select name="gender">
@@ -107,14 +107,14 @@
 
         <div id="editPassword">
           <div class="container">
-            <form action="edit_profile_handler" method="post" onsubmit="return validateRegisterForm()">
+            <form action="edit_profile_handler" method="post" onsubmit="return validateEditPasswordForm()">
               <input type="text" name="type" value="password" hidden/>
+              <div id="oldPasswordAlert" class="alert"></div>
+              <input id="editOldPasswordField" type="password" name="old_password" placeholder="senha antiga"><br/>
               <div id="passwordAlert" class="alert"></div>
-              <input type="password" name="old_password" placeholder="senha antiga"><br/>
-              <div id="passwordAlert" class="alert"></div>
-              <input type="password" name="password" placeholder="nova senha"><br/>
+              <input id="editNewPasswordField" type="password" name="password" placeholder="nova senha"><br/>
               <div id="passwordConfirmAlert" class="alert"></div>
-              <input type="password" name="passwordConfirm" placeholder="confirmar nova senha"><br/>
+              <input id="editConfNewPasswordField" type="password" name="passwordConfirm" placeholder="confirmar nova senha"><br/>
               <br />
               <input type="submit" value="Alterar" class="blue"/>
             </form>
