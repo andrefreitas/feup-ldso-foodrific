@@ -519,16 +519,18 @@ body {
 	}
 
 	/* Adapt Yummy */
+
 	.post .actions div .action .text{
-		display: none;
+		
 	}
 
 	.post .actions div .action {
 		text-align: center;
 		width: auto;
+		margin-left:30px;
 	}
 	.post .actions div .action img {
-		float: none;
+		float: left;
 	}
 
 	/* Question Popup */
