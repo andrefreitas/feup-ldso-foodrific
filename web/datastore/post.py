@@ -63,7 +63,7 @@ def addRating(post_id, rating):
 		return False
 	
 def getPosts():
-	post_query = db.GqlQuery('SELECT * FROM Post')
+	post_query = Post.all()
 	return post_query.fetch(1000)
 
 def getPostByID(post_id):
@@ -72,7 +72,8 @@ def getPostByID(post_id):
 
 def getPostsByUser(user_id):
 	user = User.get_by_id(user_id)
-	post_query = db.GqlQuery('SELECT * FROM Post WHERE user = :1', user)
+	post_query = Post.all()
+	post_query.filter("user =", user)
 	return post_query.fetch(1000)
 	
 def getPostsByUserFollowing(user_follower_id):

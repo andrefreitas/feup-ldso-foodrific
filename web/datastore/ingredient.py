@@ -16,7 +16,8 @@ def addIngredient(name, photo):
         return True
 
 def existIngredient(name):
-    ingredient_query = db.GqlQuery("SELECT * FROM Ingredient WHERE name = :1", name)
+    ingredient_query = Ingredient.all()
+    ingredient_query.filter("name =", name)
     ingredient = ingredient_query.get()
     if (ingredient is None):
         return False
@@ -24,7 +25,7 @@ def existIngredient(name):
         return True
 
 def getIngredients():
-    ingredient_query = db.GqlQuery("SELECT * FROM Ingredient")
+    ingredient_query = Ingredient.all()
     return ingredient_query.fetch(1000)
 
 def searchIngredients(term):

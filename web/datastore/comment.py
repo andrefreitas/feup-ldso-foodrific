@@ -25,7 +25,8 @@ def deleteComment(comment_id):
 
 def getCommentsForPost(post_id):
 	post_comment = Post.get_by_id(post_id)
-	comment_query = db.GqlQuery("SELECT * FROM Comment WHERE post = :1", post_comment)
+	comment_query = Comment.all()
+	comment_query.filter("post =", post_comment)
 	return comment_query.fetch(1000)
 
 def deleteCommentsForPost(post_id):

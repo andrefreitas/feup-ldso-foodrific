@@ -16,13 +16,16 @@ def toogleYummy(user_id, post_id):
 		yummy.put()
 		return True
 	else:
-		yummy_delete = db.GqlQuery("SELECT * FROM Yummy WHERE user = :1 AND post = :2", user_yummy, post_yummy)
+		yummy_delete = Yummy.all()
+		yummy_delete.filter("user =", user_yummy)
+		yummy_delete.filter("post =", post_yummy)
 		db.delete(yummy_delete.get())
 		return False
 
 def getPostYummys(post_id):
 	post_yummy = Post.get_by_id(post_id)
-	all_yummy = db.GqlQuery("SELECT * FROM Yummy WHERE post = :1", post_yummy)
+	all_yummy = Yummy.all()
+	all_yummy.filter("post =", post_yummy)
 	return all_yummy.fetch(1000)
 
 def deletePostYummys(post_id):
@@ -36,7 +39,9 @@ def deletePostYummys(post_id):
 def YummyDone(user_id, post_id):
 	user_delete_yummy = User.get_by_id(user_id)
 	post_delete_yummy = Post.get_by_id(post_id)
-	yummy = db.GqlQuery("SELECT * FROM Yummy WHERE user = :1 AND post = :2", user_delete_yummy, post_delete_yummy)
+	yummy = Yummy.all()
+	yummy.filter("user =", user_delete_yummy)
+	yummy.filter("post =", post_delete_yummy)
 	if (len(yummy.fetch(1000)) > 0):
 		return True
 	else:

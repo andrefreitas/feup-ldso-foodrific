@@ -16,7 +16,9 @@ def addAdmin(name, email, password):
     return admin.key().id()
 
 def loginAdmin(email, password):
-    admin_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1 AND password = :2", email, encrypt(password))
+    admin_query = Admin.all()
+    admin_query.filter("email =", email)
+    admin_query.filter("password =", encrypt(password))
     admin = admin_query.get()
     if (admin is not None):
         return admin.key().id()
@@ -24,7 +26,8 @@ def loginAdmin(email, password):
         return False
     
 def isAdmin(email):
-    user_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1", email)
+    admin_query = Admin.all()
+    admin_query.filter("email =", email)
     user = user_query.get()
     if (user is not None):
         return True
@@ -33,7 +36,8 @@ def isAdmin(email):
     
 def editAdmin(name, email, password):
     encrypted_pw = encrypt(password)
-    admin_query = db.GqlQuery("SELECT * FROM Admin WHERE email = :1", email)
+    admin_query = Admin.all()
+    admin_query.filter("email =", email)
     admin_verify = admin_query.get()
     if (admin_verify is not None):
         admin_verify.name = name

@@ -32,7 +32,8 @@ def addUser(name, email, password, gender, birthday):
     
 def editUser(name, old_email, new_email,  password, gender, birthday):
     encrypted_pw = encrypt(password)
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", old_email)
+    user_query = User.all()
+    user_query.filter("email =", old_email)
     user_verify = user_query.get()
     if (user_verify is not None):
         user_verify.name = name
@@ -106,7 +107,9 @@ def editUserPassword(email, old_password, new_password):
         return False
 
 def loginUser(email, password):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1 AND password = :2", email, encrypt(password))
+    user_query = User.all()
+    user_query.filter("email =", email)
+    user_query.filter("password =", encrypt(password))
     user = user_query.get()
     if (user is not None):
         return user.key().id()
@@ -114,11 +117,13 @@ def loginUser(email, password):
         return False
     
 def getUserID(email):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_query = User.all()
+    user_query.filter("email =", email)
     return user_query.get().key().id()
     
 def isUser(email):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_query = User.all()
+    user_query.filter("email =", email)
     user = user_query.get()
     if (user is not None):
         return True
@@ -165,7 +170,8 @@ def searchUserByEmail(email):
     return user_query.get()
 
 def generateUserRecoveryToken(email):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_query = User.all()
+    user_query.filter("email =", email)
     if user_query is not None:
         user_value = user_query.get()
         user_value.token = encrypt(user_value.email + str(randint(1, maxLimit)))
@@ -179,7 +185,8 @@ def generateUserRecoveryToken(email):
         return False
     
 def changePasswordByToken(token, password):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE token = :1", token)
+    user_query = User.all()
+    user_query.filter("token =", token)
     if user_query is not None:
         user_value = user_query.get()
         user_value.token = ""
@@ -190,7 +197,8 @@ def changePasswordByToken(token, password):
         return False
     
 def getUserToken(email):
-    user_query = db.GqlQuery("SELECT * FROM User WHERE email = :1", email)
+    user_query = User.all()
+    user_query.filter("email =", email)
     if user_query is not None:
         user_value = user_query.get()
         return user_value.token

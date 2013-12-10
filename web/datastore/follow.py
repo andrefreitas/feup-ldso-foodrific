@@ -16,7 +16,9 @@ def addUserToFollow(user_id_follower, user_id_following):
 def isUserFollowing(user_id_follower, user_id_following):
     user_follower = User.get_by_id(user_id_follower)
     user_following = User.get_by_id(user_id_following)
-    follow_query = db.GqlQuery("SELECT * FROM Follow WHERE user_follower = :1 AND user_following = :2", user_follower, user_following)
+    follow_query = Follow.all()
+    follow_query.filter("user_follower =", user_follower)
+    follow_query.filter("user_following =", user_following)
     is_follow = follow_query.get()
     if(is_follow is not None):
         return True
@@ -26,6 +28,8 @@ def isUserFollowing(user_id_follower, user_id_following):
 def removeUserFollowing(user_id_follower, user_id_following):
     user_follower = User.get_by_id(user_id_follower)
     user_following = User.get_by_id(user_id_following)
-    follow_query = db.GqlQuery("SELECT * FROM Follow WHERE user_follower = :1 AND user_following = :2", user_follower, user_following)
+    follow_query = Follow.all()
+    follow_query.filter("user_follower =", user_follower)
+    follow_query.filter("user_following =", user_following)
     db.delete(follow_query.get())
     
