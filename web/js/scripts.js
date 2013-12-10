@@ -734,11 +734,17 @@ function showRecipeClick(elem){
 
 function addCommentClick(elem){
 	var comment = $(elem).parent().children('textarea').val();
+	comment = stripHTML(comment)
 	var postID = $(elem).parent().parent().attr("id");
 	$(elem).parent().children('textarea').val("");
 	if(comment.length > 0) {
 		requestAddComment(postID, comment);
 	}
+}
+
+function stripHTML(string) {
+	var strippedText = $("<div/>").html(string).text();
+	return strippedText;
 }
 
 function addCommentUI(postId, author, comment, commentId, time) {
