@@ -2,6 +2,7 @@ from google.appengine.ext import db
 from google.appengine.api import images
 from user import *
 from datastore.user import getUserID
+import re
 
 STANDARD_WIDTH = 800
 
@@ -110,3 +111,13 @@ def editPost(post_id, title, photo, recipe, ingredients):
 		return True
 	else:
 		return False
+	
+def searchPosts(term):
+	posts_query = getPosts()
+	match_posts = []
+	if posts_query:
+		term = term.lower().strip()
+		for post in posts_query:
+			if re.search(term, post.title):
+				match_posts.append(post.name)
+			return match_posts

@@ -24,12 +24,15 @@
     </div>
 
     <div class="container">
+      <form id="search_form" method="get" action="api/search">
+		    <input type="text" class="search_textinput" name="term" size="21" maxlength="25"><input type="submit" value="search" class="search_button">
+	  </form>
       <button id="addPost">novo post</button>
       <!-- New Post -->
       <div id="newPost" class="box">
         <form id="newpost" method="post" action="api/newpost" onsubmit="return validatePublishPost()" enctype="multipart/form-data">
           <div class="alert" id="titleAlert"></div>
-          <input type="text" name="title" placeholder="Qual é o título?" maxlength="25px"/> <br/>
+          <input type="text" name="title" placeholder="Qual é o título?" maxlength="25"/> <br/>
           <div class="photo">
             <img id="foodImage" src="images/post-photo.svg" alt="Preview da Imagem">
           </div>
