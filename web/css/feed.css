@@ -30,24 +30,20 @@ body {
 #search_form{
 	margin-top: 20px;
 	width: 100%;
+	font-size: 18px;
+	font-family: 'Verdana', sans-serif;
 }
 
 .search_textinput{
 	margin: 0;
 	padding: 5px 15px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:14px;
 	border:1px solid #d98451; border-right:0px;
-	border-top-left-radius: 5px 5px;
-	border-bottom-left-radius: 5px 5px;
-	width: 73%;
+	width: 63%;
 }
 
 .search_button {
 	margin: 0;
 	padding: 5px 15px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:14px;
 	outline: none;
 	cursor: pointer;
 	text-align: center;
@@ -57,9 +53,8 @@ body {
 	background: #d98451;
 	background: -webkit-gradient(linear, left top, left bottom, from(#d98451), to(#d98451));
 	background: -moz-linear-gradient(top,  #d98451,  #d98451);
-	border-top-right-radius: 5px 5px;
-	border-bottom-right-radius: 5px 5px;
-	width:20%;
+
+	width:30%;
 }
 
 .search_button:hover {
