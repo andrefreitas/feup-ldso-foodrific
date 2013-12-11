@@ -39,7 +39,8 @@ class SearchResults(BaseHandler):
             posts = map(putComments, posts)
             template_values = {
                 "term" : term,
-                "posts": posts
+                "posts": posts,
+                "user_email" : self.session.get("user")
             }
             template = JINJA_ENVIRONMENT.get_template('search.html')
             self.response.write(template.render(template_values))
