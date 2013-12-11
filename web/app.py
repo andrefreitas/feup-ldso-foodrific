@@ -40,7 +40,6 @@ application = webapp2.WSGIApplication([
     ('/api/ing_tags', api.IngTags),
     ('/api/register_verification', api.RegisterVerification),
     ('/api/verifyPassword', api.PasswordVerification),
-    ('/api/search', api.Search),
     ('/cleantokens', CleanTokens),
     ('/recovery', Recovery)
 ], debug=True, config=config)
