@@ -118,6 +118,6 @@ def searchPosts(term):
 	if posts_query:
 		term = term.lower().strip()
 		for post in posts_query:
-			if re.search(term, post.title):
-				match_posts.append(post.name)
-			return match_posts
+			if re.search(term, str(post.title).lower().strip()):
+				match_posts.append(post.key().id())
+	return match_posts

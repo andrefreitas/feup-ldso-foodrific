@@ -22,6 +22,7 @@ application = webapp2.WSGIApplication([
     ('/feed', Feed),
     ('/send_recover', SendRecoverHandler),
     ('/show_profile', ShowProfile),
+    ('/search', SearchResults),
     ('/api/login', api.Login),
     ('/api/newpost', api.NewPost),
     ('/api/postimage', api.PostImage),
