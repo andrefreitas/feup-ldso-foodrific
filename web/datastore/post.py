@@ -107,7 +107,7 @@ def editPost(post_id, title, photo, recipe, ingredients):
 		if(len(recipe) > 0):
 			post_to_change.recipe = recipe
 		post_to_change.ingredients = ingredients
-		db.put(post_to_change)
+		post_to_change.put()
 		return True
 	else:
 		return False
