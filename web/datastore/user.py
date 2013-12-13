@@ -205,6 +205,20 @@ def getUserToken(email):
     else:
         return
 
+def getUsers():
+    users_query = User.all()
+    return users_query.fetch(1000)
+
+def getUsersBySearch(seachword):
+    users_query = getUsers()
+    match_Users = []
+    if posts_query:
+        seachword = seachword.lower().strip()
+        for user in user_query:
+            if re.search(term, str(user.name).lower().strip()):
+                match_Users.append(user)
+    return match_Users
+
 # ----------------- ADDITIONAL FUNCTIONS -----------------
 # Needing salt element
 def encrypt(text):
