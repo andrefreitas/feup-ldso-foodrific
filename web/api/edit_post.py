@@ -2,6 +2,7 @@ import webapp2
 from datastore import *
 from google.appengine.ext import db
 from pages import BaseHandler
+import time
 
 class EditPost(BaseHandler):
 
@@ -18,4 +19,5 @@ class EditPost(BaseHandler):
 		editPost(id_post, title, photo, recipe, ingredients)
 		for ing in ingredients:
 			addIngredient(ing,None)
+		time.sleep(1)
 		return self.redirect('/')
