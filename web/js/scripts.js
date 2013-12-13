@@ -362,9 +362,10 @@ function addPostClick(){
 	}
 }
 
-function readImageURL(input) {
-
+function readImageURL(input) 
+{
 	var imgVal = $('#uploadImage').val();
+
 	$("#photoAlert").html("");
 	var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
     if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
@@ -382,6 +383,30 @@ function readImageURL(input) {
         reader.readAsDataURL(input.files[0]);
     }else{
     	$('#foodImage').attr('src', 'images/post-photo.svg');
+    }    
+}
+
+function readImageURLEdit(input, id_post) 
+{
+	var imgVal = $(".editPost" + id_post + " #uploadImageEdit").val();
+
+	$(".editPost" + id_post + " #photoAlert").html("");
+	var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
+    if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
+    {
+    	$(".editPost" + id_post + " #photoAlert").html("Insira uma imagem válida!").effect("shake");
+    }
+    else if (input.files && input.files[0]) {
+        
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $(".editPost" + id_post + " #foodImage").attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }else{
+    	$(".editPost" + id_post + " #foodImage").attr('src', 'images/post-photo.svg');
     }    
 }
 
@@ -419,24 +444,24 @@ function validatePublishPost(){
     }
 }
 
-function validateEditPost()
+function validateEditPost(id_post)
 {
-	var fields = $('#editPost form').serializeArray();
+	var fields = $(".editPost" + id_post + " form").serializeArray();
 	var title = fields[1]["value"];
 
-	$(".alert").html("");	
+	$(".editPost" + id_post + " .alert").html("");	
 	if(title.length < 1){
-		$("#editpost #titleAlert").html("Escreva um título!").effect("shake");
+		$(".editPost" + id_post + " #titleAlert").html("Escreva um título!").effect("shake");
 		return false;
 	}
-	var imgVal = $('#uploadImage').val();
+	var imgVal = $(".editPost" + id_post + " #uploadImageEdit").val();
 	
 	if(imgVal != '')
 	{ 
 	    var extension = imgVal.substring(imgVal.lastIndexOf('.') + 1).toLowerCase();
 	    if (extension != "gif" && extension != "png" && extension != "bmp" && extension != "jpeg" && extension != "jpg")
 	    {
-	    	$("#editpost #photoAlert").html("Insira uma imagem válida!").effect("shake");
+	    	$(".editPost" + id_post + " #photoAlert").html("Insira uma imagem válida!").effect("shake");
 	    	return false;
 	    }
 	}
@@ -480,7 +505,7 @@ function editPost(id_post)
     	console.log("Faz bem!!");
 
     	var $header = $('.editPost' + id_post);
-    	var $form_header = $('<form id="editpost" method="post" action="api/edit_post" onsubmit="return validateEditPost()" enctype="multipart/form-data">').appendTo($header);
+    	var $form_header = $('<form id="editpost" method="post" action="api/edit_post" onsubmit="return validateEditPost(' + id_post + ')" enctype="multipart/form-data">').appendTo($header);
     	$('<input type="hidden" name="postId" value="'+ id_post +'" />').appendTo($form_header);
     	$('<div class="alert" id="titleAlert"></div>').appendTo($form_header);
     	$('<input type="text" name="title" placeholder="Qual é o título?" value="'+ resultEditPost["title"] +'"/> <br/>').appendTo($form_header);
@@ -489,7 +514,7 @@ function editPost(id_post)
     	$('</div>').appendTo($form_header);
     	$('<div class="alert" id="photoAlert"></div>').appendTo($form_header);
     	var $fileInputs = $('<div class="fileinputs">').appendTo($form_header);
-    	$('<input type="file" name="photo" id="uploadImage" class="file" />').appendTo($fileInputs);
+    	$('<input type="file" name="photo" id="uploadImageEdit" class="file" />').appendTo($fileInputs);
     	$('<button class="fakefile" id="addImage"> Adicionar Imagem </button>').appendTo($fileInputs);
     	$('</div>').appendTo($form_header);
     	$('<div class="alert" id="ingredientsAlert"></div>').appendTo($form_header);
@@ -579,6 +604,10 @@ function editPost(id_post)
 			{
 				$('#editPost input#tagsEdit' + numTag +'_tag').val(str_tag.substring(0, str_tag.length-1));
 			}
+		});
+
+		$(".editPost" + id_post + " #uploadImageEdit").change(function(){
+    		readImageURLEdit(this, id_post);
 		});
     }
 }
