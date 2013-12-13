@@ -2,6 +2,7 @@ from google.appengine.ext import db
 import hashlib
 from random import randint
 from google.appengine.api import mail
+import re
 
 maxLimit = 999999999
 
@@ -209,13 +210,13 @@ def getUsers():
     users_query = User.all()
     return users_query.fetch(1000)
 
-def getUsersBySearch(seachword):
+def searchUsers(searchword):
     users_query = getUsers()
     match_Users = []
-    if posts_query:
-        seachword = seachword.lower().strip()
-        for user in user_query:
-            if re.search(term, str(user.name).lower().strip()):
+    if users_query:
+        searchword = searchword.lower().strip()
+        for user in users_query:
+            if re.search(searchword, str(user.name).lower().strip()):
                 match_Users.append(user)
     return match_Users
 

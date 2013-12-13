@@ -18,6 +18,8 @@ class SearchResults(BaseHandler):
         if(self.isLoggedIn()):
             term = self.request.get("term")
             posts = searchPosts(term)
+            users = searchUsers(term)
+            
             user_id = int(self.get_session_user_id())
             # Get post yummis
             def putYummys(post):
