@@ -20,6 +20,7 @@ application = webapp2.WSGIApplication([
     ('/logout', Logout),
     ('/session', Session),
     ('/feed', Feed),
+    ('/profile', Profile),
     ('/send_recover', SendRecoverHandler),
     ('/show_profile', ShowProfile),
     ('/search', SearchResults),
