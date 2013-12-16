@@ -891,3 +891,14 @@ function editPassword() {
         transition: 'slideDown'
     });
 } 
+
+function requestToggleFollow(user_id){
+	$.ajaxSetup( { "async": false } );
+    var data = $.getJSON("api/toggleFollow",{
+            user: user_id
+     });
+    $.ajaxSetup( { "async": true } );
+    console.log("Called api/toggleFollow?user="+user_id)
+    console.log($.parseJSON(data["responseText"]));
+    return $.parseJSON(data["responseText"])["answer"] == 'done' ;
+}

@@ -17,6 +17,7 @@ class Profile(BaseHandler):
         user_id = int(self.request.get("user"))
         user = searchUserByID(user_id)
         if(user):
+            genderDict = {"m" : "Man", "f" : "Woman"}
             params = {"user": user}
             template = JINJA_ENVIRONMENT.get_template('profile.html')
             self.response.write(template.render(params))

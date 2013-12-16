@@ -3,4 +3,40 @@
 	margin: 0 auto;
 	margin-top: 30px;
 	padding: 15px;
+	overflow: auto;
+}
+
+.profileBox img{
+	float: left;
+}
+
+.profileBox .data{
+	float: left;
+	margin-left: 15px;
+	color: #999999;
+}
+
+.profileBox .data > .name{
+	color: #d98451;
+	font-size: 25px;
+}
+
+.profileBox .actions {
+	clear: left;
+	padding-top: 20px;
+}
+
+.profileBox .actions button{
+	background: #ffcf9f;
+	padding: 5px 10px 5px 10px;
+	border: none;
+	border-radius: 0;
+	font-size: 14px;
+	cursor: pointer;
+	color: #d98451;
+}
+
+.profileBox .actions button:hover{
+	background: #fad8b6;
+
 }

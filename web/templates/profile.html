@@ -26,8 +26,16 @@
       <div class="notifications">
       </div>
       <!-- Profile Box -->
-      <div class="box profileBox">
+      <div class="box profileBox" id="{{user.id}}">
         <img src="api/get_avatar?email={{user.email}}" height="60px"/>
+        <div class="data">
+          <div class="name">{{user.name}}</div>
+          <div class="gender">{% if user.gender =='m' %}man{% else %}woman{% endif %}</div>
+        </div>
+        <!-- Actions -->
+        <div class="actions">
+          <button id="followBt">seguir</button>
+        </div>
       </div>
 
   </body>
