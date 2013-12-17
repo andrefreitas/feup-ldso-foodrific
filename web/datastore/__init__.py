@@ -3,3 +3,4 @@ from post import *
 from yummy import *
 from comment import *
 from ingredient import *
+from follow import *

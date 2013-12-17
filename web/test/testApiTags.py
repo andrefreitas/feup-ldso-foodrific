@@ -36,7 +36,9 @@ class testApiTags(DataStoreTestCase, unittest.TestCase):
         response = self.testapp.get('/api/ing_tags', {"term" : "ch"})
         self.assertEqual(response.json, ["cheese", "chicken"])
         response = self.testapp.get('/api/ing_tags', {"term" : ""})
-        self.assertEqual(response.json, ["cheese", "chicken", "sauce"])
+        self.assertEqual("cheese" in response.json, True)
+        self.assertEqual("chicken" in response.json, True)
+        self.assertEqual("sauce" in response.json, True)
 
 
     def tearDown(self):

@@ -11,16 +11,13 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class Feed(BaseHandler):
+class Profile(BaseHandler):
 
     def get(self):
-        if(self.isLoggedIn()):
-            user_id = int(self.get_session_user_id())
-            posts = getPostsByUserFollowing(user_id)
-            posts = posts + getPostsByUser(user_id)
-
-            posts = sorted(posts, key = lambda post: post.original_date, reverse=True)
-
+        user_id = int(self.request.get("user"))
+        user = searchUserByID(user_id)
+        if(user):
+            posts = getPostsByUser(user_id)
             
             # Get post yummis
             def putYummys(post):
@@ -40,16 +37,18 @@ class Feed(BaseHandler):
                 return post
 
             
-
             posts = map(putYummys, posts)
             posts = map(putComments, posts)
 
-            template_values = {
-                "posts" : posts,
-                "user_email" : self.session.get("user"),
-                "user_id" : self.get_session_user_id()
-            }
-            template = JINJA_ENVIRONMENT.get_template('feed.html')
-            self.response.write(template.render(template_values))
+            genderDict = {"m" : "Man", "f" : "Woman"}
+            profileOwner = self.get_session_user_id() == user_id
+            is_following = isUserFollowing(self.get_session_user_id(), user_id)
+            params = {"user": user, 
+                      "profileOwner" : profileOwner,
+                      "user_id" : self.get_session_user_id(),
+                      "is_following" : is_following,
+                      "posts" : posts }
+            template = JINJA_ENVIRONMENT.get_template('profile.html')
+            self.response.write(template.render(params))
         else:
-            return self.redirect('/')
+            return self.redirect("/")

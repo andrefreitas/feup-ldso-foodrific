@@ -152,3 +152,8 @@ button.blue:hover{
 #questionPopUp input {
 	width: 90%;
 }
+
+.box{
+	background-color: #fff3e8;
+	border: solid 1px #efc296;
+}

@@ -16,7 +16,6 @@ class ShowProfile(BaseHandler):
 
     def get(self):
         if(self.isLoggedIn()):
-            time.sleep(1)
             email = self.get_session_email()
             user_data = searchUserByEmail(email)
             
@@ -32,7 +31,8 @@ class ShowProfile(BaseHandler):
                 "p_name" : user_data.name,
                 "p_email" : user_data.email,
                 "p_birthday" : user_data.birthday.strftime("%d/%m/%Y"),
-                "p_gender" : gender
+                "p_gender" : gender,
+                "user_id" : self.get_session_user_id()
             }
             template = JINJA_ENVIRONMENT.get_template('show_profile.html')
             self.response.write(template.render(template_values))

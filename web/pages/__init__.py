@@ -13,3 +13,5 @@ from show_profile import ShowProfile
 from edit_profile_handler import EditProfileHandler
 from search import SearchResults
 from post import PostPage
+from profile import *
+

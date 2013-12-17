@@ -1,0 +1,33 @@
+.post .title {
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.post .author {
+	padding-top: 10px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.post .head {
+	border-bottom: none;
+}
+
+.post_avatar {
+	text-align:center;
+	vertical-align: middle;
+}
+
+.time {
+	color: #999999;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.post .content .post_image {
+	width: 450px;
+}
+
+a {
+	text-decoration: none;
+}

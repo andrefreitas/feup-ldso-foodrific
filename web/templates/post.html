@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Post</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.min.css" />
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/feed.css">
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/bPopup.js"></script>
+<script src="js/jquery.tagsinput.js"></script>
+<link rel="icon" type="image/png" href="images/favicon.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
+</head>
+<body>
+	<div id="header">
+      <a id="profileButton" href="/show_profile"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
+      <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
+      <a id="logoutButton" href="/logout"><img src="images/logout.svg" height="25px" /></a>
+    </div>
+	<div class="container">
+		<div id="posts">
+			<div class="post box" id="{{post.key().id()}}">
+			  <div class="inner">
+			    {% if user_email == post.user.email %}
+			      <div class="authorActions">
+			        <img class="editPost" src="images/edit_post.svg" alt="Editar Prato" width="20" height="20" style="cursor:pointer"/>
+			        <img class="deletePost" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+			      </div>
+			    {% endif %}
+			    <div class="head">
+			      <span class="title">{{post.title}}</span><br/>
+			      <span class="author">por {{post.user.name}}</span><br/>
+			    </div>
+			    <div class="content">
+			      <img src="/api/postimage?id={{post.key().id()}}" />
+			      <div class="ingredients">
+			        {% for ingredient in post.ingredients %}
+			          <div class="ingredient"> {{ ingredient }}</div>
+			        {% endfor %}
+			      </div>
+			    </div>
+			  </div>
+			  {% if post.recipe != None %}
+              <div class="recipe">Ver Receita</div>                
+              <div class="recipeSection">{{post.recipe}}</div>
+              {% endif %}
+              <div class="actions">
+                <div class="yummy yummyAction" id="{% if post.yummyDone %}done{% else %}undone{% endif %}">
+                  <div class="action">
+                    {% if post.yummyDone %}
+                    <img src="images/yummy-done.svg" height="45px">
+                    {% else %}
+                    <img src="images/yummy.svg" height="45px">
+                    {% endif %}
+                    <div class="text">{{post.yummys}}
+                    </div>
+                  </div>
+                </div>
+                <div class="comments">
+                  <div class="action">
+                    <img src="images/comments.svg" height="35px">
+                    <div class="text">{{post.commentsNumber}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="commentSection">
+                <textarea name="commentary" placeholder="Escrever comentário..." maxlength="500"></textarea>
+                <button class="addComment">comentar</button>
+                <div class="commentsUpdates">
+                  {% for comment in post.comments %}
+                  <div class="comment" id="{{comment.key().id()}}">
+                    <div class="commentText"><img src="api/get_avatar?email={{comment.user.email}}"><span class="author">{{comment.user.name}}</span><span>{{comment.content}}</span></div>
+                    <span class="time">{{comment.date.strftime("%d/%m/%y %H:%M")}}</span>  {% if user_email == comment.user.email %}<span class="delete">eliminar</span>{% endif %}
+					
+                  </div>
+                  <br/>
+                  {% endfor %}
+                </div>
+              </div>
+			</div>
+			<div id="editPost" class="box editPost{{post.key().id()}}"></div>
+		</div>
+	</div>    
+</body>
+</html>

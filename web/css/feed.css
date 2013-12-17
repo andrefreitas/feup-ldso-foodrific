@@ -21,10 +21,6 @@ body {
 	width: 500px;
 }
 
-.box{
-	background-color: #fff3e8;
-	border: solid 1px #efc296;
-}
 
 /* Barra de Pesquisa */
 #search_form{
@@ -390,6 +386,10 @@ body {
 	color: #fff;
 	padding-left: 5px;
 	padding-top: 9px;
+}
+
+.post .author a{
+	color: inherit;
 }
 
 #questionPopUp,
