@@ -42,7 +42,8 @@ class Feed(BaseHandler):
 
             template_values = {
                 "posts" : posts,
-                "user_email" : self.session.get("user")
+                "user_email" : self.session.get("user"),
+                "user_id" : self.get_session_user_id()
             }
             template = JINJA_ENVIRONMENT.get_template('feed.html')
             self.response.write(template.render(template_values))

@@ -38,5 +38,9 @@
 
 .profileBox .actions button:hover{
 	background: #fad8b6;
+}
 
+.profileBox .actions button.tofollow {
+	background: #eeeeee;
+	color: #999999;
 }

@@ -18,7 +18,7 @@
   </head>
   <body>
     <div id="header">
-      <a id="profileButton" href="/show_profile"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
+     <a id="profileButton" href="profile?user={{user_id}}"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
       <a id="logoutButton" href="/logout"><img src="images/logout.svg" height="25px" /></a>
     </div>
@@ -26,7 +26,7 @@
       <div class="notifications">
       </div>
       <!-- Profile Box -->
-      <div class="box profileBox" id="{{user.id}}">
+      <div class="box profileBox" id="{{user.key().id()}}">
         <img src="api/get_avatar?email={{user.email}}" height="60px"/>
         <div class="data">
           <div class="name">{{user.name}}</div>
@@ -34,7 +34,11 @@
         </div>
         <!-- Actions -->
         <div class="actions">
-          <button id="followBt">seguir</button>
+          {% if not profileOwner %}<button id="followBt" class="{% if is_following %}following{% else %}tofollow{% endif %}">
+          {% if is_following %}seguindo{% else %}seguir{% endif %}
+          </button>{% endif %}
+          
+          {% if profileOwner %}<button id="editProfileBt">edit profile</button>{% endif %}
         </div>
       </div>
 

@@ -18,7 +18,12 @@ class Profile(BaseHandler):
         user = searchUserByID(user_id)
         if(user):
             genderDict = {"m" : "Man", "f" : "Woman"}
-            params = {"user": user}
+            profileOwner = self.get_session_user_id() == user_id
+            is_following = isUserFollowing(self.get_session_user_id(), user_id)
+            params = {"user": user, 
+                      "profileOwner" : profileOwner,
+                      "user_id" : self.get_session_user_id(),
+                      "is_following" : is_following }
             template = JINJA_ENVIRONMENT.get_template('profile.html')
             self.response.write(template.render(params))
         else:

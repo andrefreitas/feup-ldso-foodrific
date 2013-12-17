@@ -18,7 +18,7 @@
   </head>
   <body>
     <div id="header">
-      <a id="profileButton" href="/show_profile"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
+      <a id="profileButton" href="profile?user={{user_id}}"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
       <a id="logoutButton" href="/logout"><img src="images/logout.svg" height="25px" /></a>
     </div>
@@ -63,7 +63,7 @@
                 {% endif %}
                 <div class="head">
                   <span class="title">{{post.title}}</span><br/>
-                  <span class="author">por {{post.user.name}}</span><br/>
+                  <span class="author">por <a href="profile?user={{post.user.key().id()}}">{{post.user.name}}</a></span><br/>
                 </div>
                 <div class="content">
                   <img src="/api/postimage?id={{post.key().id()}}" />
@@ -103,7 +103,7 @@
                 <div class="commentsUpdates">
                   {% for comment in post.comments %}
                   <div class="comment" id="{{comment.key().id()}}">
-                    <div class="commentText"><img src="api/get_avatar?email={{comment.user.email}}"><span class="author">{{comment.user.name}}</span><span>{{comment.content}}</span></div>
+                    <div class="commentText"><a href="profile?user={{comment.user.key().id()}}"><img src="api/get_avatar?email={{comment.user.email}}"></a><span class="author">{{comment.user.name}}</span><span>{{comment.content}}</span></div>
                     <span class="time">{{comment.date.strftime("%d/%m/%y %H:%M")}}</span>  {% if user_email == comment.user.email %}<span class="delete">eliminar</span>{% endif %}
 					
                   </div>
