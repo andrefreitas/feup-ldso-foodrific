@@ -15,13 +15,14 @@ class User(db.Model):
     gender = db.StringProperty(indexed=False, required=True, choices=set(["m", "f"]))
     photo = db.BlobProperty()
     token = db.StringProperty(required=False)
+    admin = db.BooleanProperty()
 
 
 # ----------------- FUNCTIONS USER -----------------
 def addUser(name, email, password, gender, birthday):
     if (searchUserByEmail(email) == None):
         encrypted_pw = encrypt(password)
-        user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday)
+        user = User(name=name, email=email, password=encrypted_pw, gender=gender, birthday=birthday, admin=False)
         user.put()
         sender_address = "foodrific.service@gmail.com"
         subject = "Bem-vindo ao Foodrific!"
