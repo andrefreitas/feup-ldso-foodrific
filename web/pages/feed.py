@@ -15,10 +15,11 @@ class Feed(BaseHandler):
 
     def get(self):
         if(self.isLoggedIn()):
-            posts = getPosts()
             user_id = int(self.get_session_user_id())
             is_admin = self.get_session_admin()
-
+            posts = getPostsByUserFollowing(user_id)
+            posts = posts + getPostsByUser(user_id)
+            posts = sorted(posts, key = lambda post: post.original_date, reverse=True)
             
             # Get post yummis
             def putYummys(post):
@@ -45,7 +46,8 @@ class Feed(BaseHandler):
             template_values = {
                 "posts" : posts,
                 "user_email" : self.session.get("user"),
-                "is_admin" : is_admin
+                "is_admin" : is_admin,
+                "user_id" : self.get_session_user_id()
             }
             template = JINJA_ENVIRONMENT.get_template('feed.html')
             self.response.write(template.render(template_values))

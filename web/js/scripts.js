@@ -58,6 +58,10 @@ $(document).ready(function(){
 		editPostClick(this);
 	});
 
+	$('#editProfileBt').click(function(){
+		window.location = "show_profile"
+	});
+
 	$('#newPost #tags').tagsInput({	
 		'height':'',
 		'width':'',
@@ -99,6 +103,10 @@ $(document).ready(function(){
 
 	$('.comment .delete').click(function(){
 		deleteCommentClick(this);
+	});
+
+	$('#followBt').click(function(){
+		followClick(this);
 	});
 });
 
@@ -900,5 +908,20 @@ function requestToggleFollow(user_id){
     $.ajaxSetup( { "async": true } );
     console.log("Called api/toggleFollow?user="+user_id)
     console.log($.parseJSON(data["responseText"]));
-    return $.parseJSON(data["responseText"])["answer"] == 'done' ;
+    return $.parseJSON(data["responseText"]);
+}
+
+function followClick(elem){
+	var user_id = $('.profileBox').attr("id");
+	var response = requestToggleFollow(user_id);
+	var action = response["action"];
+	if(action == "follow"){
+		$('#followBt').html("seguindo");
+		$(elem).attr("class", "following");
+	}
+	else{
+		$('#followBt').html("seguir");
+		$(elem).attr("class", "tofollow");
+	}
+
 }

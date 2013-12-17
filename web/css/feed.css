@@ -388,6 +388,10 @@ body {
 	padding-top: 9px;
 }
 
+.post .author a{
+	color: inherit;
+}
+
 #questionPopUp,
 .popup {
 	display: none;

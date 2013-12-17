@@ -42,6 +42,7 @@ class SearchResults(BaseHandler):
             template_values = {
                 "term" : term,
                 "posts": posts,
+                "users": users,
                 "user_email" : self.session.get("user")
             }
             template = JINJA_ENVIRONMENT.get_template('search.html')

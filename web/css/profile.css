@@ -1,6 +1,4 @@
 .profileBox {
-	width: 400px;
-	margin: 0 auto;
 	margin-top: 30px;
 	padding: 15px;
 	overflow: auto;
@@ -38,5 +36,9 @@
 
 .profileBox .actions button:hover{
 	background: #fad8b6;
+}
 
+.profileBox .actions button.tofollow {
+	background: #eeeeee;
+	color: #999999;
 }

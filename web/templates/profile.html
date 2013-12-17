@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.tagsinput.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.10.3.custom.min.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/feed.css">
     <link rel="stylesheet" type="text/css" href="css/profile.css">
     <script src="js/jquery.js"></script>
     <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
@@ -18,25 +19,126 @@
   </head>
   <body>
     <div id="header">
-      <a id="profileButton" href="/show_profile"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
+     <a id="profileButton" href="profile?user={{user_id}}"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
       <a id="logoutButton" href="/logout"><img src="images/logout.svg" height="25px" /></a>
     </div>
+
+      <div class="container">
       <!-- Notifications -->
       <div class="notifications">
       </div>
+
       <!-- Profile Box -->
-      <div class="box profileBox" id="{{user.id}}">
+      <div class="box profileBox" id="{{user.key().id()}}">
         <img src="api/get_avatar?email={{user.email}}" height="60px"/>
         <div class="data">
           <div class="name">{{user.name}}</div>
-          <div class="gender">{% if user.gender =='m' %}man{% else %}woman{% endif %}</div>
+          <div class="gender">{% if user.gender =='m' %}homem{% else %}mulher{% endif %}</div>
         </div>
         <!-- Actions -->
         <div class="actions">
-          <button id="followBt">seguir</button>
+          {% if not profileOwner %}<button id="followBt" class="{% if is_following %}following{% else %}tofollow{% endif %}">
+          {% if is_following %}seguindo{% else %}seguir{% endif %}
+          </button>{% endif %}
+          
+          {% if profileOwner %}<button id="editProfileBt">edit profile</button>{% endif %}
         </div>
       </div>
+
+            <!-- Posts -->
+      <div id="posts">
+          {% for post in posts %}
+            <div class="post box" id="{{post.key().id()}}">
+              <div class="inner">
+                {% if user_email == post.user.email %}
+                  <div class="authorActions">
+                    <img class="editPost" src="images/edit_post.svg" alt="Editar Prato" width="20" height="20" style="cursor:pointer"/>
+                    <img class="deletePost" src="images/delete.svg" alt="Apagar Prato" width="20" height="20"/>
+                  </div>
+                {% endif %}
+                <div class="head">
+                  <span class="title">{{post.title}}</span><br/>
+                  <span class="author">por <a href="profile?user={{post.user.key().id()}}">{{post.user.name}}</a></span><br/>
+                </div>
+                <div class="content">
+                  <img src="/api/postimage?id={{post.key().id()}}" />
+                  <div class="ingredients">
+                    {% for ingredient in post.ingredients %}
+                      <div class="ingredient"> {{ ingredient }}</div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              {% if post.recipe != None %}
+              <div class="recipe">Ver Receita</div>                
+              <div class="recipeSection">{{post.recipe}}</div>
+              {% endif %}
+              <div class="actions">
+                <div class="yummy yummyAction" id="{% if post.yummyDone %}done{% else %}undone{% endif %}">
+                  <div class="action">
+                    {% if post.yummyDone %}
+                    <img src="images/yummy-done.svg" height="45px">
+                    {% else %}
+                    <img src="images/yummy.svg" height="45px">
+                    {% endif %}
+                    <div class="text">{{post.yummys}}
+                    </div>
+                  </div>
+                </div>
+                <div class="comments">
+                  <div class="action">
+                    <img src="images/comments.svg" height="35px">
+                    <div class="text">{{post.commentsNumber}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="commentSection">
+                <textarea name="commentary" placeholder="Escrever comentário..." maxlength="500"></textarea>
+                <button class="addComment">comentar</button>
+                <div class="commentsUpdates">
+                  {% for comment in post.comments %}
+                  <div class="comment" id="{{comment.key().id()}}">
+                    <div class="commentText"><a href="profile?user={{comment.user.key().id()}}"><img src="api/get_avatar?email={{comment.user.email}}"></a><span class="author">{{comment.user.name}}</span><span>{{comment.content}}</span></div>
+                    <span class="time">{{comment.date.strftime("%d/%m/%y %H:%M")}}</span>  {% if user_email == comment.user.email %}<span class="delete">eliminar</span>{% endif %}
+          
+                  </div>
+                  <br/>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div id="editPost" class="box editPost{{post.key().id()}}"></div>
+          {% endfor %}
+      </div>
+
+      </div> <!-- End Container -->
+
+      <!-- BEGIN Delete Post popup -->
+      <div id="questionPopUp">
+        <div class="container">
+          <h1>Confirma apagar?</h1>
+          <br>
+          <div class="buttons">
+            <input type="button" class="orange" name="yes" value="Sim" onclick="deletePostYes()"/>
+            <input type="button" class="blue" name "no" value="Não" onclick="deletePostNo()"/>
+          </div>
+        </div>
+      </div>
+      <!-- END Delete Post popup -->
+
+      <!-- BEGIN Delete Comment popup -->
+      <div id="deleteCommentPopUp" class="popup">
+        <div class="container">
+          <h1>Confirma apagar?</h1>
+          <br>
+          <div class="buttons">
+            <input type="button" class="orange" name="yes" value="Sim" onclick="deleteCommentYes()"/>
+            <input type="button" class="blue" name "no" value="Não" onclick="deleteCommentNo()"/>
+          </div>
+        </div>
+      </div>
+      <!-- END Delete Comment popup -->
 
   </body>
 </html>
