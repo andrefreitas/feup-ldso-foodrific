@@ -456,6 +456,7 @@ body {
 	color: #a9a7a5;
 	margin-top: 10px;
 	font-family: 'Verdana', sans-serif;
+	resize: none;
 }
 
 .commentSection button{
