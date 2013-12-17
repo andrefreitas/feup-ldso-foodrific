@@ -18,6 +18,7 @@
 	vertical-align: middle;
 }
 
+
 .time {
 	color: #999999;
 	font-weight: normal;
@@ -31,3 +32,27 @@
 a {
 	text-decoration: none;
 }
+
+.search_posts, .search_users {
+	color: #d98451;
+	font-size: 20px;
+	font-weight: bold;
+	width: 500px;
+	padding-bottom: 5px;
+	border-bottom: dashed 1px #b05b27;
+}
+
+.search_users {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.profileBox {
+	margin-top:0px;
+	margin-bottom:20px;
+}
+
+.profileBox .name, .profileBox .gender {
+	font-size: 20px !important;
+}
+
