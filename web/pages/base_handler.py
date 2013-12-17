@@ -28,7 +28,6 @@ class BaseHandler(webapp2.RequestHandler):
             self.session["user"] = email
             self.session["user_id"] = int(getUserID(email))
             self.session["name"] = user.name
-            self.session["admin"] = user.admin
             return True
         return False
 
@@ -37,6 +36,3 @@ class BaseHandler(webapp2.RequestHandler):
 
     def get_session_email(self):
         return self.session["user"]
-
-    def get_session_admin(self):
-        return self.session["admin"]

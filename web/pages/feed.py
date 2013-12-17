@@ -16,10 +16,10 @@ class Feed(BaseHandler):
     def get(self):
         if(self.isLoggedIn()):
             user_id = int(self.get_session_user_id())
-            is_admin = self.get_session_admin()
             posts = getPostsByUserFollowing(user_id)
             posts = posts + getPostsByUser(user_id)
             posts = sorted(posts, key = lambda post: post.original_date, reverse=True)
+            is_admin = searchUserByID(user_id).admin
             
             # Get post yummis
             def putYummys(post):
