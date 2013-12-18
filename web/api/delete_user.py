@@ -15,6 +15,7 @@ class DeleteUser(BaseHandler):
 		user = searchUserByID(id_user)
 
 		if (user.admin is False):
+			removeAllUsersFollowing(id_user)
 			posts = getPostsByUser(id_user)
 			for post in posts:
 				id_post = post.key().id()
