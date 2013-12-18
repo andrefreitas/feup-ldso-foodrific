@@ -19,6 +19,7 @@ class PostPage(BaseHandler):
             post = getPostByID(post_id)
             
             user_id = int(self.get_session_user_id())
+            is_admin = searchUserByID(user_id).admin
             
             yummys = getPostYummys(post_id)
             post.yummys = len(yummys)
@@ -30,7 +31,8 @@ class PostPage(BaseHandler):
     
             template_values = {
                 "post": post,
-                "user_email" : self.session.get("user")
+                "user_email" : self.session.get("user"),
+                "is_admin": is_admin
             }
             template = JINJA_ENVIRONMENT.get_template('post.html')
             self.response.write(template.render(template_values))

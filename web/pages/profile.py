@@ -16,6 +16,7 @@ class Profile(BaseHandler):
     def get(self):
         user_id = int(self.request.get("user"))
         user = searchUserByID(user_id)
+
         if(user):
             posts = getPostsByUser(user_id)
             
@@ -42,12 +43,15 @@ class Profile(BaseHandler):
 
             genderDict = {"m" : "Man", "f" : "Woman"}
             profileOwner = self.get_session_user_id() == user_id
+            is_admin = searchUserByID(self.get_session_user_id()).admin
             is_following = isUserFollowing(self.get_session_user_id(), user_id)
             params = {"user": user, 
+                      "user_email": user.email,
                       "profileOwner" : profileOwner,
                       "user_id" : self.get_session_user_id(),
                       "is_following" : is_following,
-                      "posts" : posts }
+                      "posts" : posts,
+                      "is_admin": is_admin }
             template = JINJA_ENVIRONMENT.get_template('profile.html')
             self.response.write(template.render(params))
         else:

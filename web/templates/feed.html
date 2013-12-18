@@ -111,7 +111,7 @@
                   <div class="comment" id="{{comment.key().id()}}">
                     <div class="commentText"><a href="profile?user={{comment.user.key().id()}}"><img src="api/get_avatar?email={{comment.user.email}}"></a><span class="author">{{comment.user.name}}</span><span>{{comment.content}}</span></div>
                     <span class="time">{{comment.date.strftime("%d/%m/%y %H:%M")}}</span>  
-                    {% if user_email == comment.user.email or is_admin == True %}
+                    {% if user_email == comment.user.email or is_admin == True or post.user.email == user_email %}
                       <span class="delete">eliminar</span>
                     {% endif %}
                   </div>
