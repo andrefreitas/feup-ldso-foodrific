@@ -134,6 +134,7 @@ button.blue:hover{
 }
 
 #questionPopUp,
+#deleteUserPopUp,
 .popup {
 	display: none;
 	background-color: #ffdfbf;
@@ -142,14 +143,17 @@ button.blue:hover{
 }
 
 #questionPopUp h1,
+#deleteUserPopUp h1,
 .popup h1{
 	font-size: 30px;
 }
-#questionPopUp {
+#questionPopUp,
+#deleteUserPopUp {
 		width: 80%;
 }
 
-#questionPopUp input {
+#questionPopUp input,
+#deleteUserPopUp input {
 	width: 90%;
 }
 

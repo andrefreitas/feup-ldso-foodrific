@@ -721,17 +721,17 @@ function deleteUserClick(elem) {
     });
 }
 
-function deleteUser(){
-	
-}
-
-function deleteUserYes(){
-	$('#questionPopUp').bPopup().close();
-	deleteUser();
+function deleteUserClickAdmin(elem) {
+	$('#deleteUserPopUp').bPopup({
+	    easing: 'easeOutBack', //uses jQuery easing plugin
+       	speed: 450,
+       	transition: 'slideDown'
+    });
 }
 
 function deleteUserNo(){
 	$('#questionPopUp').bPopup().close();
+	$('#deleteUserPopUp').bPopup().close();
 }
 
 function deletePostYes(){
