@@ -46,7 +46,7 @@ class Profile(BaseHandler):
             is_admin = searchUserByID(self.get_session_user_id()).admin
             is_following = isUserFollowing(self.get_session_user_id(), user_id)
             params = {"user": user, 
-                      "user_email": user.email,
+                      "user_email":self.session.get("user"),
                       "profileOwner" : profileOwner,
                       "user_id" : self.get_session_user_id(),
                       "is_following" : is_following,
