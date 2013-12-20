@@ -116,8 +116,8 @@ def searchPosts(term):
 	posts_query = getPosts()
 	match_posts = []
 	if posts_query:
-		term = term.lower().strip()
+		term = term.encode('utf-8').lower().strip()
 		for post in posts_query:
-			if re.search(term, str(post.title).lower().strip()):
+			if re.search(term, post.title.encode('utf-8').lower().strip()):
 				match_posts.append(post)
 	return match_posts

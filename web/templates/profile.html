@@ -43,6 +43,10 @@
           </button>{% endif %}
           
           {% if profileOwner %}<button id="editProfileBt">edit profile</button>{% endif %}
+
+          {% if is_admin == True and profileOwner == False %}
+            <button id="deleteAccountBt" onclick="deleteUserClickAdmin()">eliminar conta</button>
+          {% endif %}
         </div>
       </div>
 
@@ -148,6 +152,22 @@
         </div>
       </div>
       <!-- END Delete Comment popup -->
+
+      <!-- BEGIN Delete Account popup -->
+      <div id="deleteUserPopUp">
+        <div class="container">
+          <h1>Confirma apagar?</h1>
+          <br>
+          <div class="buttons">
+            <form method="post" action="api/delete_user" enctype="multipart/form-data">
+              <input class="button_change orange" type="submit" value="Sim"/>
+              <input type="hidden" name="profile_id_user" value="{{user.key().id()}}" />
+            </form>
+            <input type="button" class="blue" name "no" value="Não" onclick="deleteUserNo()"/>
+          </div>
+        </div>
+      </div>
+      <!-- END Delete Account popup -->
 
   </body>
 </html>

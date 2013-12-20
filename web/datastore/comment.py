@@ -23,6 +23,13 @@ def deleteComment(comment_id):
 	db.delete(comment_to_delete)
 	return True
 
+def deleteCommentsForUser(user_id):
+	comments = Comment.all()
+	comments.filter("user =", User.get_by_id(user_id))
+	db.delete(comments)
+	return True
+	
+	
 def getCommentsForPost(post_id):
 	post_comment = Post.get_by_id(post_id)
 	comment_query = Comment.all()

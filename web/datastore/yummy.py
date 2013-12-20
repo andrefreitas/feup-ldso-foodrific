@@ -35,6 +35,10 @@ def deletePostYummys(post_id):
 	else:
 		db.delete(yummy_posts)
 		return True
+	
+def deleteYummysUser(user_id): 
+	yummys = Yummy.all().filter("user =", User.get_by_id(user_id))
+	db.delete(yummys)
 
 def YummyDone(user_id, post_id):
 	user_delete_yummy = User.get_by_id(user_id)

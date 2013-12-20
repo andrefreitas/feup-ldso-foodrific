@@ -215,9 +215,9 @@ def searchUsers(searchword):
     users_query = getUsers()
     match_Users = []
     if users_query:
-        searchword = searchword.lower().strip()
+        searchword = searchword.encode('utf-8').lower().strip()
         for user in users_query:
-            if re.search(searchword, str(user.name).lower().strip()):
+            if re.search(searchword, user.name.encode('utf-8').lower().strip()):
                 match_Users.append(user)
     return match_Users
 

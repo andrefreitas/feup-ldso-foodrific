@@ -32,4 +32,17 @@ def removeUserFollowing(user_id_follower, user_id_following):
     follow_query.filter("user_follower =", user_follower)
     follow_query.filter("user_following =", user_following)
     db.delete(follow_query.get())
+
+def removeAllUsersFollowing(user_id_follower):
+    user_follower = User.get_by_id(user_id_follower)
+    follow_query = Follow.all()
+    follow_query.filter("user_follower =", user_follower)
+    db.delete(follow_query)
+        
+def removeAllUsersFollowers(user_id_following):
+    user_following = User.get_by_id(user_id_following)
+    follow_query = Follow.all()
+    follow_query.filter("user_following =", user_following)
+    db.delete(follow_query)
     
+
