@@ -26,7 +26,7 @@ class Profile(BaseHandler):
                 post_id = post.key().id()
                 yummys = getPostYummys(post_id)
                 post.yummys = len(yummys)
-                post.yummyDone = YummyDone(user_id, post_id)
+                post.yummyDone = YummyDone(self.get_session_user_id(), post_id)
                 return post
 
             # Get post comments

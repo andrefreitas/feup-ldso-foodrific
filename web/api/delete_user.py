@@ -16,6 +16,9 @@ class DeleteUser(BaseHandler):
 
 		if (user.admin is False):
 			removeAllUsersFollowing(id_user)
+			removeAllUsersFollowers(id_user)
+			deleteYummysUser(id_user)
+			deleteCommentsForUser(id_user)
 			posts = getPostsByUser(id_user)
 			for post in posts:
 				id_post = post.key().id()
@@ -23,6 +26,7 @@ class DeleteUser(BaseHandler):
 					deleteCommentsForPost(id_post)
 					deletePostYummys(id_post)
 					deletePost(id_post)
+			deleteCommentsForUser(id_user)
 			deleteUser(id_user)
 			self.redirect('/logout')
 		else:
@@ -30,6 +34,10 @@ class DeleteUser(BaseHandler):
 			id_user = int(id_user_str)
 			if(isUserFollowing(self.session.get("user_id"), id_user)):
 				removeUserFollowing(self.session.get("user_id"), id_user)
+			if(isUserFollowing(id_user, self.session.get("user_id"))):
+				removeUserFollowing(id_user, self.session.get("user_id"))
+			deleteYummysUser(id_user)
+			deleteCommentsForUser(id_user)
 			posts = getPostsByUser(id_user)
 			for post in posts:
 				id_post = post.key().id()
