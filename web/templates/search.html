@@ -41,7 +41,7 @@
 	            <div class="inner">
 	                <div class="head">
 	                    <a href="/post?id={{post.key().id()}}"><span class="title">{{post.title}}</span></a><br/>
-	                    <span class="author"><img class="post_avatar" src="api/get_avatar?email={{user_email}}" height="30px"/> {{post.user.name}}</span><br/>
+	                    <span class="author"><img class="post_avatar" src="api/get_avatar?email={{post.user.email}}" height="30px"/> {{post.user.name}}</span><br/>
 	                </div>
 	                <div class="content">
 	                    <a href="/post?id={{post.key().id()}}"><img class="post_image" src="/api/postimage?id={{post.key().id()}}" /></a>
