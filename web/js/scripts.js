@@ -1028,7 +1028,7 @@ function post(title, id_post)
 	  		// TEM QUE SE EXPERIMENTAR COM O PROJETO QUE ESTA GUARDADO NO FOODRIFIC.APPSPOT.COM
 	    	method: 'feed',
 	    	name: title,
-	    	link: 'hhttp://foodrific.appspot.com/post?id=' + id_post,
+	    	link: 'http://foodrific.appspot.com/post?id=' + id_post,
 	    	picture: 'http://foodrific.appspot.com/api/postimage?id=' + id_post,
 	    	description: 'Venha conhecer a publicação ' + title + ' da Foodrific! :)'
 	  	},
