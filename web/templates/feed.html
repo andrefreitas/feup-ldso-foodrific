@@ -17,6 +17,7 @@
     <link rel="apple-touch-icon" sizes="72x72" href="images/icon-ipad.png" />
   </head>
   <body>
+    <div id="fb-root"></div>
     <div id="header">
       <a id="profileButton" href="profile?user={{user_id}}"><img src="api/get_avatar?email={{user_email}}" height="30px"/></a>
       <a href="/"><img src="images/logo-white.svg" height="50px" /></a>
@@ -77,6 +78,20 @@
                     {% for ingredient in post.ingredients %}
                       <div class="ingredient"> {{ ingredient }}</div>
                     {% endfor %}
+                  </div>
+                </div>
+                <div class="text_share">
+                  <img src="images/share.svg" height="25px">
+                </div>
+                <div class="social"> 
+                  <div class="facebook">
+                    <img src="images/facebook.svg" height="35px" onclick="shareFacebook({{post.key().id()}});">
+                  </div>
+                  <div class="google_plus">
+                    <img src="images/google_plus.svg" height="35px" onclick="shareGooglePlus({{post.key().id()}});"/>
+                  </div>
+                  <div class="twitter">
+                    <img src="images/twitter.svg" height="35px" onclick="shareTwitter({{post.key().id()}});">
                   </div>
                 </div>
               </div>
@@ -149,7 +164,6 @@
         </div>
       </div>
       <!-- END Delete Comment popup -->
-
     </div>
   </body>
 </html>

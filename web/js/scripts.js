@@ -38,6 +38,11 @@ $(document).ready(function(){
 		addPostClick();
 	});
 
+	$('.text_share').click(function(){
+		var id_post = $(this).parent().parent().parent().attr("id");
+		showShareIcons(id_post);
+	});
+
 	$('#publishPost').click(function(){
 		publishPostClick();
 	});
@@ -367,6 +372,15 @@ function addPostClick(){
 	}
 	else{
 		$("#newPost").fadeIn();
+	}
+}
+
+function showShareIcons(id_post){
+	if($("#" + id_post + " .social").is(':visible')){
+		$("#" + id_post + " .social").fadeOut();
+	}
+	else{
+		$("#" + id_post + " .social").fadeIn();
 	}
 }
 
@@ -925,3 +939,145 @@ function followClick(elem){
 	}
 
 }
+
+
+
+
+
+
+
+
+// Inicializar o FACEBOOK
+var isActive = false;
+
+window.fbAsyncInit = function() 
+{
+	FB.init({
+  		appId      : '195072584019284', // App ID
+  		channelUrl : '',
+  		status     : true, // check login status
+  		cookie     : true, // enable cookies to allow the server to access the session
+  		xfbml      : true  // parse XFBML
+	});
+
+	isActive = true;
+};
+
+(function(d)
+{
+	var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+ 
+	if (d.getElementById(id)) {return;}
+ 	
+ 	js = d.createElement('script'); js.id = id; js.async = true;
+ 	js.src = "//connect.facebook.net/en_US/all.js";
+	ref.parentNode.insertBefore(js, ref);
+}(document)); 
+	
+function shareFacebook(id_post)
+{
+	var title = $('#' + id_post + ' .inner .head .title').text();
+
+	if(isActive == true)
+	{
+		FB.getLoginStatus(function(response) 
+		{
+			if (response.status === 'connected') 
+		  	{
+			    var uid = response.authResponse.userID;
+			    var accessToken = response.authResponse.accessToken;
+
+			    post(title, id_post);
+			} 
+			else if (response.status === 'not_authorized') 
+			{
+			    
+		  	}
+		  	else 
+		  	{
+			    login();
+			}
+		});
+	}
+}
+
+function login()
+{
+	if(isActive == true)
+	{
+	    FB.login(function(response) 
+	    {
+	       	if (response.authResponse) 
+	       	{
+	       		console.log('Login efectuado com sucesso!');
+	        } 
+	        else 
+	        {
+	        	console.log('Login nao foi efectuado com sucesso!');
+	        }
+	    },{scope: 'email,user_photos,user_videos'});
+   }
+}
+
+function post(title, id_post)
+{
+	if(isActive == true)
+	{
+	    FB.ui(
+	  	{
+	  		// TEM QUE SE EXPERIMENTAR COM O PROJETO QUE ESTA GUARDADO NO FOODRIFIC.APPSPOT.COM
+	    	method: 'feed',
+	    	name: title,
+	    	link: 'hhttp://foodrific.appspot.com/post?id=' + id_post,
+	    	picture: 'http://foodrific.appspot.com/api/postimage?id=' + id_post,
+	    	description: 'Venha conhecer a publicação ' + title + ' da Foodrific! :)'
+	  	},
+	  	
+	  	function(response) 
+	  	{
+	    	if (response && response.post_id) 
+	    	{
+	      		console.log('Publicacao publicada!!');
+	    	} 
+	    	else 
+	    	{
+	      		console.log('Publicacao nao publicada!!');
+	    	}
+	  	});
+  	}
+}
+
+
+// Partilhar com o GOOGLE PLUS
+function shareGooglePlus(id_post)
+{
+	// TEM QUE SE EXPERIMENTAR COM O PROJETO QUE ESTA GUARDADO NO FOODRIFIC.APPSPOT.COM
+	var url = 'https://plus.google.com/u/0/share?url=http://foodrific.appspot.com/post?id='+ id_post +'&source=yt&hl=pt-PT&soc-platform=1&soc-app=130';
+	
+	window.open(url,'','width=450,height=300');
+}
+
+
+
+//Partilhar com o TWITTER
+function shareTwitter(id_post)
+{
+	var title = $('#' + id_post + ' .inner .head .title').text();
+
+	// TEM QUE SE EXPERIMENTAR COM O PROJETO QUE ESTA GUARDADO NO FOODRIFIC.APPSPOT.COM
+	var url = 'https://twitter.com/intent/tweet?url=http://foodrific.appspot.com/post?id='+ id_post +'&text='+ title +'';
+	window.open(url,'','width=450,height=300');
+}
+
+!function(d,s,id)
+{
+	var js,fjs=d.getElementsByTagName(s)[0];
+
+	if(!d.getElementById(id))
+	{
+		js=d.createElement(s);
+		js.id=id;
+		js.src="https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);
+	}
+}(document,"script","twitter-wjs");
