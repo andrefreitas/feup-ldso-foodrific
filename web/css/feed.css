@@ -401,14 +401,6 @@ body {
 	clear: both;
 	cursor: pointer;
 	padding-top: 10px;
-	color: #d98451;
-	width: 090px;
-}
-
-.post .text_share .text:hover
-{
-	background-color: #D98451;
-	color: #fff;
 }
 
 .post .social
