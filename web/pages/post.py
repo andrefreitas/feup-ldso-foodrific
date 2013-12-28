@@ -28,10 +28,11 @@ class PostPage(BaseHandler):
             comments = getCommentsForPost(post_id)
             post.comments = sorted(comments, key=lambda c: c.date, reverse=True)
             post.commentsNumber = len(comments)
-    
+            email  = self.session.get("user")
             template_values = {
                 "post": post,
-                "user_email" : self.session.get("user"),
+                "user_email" : email,
+                "user_id" : int(getUserID(email)),
                 "is_admin": is_admin
             }
             template = JINJA_ENVIRONMENT.get_template('post.html')
